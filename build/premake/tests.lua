@@ -132,6 +132,31 @@ project "testNet"
       links {"oeBasic_d"}
       links {"Ws2_32", "Winmm", "comctl32"}
 
+-- testOpenGL
+project "testOpenGL"
+   targetname "testOpenGL"
+   targetdir "../../testOpenGL"
+   debugdir "../../testOpenGL"
+   files {
+      "../../testOpenGL/**.cpp",
+      "../../testOpenGL/**.h",
+      "../../testOpenGL/**.epp",
+      "../../testOpenGL/**.edl"
+   }
+
+   defines { "GLEW_STATIC" }
+
+   includedirs { OEIncPath, OE3rdPartyIncPath }
+   libdirs     { OELibPath, OE3rdPartyLibPath }
+   defines { "_CONSOLE" }
+   configuration "Release"
+      links {"oeBasic", "oeBasicGL", "oeBasicGL2.0" }
+		links {"ftgl", LibFreetype, LibGLU, LibGL, "glfw3", "glew32s" }
+      links {"Ws2_32", "Winmm", "comctl32", "gdi32"}
+   configuration "Debug"
+      links {"oeBasic_d", "oeBasicGL_d", "oeBasicGL2.0_d" }
+		links {"ftgl_d", "freetype2_d", LibGLU, LibGL, "glfw3_d", "glew32s_d" }
+      links {"Ws2_32", "Winmm", "comctl32", "gdi32"}
 
 -- testRecordData
 project "testRecordData"

@@ -1,0 +1,44 @@
+worms:
+( Page2_0
+   pagingEvent: {
+       n: xx
+       p: yy
+   }
+   components: {
+      ( TestOne
+          color: green
+          speed: 10
+          startAngle: ( Degrees 30 )
+      )
+      ( TestOne
+          color: blue
+          speed: 20
+          startAngle: ( Degrees 155 )
+      )
+      ( TestOne
+          color: red
+          speed: 5
+          startAngle: ( Degrees 85 )
+      )
+      ( TestOne
+          color: yellow
+          speed: 5
+          startAngle: ( Degrees -35 )
+      )
+      ( TestOne
+          color: cyan
+          speed: 5
+          startAngle: ( Degrees -85 )
+      )
+      ( TestOne
+          color: magenta
+          speed: 5
+          startAngle: ( Degrees -155 )
+      )
+      ( TestOne
+          color: white
+          speed: 5
+          startAngle: ( Degrees -175 )
+      )
+   }
+)

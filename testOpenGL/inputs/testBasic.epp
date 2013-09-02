@@ -1,0 +1,84 @@
+   // list of shaders (only one for now)
+   shaders: {
+      default:
+      ( Shader
+         vertexShaderPath: "vertexShader.oes"
+         //geometryShaderPath: "geometryShader.oes"
+         fragmentShaderPath: "fragmentShader.oes"
+      )
+   }
+
+   // list of textures (only one for now)
+   textures: {
+      coffee: ( BitmapTexture2_0 width: 128 height: 128 path: TEXTURES_PATH  file: "Coffee_bean.bmp" )
+   }
+
+   // This is the default font table, and all fields will use this font if their
+   // page's do not have a font table.
+   normalFont: default
+   fonts: {
+      default:
+      ( BitmapFont2_0
+          fontPosition: [ -9.5 9.5 ]
+          fontWidth: 0.462
+          fontHeight: 0.798
+          bitmapWidth: 11
+          bitmapHeight: 19
+          characterSpacing: 0.462
+          lineSpacing: 0.798
+          path: FONT_11_19_PATH
+      )
+      bigfont:
+      ( FTGLPolygonFonts2_0
+          fontPosition: [ -10.5 10.5 ]
+          fontWidth: 2.0          // Font width scaling
+          fontHeight: 2.0         // Font height scaling
+          characterSpacing: 1.2   // This font is 2:1 (height:widht) or (lineSpaceing:charSpacing)
+          lineSpacing: 2
+          path: FONT_PATH
+          file: "arialn.ttf"
+      )
+   }
+
+   page: worms
+   pages: {
+      #include "worms.epp"
+      #include "PageXX.epp"
+      #include "PageYY.epp"
+   }
+
+
+   // ---
+   // Add a background box to the main display
+   // ---
+   components: {
+//      ( AsciiText2_0
+//         // because of Bitmap font, we have to use the old method (no shading)
+//         // of drawing
+//         oldSchool: 1
+//         //font: bigfont
+//         color: white
+//         transform: ( GlmTranslation -10 -10.5 )
+//         text: "Press 'p' to page back, 'n' to page forward."
+//      )
+
+//      ( AsciiText2_0
+//         // because of Bitmap font, we have to use the old method (no shading)
+//         // of drawing
+//         font: bigfont
+//         color: white
+//         //transform: ( GlmTranslation -10 -10.5 )
+//         text: "Press 'p' to page back, 'n' to page forward."
+//      )
+
+      ( LineLoop2_0
+         color: blue
+         vertices: {
+            [ -10 -10 ]
+            [ -10  10 ]
+            [  10  10 ]
+            [  10 -10 ]
+         }
+      )
+   }
+

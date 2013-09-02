@@ -1,0 +1,22 @@
+// ---
+// Example page YY
+// ---
+
+yy:
+( Page2_0
+   pagingEvent: {
+       n: worms
+       p: xx
+   }
+   components: {
+      testGraphic1:
+      ( Triangle2_0
+         color: blue
+         vertices: {
+            [ -1 -1 ]
+            [  1 -1 ]
+            [  0 1 ]
+         }
+      )
+   }
+)

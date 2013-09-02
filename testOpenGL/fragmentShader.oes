@@ -1,0 +1,26 @@
+#version 330 core
+
+// --- INPUT
+// vertex shader input color
+in vec4 vColor;
+
+// vertex shader input texture coordinates
+in vec2 texCoords;
+
+// --- OUTPUT
+// output color
+out vec4 outColor;
+
+// --- CONSTANTS
+uniform sampler2D myTextureSampler;
+uniform float useTexture = 0.0;
+uniform float useVectorColor = 0.0;
+
+void main()
+{
+    // setup temporary colors (one for texture, one for color)
+    vec4 texColor = texture(myTextureSampler, texCoords) * useTexture;
+    vec4 vertColor = vColor * useVectorColor;
+    // Combine
+    outColor = vertColor + texColor;
+}

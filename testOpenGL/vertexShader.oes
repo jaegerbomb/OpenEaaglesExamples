@@ -1,0 +1,37 @@
+#version 330 core
+
+// --- INPUT
+
+// vertices
+in vec3 vertexPosition;
+
+// color
+in vec4 vertexColor;
+
+// texture
+in vec2 texturePosition;
+
+// --- OUTPUT
+
+// Output color data, to the fragment shader
+out vec4 vColor;
+
+// Interpolated texture coordinates for each fragment
+out vec2 texCoords;
+
+// --- CONSTANT
+
+// Values that stay constant for the whole mesh.
+uniform mat4 MVP;
+
+void main(){
+    // Output position of the vertex, in clip space : MVP * position
+    gl_Position =  MVP * vec4(vertexPosition,1);
+
+    // Vertex color
+    vColor = vertexColor;
+
+    // Textures
+    texCoords = texturePosition;
+}
+
