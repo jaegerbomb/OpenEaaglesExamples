@@ -31,6 +31,7 @@ SUBDIRS       = \
                 mainy1              \
                 mainz1              \
                 mainz2              \
+                testOpenGL          \
                 testEvents          \
                 testIo              \
                 testLinearSys       \
