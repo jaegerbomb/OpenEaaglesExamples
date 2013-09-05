@@ -84,15 +84,14 @@
 //         }
 //      )
 
-//      ( AsciiText2_0
-//         // because of Bitmap font, we have to use the old method (no shading)
-//         // of drawing
-//         oldSchool: 1
-//         //font: bigfont
-//         color: white
-//         transform: ( GlmTranslation -10 -10.5 )
-//         text: "Press 'p' to page back, 'n' to page forward."
-//      )
+      // ASCII text and all other readouts still use GL immediate modes - which WILL ONLY
+      // apply to a viewport that has -1 to 1 size, and cannot rotate or scale
+      ( AsciiText2_0
+         //font: bigfont
+         color: white
+         transform: ( Translation -1 0 )
+         text: "Press 'p' to page back, 'n' to page forward."
+      )
 
 //      ( AsciiText2_0
 //         // because of Bitmap font, we have to use the old method (no shading)
