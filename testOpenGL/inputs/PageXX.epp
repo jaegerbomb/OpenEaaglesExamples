@@ -9,31 +9,21 @@ xx:
        p: worms
    }
    components: {
-//      testGraphic1:
-//      ( Triangle2_0
-//         color: yellow
-//         vertices: {
-//            [ -1 -1 ]
-//            [  1 -1 ]
-//            [  0 1 ]
-//         }
-//      )
        ( TriangleStrip2_0
          //color: blue
          //outlineOnly: 1
+         colorAtVertex: {
+            ( rgb 1 0 0 )
+            ( rgb 0 1 0 )
+            ( rgb 0 0 1 )
+            ( rgb 0 0 0 )
+         }
          vertices: {
             [ -5 -5 ]
             [ -5  5 ]
             [ 5 -5 ]
             [ 5 5 ]
          }
-//         textureName: coffee
-//         textureVertices: {
-//         [ 0 0 ]
-//         [ 0 1 ]
-//         [ 1 0 ]
-//         [ 1 1 ]
-//         }
        )
    }
 )
