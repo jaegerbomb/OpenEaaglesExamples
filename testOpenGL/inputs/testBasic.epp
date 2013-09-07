@@ -1,12 +1,3 @@
-   // list of shaders (only one for now)
-   shaders: {
-      default:
-      ( Shader
-         vertexShaderPath: "vertexShader.oes"
-         //geometryShaderPath: "geometryShader.oes"
-         fragmentShaderPath: "fragmentShader.oes"
-      )
-   }
 
    // list of textures (only one for now)
    textures: {
@@ -43,6 +34,10 @@
    page: worms
    pages: {
       #include "worms.epp"
+      #include "PageYIQColors.epp"
+      #include "PageCMYColors.epp"
+      #include "PageHLSColors.epp"
+      #include "PageHSVColors.epp"
       #include "PageXX.epp"
       #include "PageYY.epp"
    }
@@ -57,6 +52,7 @@
 //         components: {
 //            ( TriangleStrip2_0
 //               color: blue
+//                      transform: ( GlmRotation 35 )
 //               vertices: {
 //                  [ -2 -2 ]
 //                  [ -2  2 ]
@@ -66,14 +62,14 @@
 //            )
             ( TriangleStrip2_0
                textureName: coffee
-                transform: ( GlmTranslation 5 5  )
-                textureVertices: {
+               transform: ( GlmTranslation 5 5  )
+               textureVertices: {
                   [ 0 0 ]
                   [ 0 1 ]
                   [ 1 0 ]
                   [ 1 1 ]
                 }
-               //color: white
+              // color: white
                 vertices: {
                    [ -2 -2 ]
                    [ -2  2 ]
@@ -84,12 +80,10 @@
 //         }
 //      )
 
-      // ASCII text and all other readouts still use GL immediate modes - which WILL ONLY
-      // apply to a viewport that has -1 to 1 size, and cannot rotate or scale
       ( AsciiText2_0
          //font: bigfont
+         transform: ( GlmTranslation -10 -10.5 )
          color: white
-         transform: ( Translation -1 0 )
          text: "Press 'p' to page back, 'n' to page forward."
       )
 

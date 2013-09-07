@@ -1,18 +1,18 @@
 //------------------------------------------------------------------------------
 // Class: OpenGL GLFW3 Display
 //------------------------------------------------------------------------------
-#ifndef __Eaagles_TESTOPENGL_Display_H__
-#define __Eaagles_TESTOPENGL_Display_H__
+#ifndef __Eaagles_TestOldOpenGL_Display_H__
+#define __Eaagles_TestOldOpenGL_Display_H__
 
-#include "openeaagles/basicGL2.0/core/Display.h"
+#include "openeaagles/basicGL/Display.h"
 
 struct GLFWwindow;
 
 namespace Eaagles {
-namespace TestOpenGL {
+namespace TestOldOpenGL {
 
-class Display : public BasicGL2_0::Display {
-   DECLARE_SUBCLASS(Display, BasicGL2_0::Display)
+class Display : public BasicGL::Display {
+   DECLARE_SUBCLASS(Display, BasicGL::Display)
 
 public:
    Display();

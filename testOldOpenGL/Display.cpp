@@ -1,22 +1,20 @@
+#include "GLEW/glew.h"
 // Include GLEW FIRST
 #include "Display.h"
 
 #include "TestOne.h"
-
 #include "openeaagles/basic/Color.h"
 #include "openeaagles/basic/Number.h"
 #include "openeaagles/basic/String.h"
 #include "openeaagles/basic/Pair.h"
 #include "openeaagles/basic/PairStream.h"
-// Shader includes glew
-#include "openeaagles/basicGL2.0/core/Shader.h"
 #include <GLFW/glfw3.h>
 
 // LEE TEST
 #include "openeaagles/basic/units/Angles.h"
 
 namespace Eaagles {
-namespace TestOpenGL {
+namespace TestOldOpenGL {
 
 IMPLEMENT_SUBCLASS(Display,"GLFW3Display")
 EMPTY_SERIALIZER(Display)
@@ -180,6 +178,7 @@ int Display::createWindow()
 
       }
 
+#if 0
       // generate and create our vertex array 
       GLuint myArrayID = 0;
       glGenVertexArrays(1, &myArrayID);
@@ -193,14 +192,14 @@ int Display::createWindow()
          while (item != 0) {
             Eaagles::Basic::Pair* pair = (Eaagles::Basic::Pair*)item->getValue();
             if (pair != 0) {
-               BasicGL2_0::Shader* shdr = dynamic_cast<BasicGL2_0::Shader*>(pair->object());
+               BasicGL::Shader* shdr = dynamic_cast<BasicGL::Shader*>(pair->object());
                if (shdr != 0) shdr->createAndLinkShaders();
             }
             item = item->getNext();
          }
       }
+#endif
    }
-
    // load our textures
    loadTextures();
 
@@ -208,21 +207,15 @@ int Display::createWindow()
    if (benchmark) {
       double startAngle = 0;
       double startSpeed = 0;
-      Eaagles::Basic::Color* color = new Eaagles::Basic::Color();
-      color->setRed(1);
-      color->setBlue(1);
-      color->setGreen(1);
       for (int i = 0; i < 1000; i++) {
          TestOne* one = new TestOne();
          one->setStartAngle(startAngle++);
          one->setSpeed(4);
-         one->setColor(color);
          Basic::Pair* pair = new Basic::Pair("t", one);
          addComponent(pair);
          pair->unref();
          one->unref();
       }
-      color->unref();
    }
 
 	return 0;
@@ -281,6 +274,7 @@ bool Display::setSlotBenchmark(const Basic::Number* const x)
    if (x != 0) benchmark = x->getBoolean();
    return true;
 }
+
 
 
 //-----------------------------------------------------------------------------
@@ -343,11 +337,11 @@ void Display::mouseButtonEvent(const int button, const int state, const int mods
    // find a graphic with the name "testGraphic1, and rotate it"
    Eaagles::Basic::Pair* pair = findByName("testGraphic1");
    if (pair != 0) {
-      Eaagles::BasicGL2_0::Graphic* g = dynamic_cast<Eaagles::BasicGL2_0::Graphic*>(pair->object());
+      Eaagles::BasicGL::Graphic* g = dynamic_cast<Eaagles::BasicGL::Graphic*>(pair->object());
       if (g != 0) {
 
          // rotation test
-         g->rotateModelMatrix(35.0, 0.0, 0.0);
+         //g->rotateModelMatrix(35.0, 0.0, 0.0);
          // translation test
          //g->translateModelMatrix(0.09, 0.09);
          // scale test
