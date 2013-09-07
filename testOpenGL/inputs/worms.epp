@@ -2,7 +2,8 @@ worms:
 ( Page2_0
    pagingEvent: {
        n: xx
-       p: yy
+       p: yiqcolors
+
    }
    components: {
       ( TestOne

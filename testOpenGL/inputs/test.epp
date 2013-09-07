@@ -2,6 +2,7 @@
 // Test display -- Graphic, Page, Display and support pages
 //    Notes: use 'n' and 'p' to transition to the next and previous pages
 // ---
+#define BENCHMARK 0
 
 ( GLFW3Display
    name: "My Main Window"
@@ -29,8 +30,21 @@
    vpWidth:    500
    vpHeight:   500
              
+ // list of shaders (only one for now)
+ shaders: {
+    default:
+    ( Shader
+       vertexShaderPath: "vertexShader.oes"
+       //geometryShaderPath: "geometryShader.oes"
+       fragmentShaderPath: "fragmentShader.oes"
+    )
+ }
 
-   #include "testBasic.epp"
+ #if BENCHMARK
+    benchmark: true
+ #else
+     #include "testBasic.epp"
+ #endif
 
 
 #if 0

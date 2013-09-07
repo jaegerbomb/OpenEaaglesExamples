@@ -1,19 +1,19 @@
 // ---
-// Example MFD page CMYColors
+// Example MFD page HSVColors
 // ---
 
-cmycolors:
-( Page2_0
+hsvcolors:
+( MfdPage
     pagingEvent: {
-        n: yiqcolors
-        p: hlscolors
+        n: hlscolors
+        p: sample
     }
     components: {
-      ( AsciiText2_0 text: "CMY" position: [ 1 1 ] )
-        ( LineLoop2_0
-            //selectName: 601
-            color: (cmy 0.8 0.8 0.8)
-            lineWidth: 5
+		( AsciiText text: "HSV" position: [ 1 1 ] )
+        ( LineLoop
+            selectName: 601
+            color: (hsv 0 0 0.2)
+            linewidth: 5
             vertices: {
                 [  0.2  0.2 ]
                 [ -0.2  0.2 ]
@@ -21,10 +21,10 @@ cmycolors:
                 [  0.2 -0.2 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 602
-            color: (cmy 0.6 0.6 0.6)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 602
+            color: (hsv 0 0 0.4)
+            linewidth: 5
             vertices: {
                 [  0.4  0.4 ]
                 [ -0.4  0.4 ]
@@ -32,10 +32,10 @@ cmycolors:
                 [  0.4 -0.4 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 603
-            color: (cmy 0.4 0.4 0.4)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 603
+            color: (hsv 0 0 0.6)
+            linewidth: 5
             vertices: {
                 [  0.6  0.6 ]
                 [ -0.6  0.6 ]
@@ -43,10 +43,10 @@ cmycolors:
                 [  0.6 -0.6 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 604
-            color: (cmy 0.2 0.2 0.2)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 604
+            color: (hsv 0 0 0.8)
+            linewidth: 5
             vertices: {
                 [  0.8  0.8 ]
                 [ -0.8  0.8 ]
@@ -54,10 +54,10 @@ cmycolors:
                 [  0.8 -0.8 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 605
-            color: (cmy 0 0 0)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 605
+            color: (hsv 0 0 1)
+            linewidth: 5
             vertices: {
                 [  1  1 ]
                 [ -1  1 ]
@@ -65,10 +65,10 @@ cmycolors:
                 [  1 -1 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 611
-            color: (cmy 0.4 0.4 1)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 611
+            color: (hsv 60 1 0.2)
+            linewidth: 5
             vertices: {
                 [  1.2  1.2 ]
                 [ -1.2  1.2 ]
@@ -76,10 +76,10 @@ cmycolors:
                 [  1.2 -1.2 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 612
-            color: (cmy 0.2 0.2 1)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 612
+            color: (hsv 60 1 0.4)
+            linewidth: 5
             vertices: {
                 [  1.4  1.4 ]
                 [ -1.4  1.4 ]
@@ -87,10 +87,10 @@ cmycolors:
                 [  1.4 -1.4 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 613
-            color: (cmy 0 0 1)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 613
+            color: (hsv 60 1 0.6)
+            linewidth: 5
             vertices: {
                 [  1.6  1.6 ]
                 [ -1.6  1.6 ]
@@ -98,10 +98,10 @@ cmycolors:
                 [  1.6 -1.6 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 614
-            color: (cmy 0 0 0.8)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 614
+            color: (hsv 60 1 0.8)
+            linewidth: 5
             vertices: {
                 [  1.8  1.8 ]
                 [ -1.8  1.8 ]
@@ -109,10 +109,10 @@ cmycolors:
                 [  1.8 -1.8 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 615
-            color: (cmy 0 0 0.6)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 615
+            color: (hsv 60 1 1)
+            linewidth: 5
             vertices: {
                 [  2  2 ]
                 [ -2  2 ]
@@ -120,10 +120,10 @@ cmycolors:
                 [  2 -2 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 621
-            color: (cmy 1 0.4 1)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 621
+            color: (hsv 120 1 0.2)
+            linewidth: 5
             vertices: {
                 [  2.2  2.2 ]
                 [ -2.2  2.2 ]
@@ -131,10 +131,10 @@ cmycolors:
                 [  2.2 -2.2 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 622
-            color: (cmy 1 0.2 1)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 622
+            color: (hsv 120 1 0.4)
+            linewidth: 5
             vertices: {
                 [  2.4  2.4 ]
                 [ -2.4  2.4 ]
@@ -142,10 +142,10 @@ cmycolors:
                 [  2.4 -2.4 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 623
-            color: (cmy 1 0 1)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 623
+            color: (hsv 120 1 0.6)
+            linewidth: 5
             vertices: {
                 [  2.6  2.6 ]
                 [ -2.6  2.6 ]
@@ -153,10 +153,10 @@ cmycolors:
                 [  2.6 -2.6 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 624
-            color: (cmy 0.8 0 0.8)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 624
+            color: (hsv 120 1 0.8)
+            linewidth: 5
             vertices: {
                 [  2.8  2.8 ]
                 [ -2.8  2.8 ]
@@ -164,10 +164,10 @@ cmycolors:
                 [  2.8 -2.8 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 625
-            color: (cmy 0.6 0 0.6)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 625
+            color: (hsv 120 1 1)
+            linewidth: 5
             vertices: {
                 [  3  3 ]
                 [ -3  3 ]
@@ -175,10 +175,10 @@ cmycolors:
                 [  3 -3 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 631
-            color: (cmy 1 0.4 0.4)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 631
+            color: (hsv 180 1 0.2)
+            linewidth: 5
             vertices: {
                 [  3.2  3.2 ]
                 [ -3.2  3.2 ]
@@ -186,10 +186,10 @@ cmycolors:
                 [  3.2 -3.2 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 632
-            color: (cmy 1 0.2 0.2)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 632
+            color: (hsv 180 1 0.4)
+            linewidth: 5
             vertices: {
                 [  3.4  3.4 ]
                 [ -3.4  3.4 ]
@@ -197,10 +197,10 @@ cmycolors:
                 [  3.4 -3.4 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 633
-            color: (cmy 1 0 0)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 633
+            color: (hsv 180 1 0.6)
+            linewidth: 5
             vertices: {
                 [  3.6  3.6 ]
                 [ -3.6  3.6 ]
@@ -208,10 +208,10 @@ cmycolors:
                 [  3.6 -3.6 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 634
-            color: (cmy 0.8 0 0)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 634
+            color: (hsv 180 1 0.8)
+            linewidth: 5
             vertices: {
                 [  3.8  3.8 ]
                 [ -3.8  3.8 ]
@@ -219,10 +219,10 @@ cmycolors:
                 [  3.8 -3.8 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 635
-            color: (cmy 0.6 0 0)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 635
+            color: (hsv 180 1 1)
+            linewidth: 5
             vertices: {
                 [  4  4 ]
                 [ -4  4 ]
@@ -230,10 +230,10 @@ cmycolors:
                 [  4 -4 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 641
-            color: (cmy 1 1 0.4)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 641
+            color: (hsv 240 1 0.2)
+            linewidth: 5
             vertices: {
                 [  4.2  4.2 ]
                 [ -4.2  4.2 ]
@@ -241,10 +241,10 @@ cmycolors:
                 [  4.2 -4.2 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 642
-            color: (cmy 1 1 0.2)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 642
+            color: (hsv 240 1 0.4)
+            linewidth: 5
             vertices: {
                 [  4.4  4.4 ]
                 [ -4.4  4.4 ]
@@ -252,10 +252,10 @@ cmycolors:
                 [  4.4 -4.4 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 643
-            color: (cmy 1 1 0)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 643
+            color: (hsv 240 1 0.6)
+            linewidth: 5
             vertices: {
                 [  4.6  4.6 ]
                 [ -4.6  4.6 ]
@@ -263,10 +263,10 @@ cmycolors:
                 [  4.6 -4.6 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 644
-            color: (cmy 0.8 0.8 0)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 644
+            color: (hsv 240 1 0.8)
+            linewidth: 5
             vertices: {
                 [  4.8  4.8 ]
                 [ -4.8  4.8 ]
@@ -274,10 +274,10 @@ cmycolors:
                 [  4.8 -4.8 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 645
-            color: (cmy 0.6 0.6 0)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 645
+            color: (hsv 240 1 1)
+            linewidth: 5
             vertices: {
                 [  5  5 ]
                 [ -5  5 ]
@@ -285,10 +285,10 @@ cmycolors:
                 [  5 -5 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 651
-            color: (cmy 0.4 1 0.4)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 651
+            color: (hsv 300 1 0.2)
+            linewidth: 5
             vertices: {
                 [  5.2  5.2 ]
                 [ -5.2  5.2 ]
@@ -296,10 +296,10 @@ cmycolors:
                 [  5.2 -5.2 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 652
-            color: (cmy 0.2 1 0.2)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 652
+            color: (hsv 300 1 0.4)
+            linewidth: 5
             vertices: {
                 [  5.4  5.4 ]
                 [ -5.4  5.4 ]
@@ -307,10 +307,10 @@ cmycolors:
                 [  5.4 -5.4 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 653
-            color: (cmy 0 1 0)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 653
+            color: (hsv 300 1 0.6)
+            linewidth: 5
             vertices: {
                 [  5.6  5.6 ]
                 [ -5.6  5.6 ]
@@ -318,10 +318,10 @@ cmycolors:
                 [  5.6 -5.6 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 654
-            color: (cmy 0 0.8 0)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 654
+            color: (hsv 300 1 0.8)
+            linewidth: 5
             vertices: {
                 [  5.8  5.8 ]
                 [ -5.8  5.8 ]
@@ -329,10 +329,10 @@ cmycolors:
                 [  5.8 -5.8 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 655
-            color: (cmy 0 0.6 0)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 655
+            color: (hsv 300 1 1)
+            linewidth: 5
             vertices: {
                 [  6  6 ]
                 [ -6  6 ]
@@ -340,10 +340,10 @@ cmycolors:
                 [  6 -6 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 661
-            color: (cmy 0.4 1 1)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 661
+            color: (hsv 360 1 0.2)
+            linewidth: 5
             vertices: {
                 [  6.2  6.2 ]
                 [ -6.2  6.2 ]
@@ -351,10 +351,10 @@ cmycolors:
                 [  6.2 -6.2 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 662
-            color: (cmy 0.2 1 1)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 662
+            color: (hsv 360 1 0.4)
+            linewidth: 5
             vertices: {
                 [  6.4  6.4 ]
                 [ -6.4  6.4 ]
@@ -362,10 +362,10 @@ cmycolors:
                 [  6.4 -6.4 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 663
-            color: (cmy 0 1 1)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 663
+            color: (hsv 360 1 0.6)
+            linewidth: 5
             vertices: {
                 [  6.6  6.6 ]
                 [ -6.6  6.6 ]
@@ -373,10 +373,10 @@ cmycolors:
                 [  6.6 -6.6 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 664
-            color: (cmy 0 0.8 0.8)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 664
+            color: (hsv 360 1 0.8)
+            linewidth: 5
             vertices: {
                 [  6.8  6.8 ]
                 [ -6.8  6.8 ]
@@ -384,10 +384,10 @@ cmycolors:
                 [  6.8 -6.8 ]
             }
         )
-        ( LineLoop2_0
-            //selectName: 665
-            color: (cmy 0 0.6 0.6)
-            lineWidth: 5
+        ( LineLoop
+            selectName: 665
+            color: (hsv 360 1 1)
+            linewidth: 5
             vertices: {
                 [  7  7 ]
                 [ -7  7 ]
