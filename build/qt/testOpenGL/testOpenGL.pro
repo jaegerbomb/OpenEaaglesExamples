@@ -58,6 +58,7 @@ else:win32:CONFIG(debug, debug|release): LIBS +=        \
     -lftgl_d -lfreetype2_d                              \
     # oe 3rd party
     -L$${OE_3RD_PARTY_ROOT}/lib/$${MSVC_VER}-32/        \
+    -lfreeglut_d                                        \
     -lglew32s_d                                         \
     -lglfw3_d                                           \
     # system
