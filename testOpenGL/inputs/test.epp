@@ -4,7 +4,7 @@
 // ---
 #define BENCHMARK 0
 
-( GLFW3Display
+( TestGlutDisplay
    name: "My Main Window"
 
    // Leaving this unset will cause the program 
