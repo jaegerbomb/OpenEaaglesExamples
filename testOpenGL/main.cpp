@@ -5,13 +5,16 @@
 
 
 #include "openeaagles/basic/Pair.h"
+#include "openeaagles/basic/Timers.h"
 #include "openeaagles/basic/Parser.h"
 #include "openeaagles/basic/basicFF.h"
 #include "openeaagles/basicGL/basicGLFF.h"
 #include "openeaagles/basicGL2.0/formFunc.h"
 
 #include "Display.h"
+#include "GlutDisplay.h"
 #include "TestOne.h"
+#include <GL/glut.h>
 #include "GLEW/glew.h"
 #include "GLFW/glfw3.h"
 
@@ -22,7 +25,8 @@ namespace TestOpenGL {
 const double frameRate = 20.0f;
 
 // System descriptions
-static class Display* sys = 0;	
+static class Display* sys = 0;
+static class GlutDisplay* otherSys = 0;
 
 double lastTime = 0.0f;
 
@@ -40,9 +44,14 @@ static void error_callback(int error, const char* description)
 // timerFunc() -- called to update the graphics
 static void timerFunc(int)
 {
-    double dt = 1.0/double(frameRate);
+   double dt = 1.0/double(frameRate);
 
-    unsigned int millis = (unsigned int)(dt * 1000);
+   unsigned int millis = (unsigned int)(dt * 1000);
+   glutTimerFunc(millis, timerFunc, 1);
+
+   Basic::Timer::updateTimers((LCreal)dt);
+   //BasicGL2_0::Graphic::flashTimer((LCreal)dt);
+   otherSys->tcFrame((LCreal)dt);
 }
 
 // Test Form Function
@@ -53,6 +62,9 @@ static Basic::Object* testFormFunc(const char* formname)
    // This test ...
    if ( strcmp(formname, Display::getFormName()) == 0 ) {
       newform = new Display;
+   }
+   else if ( strcmp(formname, GlutDisplay::getFormName()) == 0 ) {
+      newform = new GlutDisplay;
    }
    else if ( strcmp(formname, TestOne::getFormName()) == 0 ) {
       newform = new TestOne;
@@ -91,10 +103,14 @@ static void readTest(const char* const testFileName)
         sys = dynamic_cast<Display*>(q1);
     }
 
-    // Make sure we did get a valid object (we must have one!)
-    if (sys == 0) {
-        std::cout << "Invalid description file!" << std::endl;
-        exit(EXIT_FAILURE);
+   // Make sure we did get a valid object (we must have one!)
+   if (sys == 0) {
+      // let's check to see if we are using glut displays
+      otherSys = dynamic_cast<GlutDisplay*>(q1);
+      if (otherSys == 0) {
+         std::cout << "Invalid description file!" << std::endl;
+         exit(EXIT_FAILURE);
+      }
     }
 
     //sys->serialize(std::cout);
@@ -162,7 +178,8 @@ static void timerFunc(double curTime)
    }
    else {
       if ((curTime - lastTime) > double(1.0f/frameRate)) {
-         sys->updateTC(double(1.0f/frameRate));
+         if (sys != 0) sys->updateTC(double(1.0f/frameRate));
+         else otherSys->updateTC(double(1.0f/frameRate));
          lastTime = curTime;
       }
    }
@@ -174,12 +191,6 @@ static void timerFunc(double curTime)
 int main(int argc, char* argv[])
 {
 
-	// set our error callback
-	glfwSetErrorCallback(error_callback);
-
-
-	// initialize glfw
-	if (!glfwInit()) exit(EXIT_FAILURE);
 
 
    // Config file file
@@ -195,61 +206,89 @@ int main(int argc, char* argv[])
 // ---
 // Read in the description files
 // ---
-    readTest(configFile);
+   readTest(configFile);
 
-// ---
-// Create a display window
-// ---
-   sys->createWindow();
+   // ---
+   // GLFW windows
+   // ---
+   if (sys != 0) {
+      // set our error callback
+      glfwSetErrorCallback(error_callback);
 
-   //setVSync(0);
-   GLFWwindow* win = sys->getWindowInstance();
-   if (win != 0) {
-      // the cool part about this is we set up the callbacks right here, so 
-      glfwSetWindowSizeCallback(win, reshapeCB);
-      glfwSetCursorPosCallback(win, cursorMoveCB);
-      glfwSetMouseButtonCallback(win, mouseButtonCB);
-      glfwSetKeyCallback(win, keyCB);
-      glfwSetWindowCloseCallback(win, closeEventCB);
-      glfwSetWindowFocusCallback(win, focusCB);
-   }
 
-   // let's remove vertical sync, to be able to print out true performance characteristics
-   // WINDOW
+      // initialize glfw
+      if (!glfwInit()) exit(EXIT_FAILURE);
+      sys->createWindow();
 
-	// call our draw routine - I put the update data here as well, but 
-   // users can update at whatever rate they wish.  I also have no
-   // sleep functions here, which could be useful if optimization 
-   // is implemented.
-   double lastTime = glfwGetTime();
-   int nbFrames = 0;
-	while (!sys->isWindowShutdown()) {
-      // Measure speed
-      double currentTime = glfwGetTime();
-      nbFrames++;
-      if ( currentTime - lastTime >= 1.0 ){ // If last printf() was more than 1 sec ago
-         // printf and reset timer
-         printf("%f ms/frame\n", 1000.0/double(nbFrames));
-         nbFrames = 0;
-         lastTime += 1.0;
+      //setVSync(0);
+      GLFWwindow* win = sys->getWindowInstance();
+      if (win != 0) {
+         // the cool part about this is we set up the callbacks right here, so
+         glfwSetWindowSizeCallback(win, reshapeCB);
+         glfwSetCursorPosCallback(win, cursorMoveCB);
+         glfwSetMouseButtonCallback(win, mouseButtonCB);
+         glfwSetKeyCallback(win, keyCB);
+         glfwSetWindowCloseCallback(win, closeEventCB);
+         glfwSetWindowFocusCallback(win, focusCB);
       }
-      // we can also update data from here, as the callbacks are done in sequence
-      sys->updateData(0.025);
-      //timerFunc(glfwGetTime());
-      // SLS - these are made up numbers
-      sys->updateTC(0.02);
 
-      // draw all of our schtuff
-      sys->drawIt();
-      
-      // poll for any new key, refresh, or other callback that we have done
-      glfwPollEvents();
+      // let's remove vertical sync, to be able to print out true performance characteristics
+      // WINDOW
 
-      // now sleep for just a bit
-      Eaagles::lcSleep(10);
-	}
+      // call our draw routine - I put the update data here as well, but
+      // users can update at whatever rate they wish.  I also have no
+      // sleep functions here, which could be useful if optimization
+      // is implemented.
+      double lastTime = glfwGetTime();
+      int nbFrames = 0;
+      while (!sys->isWindowShutdown()) {
+         // Measure speed
+         double currentTime = glfwGetTime();
+         nbFrames++;
+         if ( currentTime - lastTime >= 1.0 ){ // If last printf() was more than 1 sec ago
+            // printf and reset timer
+            printf("%f ms/frame\n", 1000.0/double(nbFrames));
+            nbFrames = 0;
+            lastTime += 1.0;
+         }
+         // we can also update data from here, as the callbacks are done in sequence
+         sys->updateData(0.025);
+         //timerFunc(glfwGetTime());
+         // SLS - these are made up numbers
+         sys->updateTC(0.02);
 
-   glfwTerminate();
+         // draw all of our schtuff
+         sys->drawIt();
+
+         // poll for any new key, refresh, or other callback that we have done
+         glfwPollEvents();
+
+         // now sleep for just a bit
+         Eaagles::lcSleep(10);
+      }
+
+      glfwTerminate();
+   }
+   // GLUT
+   else {
+      glutInit(&argc, argv);
+      // ---
+      // Create a display window
+      // ---
+      otherSys->createWindow();
+
+      // ---
+      // Set timer
+      // ---
+      double dt = 1.0/double(frameRate);
+      unsigned int millis = (unsigned int)(dt * 1000);
+      glutTimerFunc(millis, timerFunc, 1);
+
+      // ---
+      // Main loop
+      // ---
+      glutMainLoop();
+   }
    return 0;
 }
 
