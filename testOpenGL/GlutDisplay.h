@@ -106,8 +106,9 @@ public:
    virtual void hide();
    virtual void show();
    virtual void swapBuffers();
-   virtual void reshapeIt(int w, int h);
+   virtual void reshapeIt(const int w, const int h);
    virtual void mouseEvent(const int button, const int state, const int x, const int y);
+   virtual void setMouse(const int x, const int y, Display* const subdisplay = 0);
 
    // Basic::Component functions
    virtual void reset();

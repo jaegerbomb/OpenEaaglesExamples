@@ -11,7 +11,7 @@ yy:
    components: {
       testGraphic1:
       ( Triangle2_0
-         color: blue
+         color: white
          vertices: {
             [ -1 -1 ]
             [  1 -1 ]

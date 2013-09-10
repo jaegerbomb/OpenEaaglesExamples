@@ -206,7 +206,35 @@ int GlutDisplay::createWindow()
       registerGlutDisplay(winId, this);
       glutSetWindow(winId);
       configure();
+
+      // Initialize glew
+      GLenum glewInitResult = glewInit();
+
+      if (GLEW_OK != glewInitResult) {
+         std::cerr << "ERROR: " << glewGetErrorString(glewInitResult) << std::endl;
+         exit(EXIT_FAILURE);
+      }
+
+
       loadTextures();
+
+
+
+      // Create sub windows (if any)
+      if (subDisplays() != 0) {
+         Basic::List::Item* item = subDisplays()->getFirstItem();
+         while (item != 0) {
+            Eaagles::Basic::Pair* pair = dynamic_cast<Eaagles::Basic::Pair*>(item->getValue());
+            if (pair != 0) {
+               GlutDisplay* dobj = dynamic_cast<GlutDisplay*>( pair->object() );
+               if (dobj != 0) dobj->createSubWindow(winId);
+            }
+            item = item->getNext();
+         }
+      }
+
+      // Select this window
+      select();
 
       // create our shaders - this HAS to be done after our context is setup.
       Eaagles::Basic::PairStream* myShaders = getShaders();
@@ -218,27 +246,10 @@ int GlutDisplay::createWindow()
                BasicGL2_0::Shader* shdr = dynamic_cast<BasicGL2_0::Shader*>(pair->object());
                if (shdr != 0) shdr->createAndLinkShaders();
             }
-            Lee - work on getting glut display to accept shaders.
             item = item->getNext();
          }
       }
 
-
-      // Create sub windows (if any)
-      if (subDisplays() != 0) {
-         Basic::List::Item* item = subDisplays()->getFirstItem();
-         while (item != 0) {
-            Basic::Pair* pair = dynamic_cast<Basic::Pair*>(item->getValue());
-            if (pair != 0) {
-               GlutDisplay* dobj = dynamic_cast<GlutDisplay*>( pair->object() );
-               if (dobj != 0) dobj->createSubWindow(winId);
-            }
-            item = item->getNext();
-         }
-      }
-
-      // Select this window
-      select();
    }
 
    return winId;
@@ -305,7 +316,7 @@ int GlutDisplay::createSubWindow(const int mainId)
       if (subDisplays() != 0) {
          Basic::List::Item* item = subDisplays()->getFirstItem();
          while (item != 0) {
-            Basic::Pair* pair = dynamic_cast<Basic::Pair*>(item->getValue());
+            Eaagles::Basic::Pair* pair = dynamic_cast<Eaagles::Basic::Pair*>(item->getValue());
             if (pair != 0) {
                GlutDisplay* dobj = dynamic_cast<GlutDisplay*>( pair->object() );
                if (dobj != 0) dobj->createSubWindow(winId);
@@ -364,7 +375,7 @@ bool GlutDisplay::setResizeWindows(const bool flg)
 //-----------------------------------------------------------------------------
 // reshape it function, for reshaping our subdisplays
 //-----------------------------------------------------------------------------
-void GlutDisplay::reshapeIt(int w, int h)
+void GlutDisplay::reshapeIt(const int w, const int h)
 {
    //std::cout << "reshapeIt() winID = " << winId;
    //std::cout << "; size(" << w << ", " << h << ")";
@@ -378,7 +389,7 @@ void GlutDisplay::reshapeIt(int w, int h)
          // go through and put our new numbers in
          Basic::List::Item* item = subDisplays()->getFirstItem();
          while (item != 0) {
-            Basic::Pair* pair = (Basic::Pair*)item->getValue();
+            Eaagles::Basic::Pair* pair = (Eaagles::Basic::Pair*)item->getValue();
             if (pair != 0) {
                GlutDisplay* gd = dynamic_cast<GlutDisplay*>(pair->object());
                if (gd != 0) gd->reshapeSubWindow();
@@ -460,20 +471,20 @@ void GlutDisplay::reshapeSubWindow()
 //-----------------------------------------------------------------------------
 BasicGL2_0::Graphic* GlutDisplay::pick(const int item)
 {
-//   GLint viewport[4];
-//   glGetIntegerv(GL_VIEWPORT,viewport);
+   GLint viewport[4];
+   glGetIntegerv(GL_VIEWPORT,viewport);
 
-//   // make sure we are starting at 0, 0
-//   int xm = 0, ym = 0;
+   // make sure we are starting at 0, 0
+   int xm = 0, ym = 0;
 
-//   getMouse(&xm,&ym);
-//   int x = xm;
-//   int y = viewport[3] - ym;
+   getMouse(&xm,&ym);
+   int x = xm;
+   int y = viewport[3] - ym;
 
 //   glMatrixMode(GL_PROJECTION);
 //   glPushMatrix();
 //   glLoadIdentity();
-//   gluPickMatrix(x, y, getPickWidth(), getPickHeight(), viewport);
+   gluPickMatrix(x, y, getPickWidth(), getPickHeight(), viewport);
 
 //   // Get our ortho parameters
 //   GLdouble oLeft(0), oRight(0), oBottom(0), oTop(0), oNear(0), oFar(0);
@@ -492,27 +503,26 @@ BasicGL2_0::Graphic* GlutDisplay::pick(const int item)
 //         glRotated(180.0, 0.0, 0.0, 1.0);
 //   }
 
-//   static const unsigned int MAX_BUFF_SIZE = 1024;
-//   GLuint sbuff[MAX_BUFF_SIZE];
-//   clearSelectBuffer(sbuff,MAX_BUFF_SIZE);
-//   glSelectBuffer(MAX_BUFF_SIZE, sbuff);
-//   glRenderMode(GL_SELECT);
+   static const unsigned int MAX_BUFF_SIZE = 1024;
+   GLuint sbuff[MAX_BUFF_SIZE];
+   clearSelectBuffer(sbuff,MAX_BUFF_SIZE);
+   glSelectBuffer(MAX_BUFF_SIZE, sbuff);
+   glRenderMode(GL_SELECT);
 
-//   glInitNames();
-//   draw();
+   glInitNames();
+   draw();
 
-//   GLint hits = glRenderMode(GL_RENDER);
+   GLint hits = glRenderMode(GL_RENDER);
 
 //   if (getDisplayOrientation() != NORMAL) glPopMatrix();
 
-//   Graphic* selected = findSelected(hits, sbuff, item);
+   Graphic* selected = findSelected(hits, sbuff, item);
 
 //   glMatrixMode(GL_PROJECTION);
 //   glPopMatrix();
 //   glMatrixMode(GL_MODELVIEW);
 
-//   return selected;
-   return 0;
+   return selected;
 }
 
 //-----------------------------------------------------------------------------
@@ -605,7 +615,7 @@ BasicGL2_0::Graphic* GlutDisplay::findSelected(const GLint hits, const GLuint sb
    // Find the Graphic with this id
    // ---
    if (id > 0) {
-      Basic::Pair* pair = findBySelectName(id);
+      Eaagles::Basic::Pair* pair = findBySelectName(id);
       if (pair != 0) {
          sel = (Graphic*) (pair->object());
       }
@@ -710,6 +720,67 @@ void GlutDisplay::passiveMotionEvent(const int x, const int y)
    // set our mouse to the current position and update our number of clicks
    // do another pick, just to make sure
    setMouse(x,y);
+}
+
+// ---
+// setMouse() - our implementation (handles entry/exit)
+// ---
+void GlutDisplay::setMouse(const int x, const int y, BasicGL2_0::Display* const subdisplay)
+{
+   int lx = x;
+   int ly = y;
+
+   if (subdisplay != 0) {
+      // When we're called from a sub-display,
+      //   offset the coordinates and set the focus to the sub-display
+      GLsizei sdX, sdY;
+      subdisplay->getViewportOrigin(&sdX, &sdY);
+      lx = x + sdX;
+      ly = y + sdY;
+        if (focus() != 0 && focus() != subdisplay) {
+            // if our previous focus was a display, exit it properly
+            if (focus()->isClassType(typeid(Display))) {
+                BasicGL2_0::Display* dis = (BasicGL2_0::Display*)focus();
+                dis->onMouseExit();
+            }
+            focus(subdisplay);
+            // enter our new mouse display
+            subdisplay->onMouseEnter();
+        }
+   }
+   else {
+      // if we aren't a subdisplay, but we are a display, we
+      // still need to call our entry and exit routines
+      if (focus() != 0 && focus()->isClassType(typeid(Display))) {
+         BasicGL2_0::Display* dis = (BasicGL2_0::Display*)focus();
+         dis->onMouseExit();
+      }
+
+      // When we are NOT called from a sub-display,
+      //   reset the focus to one of our own pages or components
+      if (focus() != 0) {
+         if (focus()->isClassType(typeid(Display))) {
+            focus( subpage() );
+         }
+      }
+      else focus( subpage() );
+   }
+
+   // Set our new mouse coordinates
+   BaseClass::setMouse(lx, ly);
+
+   // Send these coordinates to our parent display
+   Display* parentDisplay = (Display*) findContainerByType(typeid(Display));
+   if (parentDisplay != 0) {
+      parentDisplay->setMouse(lx,ly,this);
+   }
+
+   // If we have no focus whatsoever at the end, we take the focus
+   if (focus() == 0) {
+      // call our entry procedure!
+      onMouseEnter();
+      focus(this);
+   }
 }
 
 
