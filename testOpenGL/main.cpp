@@ -22,7 +22,7 @@ namespace Eaagles {
 namespace TestOpenGL {
 
 // Frame Rate
-const double frameRate = 20.0f;
+const double frameRate = 50.0f;
 
 // System descriptions
 static class Display* sys = 0;
@@ -275,6 +275,7 @@ int main(int argc, char* argv[])
       // ---
       // Create a display window
       // ---
+      // initialize glfw
       otherSys->createWindow();
 
       // ---

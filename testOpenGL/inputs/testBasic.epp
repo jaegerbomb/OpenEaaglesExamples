@@ -1,7 +1,19 @@
 
    // list of textures (only one for now)
+   // Textures
    textures: {
-      coffee: ( BitmapTexture2_0 width: 128 height: 128 path: TEXTURES_PATH  file: "Coffee_bean.bmp" )
+     t1:  ( BitmapTexture2_0 width: 128 height: 128 path: TEXTURES_PATH  file: "Mesh.bmp" )
+     t2: ( BitmapTexture2_0 width: 128 height: 128 path: TEXTURES_PATH  file: "Coffee_Bean.bmp" )
+     t3: ( BitmapTexture2_0 width: 256 height: 256 path: TEXTURES_PATH  file: "icp_256_256.bmp" )
+     t4: ( BitmapTexture2_0 width: 128 height: 128 path: TEXTURES_PATH  file: "Hsi_128_128.bmp" )
+     mfd256: ( BitmapTexture2_0 width: 256 height: 256 path: TEXTURES_PATH  file: "Mfd_256_256.bmp" )
+     mfd512: ( BitmapTexture2_0 width: 512 height: 512 path: TEXTURES_PATH  file: "Mfd_512_512.bmp" )
+     icp256: ( BitmapTexture2_0 width: 256 height: 256 path: TEXTURES_PATH  file: "icp_256_256.bmp" )
+     icp512: ( BitmapTexture2_0 width: 512 height: 512 path: TEXTURES_PATH  file: "icp_512_512.bmp" )
+     rwr128: ( BitmapTexture2_0 width: 128 height: 128 path: TEXTURES_PATH  file: "RWR_128_128.bmp" )
+     rwr256: ( BitmapTexture2_0 width: 256 height: 256 path: TEXTURES_PATH  file: "RWR_256_256.bmp" )
+     hsi128: ( BitmapTexture2_0 width: 128 height: 128 path: TEXTURES_PATH  file: "Hsi_128_128.bmp" )
+     hsi256: ( BitmapTexture2_0 width: 256 height: 256 path: TEXTURES_PATH  file: "Hsi_256_256.bmp" )
    }
 
    // This is the default font table, and all fields will use this font if their
@@ -31,7 +43,7 @@
       )
    }
 
-   page: worms
+   page: xx
    pages: {
       #include "worms.epp"
       #include "PageYIQColors.epp"
@@ -60,23 +72,23 @@
 //                  [ 2 2 ]
 //               }
 //            )
-            ( TriangleStrip2_0
-               textureName: coffee
-               transform: ( GlmTranslation 5 5  )
-               textureVertices: {
-                  [ 0 0 ]
-                  [ 0 1 ]
-                  [ 1 0 ]
-                  [ 1 1 ]
-                }
-              // color: white
-                vertices: {
-                   [ -2 -2 ]
-                   [ -2  2 ]
-                   [ 2 -2 ]
-                   [ 2 2 ]
-                }
-            )
+//            ( TriangleStrip2_0
+//               textureName: coffee
+//               transform: ( GlmTranslation 5 5  )
+//               textureVertices: {
+//                  [ 0 0 ]
+//                  [ 0 1 ]
+//                  [ 1 0 ]
+//                  [ 1 1 ]
+//                }
+//              // color: white
+//                vertices: {
+//                   [ -2 -2 ]
+//                   [ -2  2 ]
+//                   [ 2 -2 ]
+//                   [ 2 2 ]
+//                }
+//            )
 //         }
 //      )
 
