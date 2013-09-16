@@ -471,44 +471,6 @@ void GlutDisplay::reshapeSubWindow()
 //-----------------------------------------------------------------------------
 BasicGL2_0::Graphic* GlutDisplay::pick(const int item)
 {
-   // get the mouse position
-   int xm = 0, ym = 0;
-   getMouse(&xm, &ym);
-
-   // now, create a small rectangle using the pick width and height
-   int rectLeft = xm - pickWidth / 2;
-   int rectRight = xm + pickWidth / 2;
-   int rectTop = ym - pickHeight / 2;
-   int rectBottom = ym + pickHeight / 2;
-
-   std::cout << "Mouse position is = " << xm << ", " << ym << std::endl;
-   std::cout << "PICK AREA IS = (Left, Bottom) (Right, Top) (" << rectLeft << ", " << rectBottom << \
-                ") (" << rectRight << ", " << rectTop << ")" << std::endl;
-
-
-   // now find
-   // see if we have a page first
-   Page* page = subpage();
-   if (page != 0) {
-      Basic::PairStream* stream = getComponents();
-      if (stream != 0) {
-         Basic::List::Item* item = stream->getFirstItem();
-         while (item != 0) {
-            Basic::Pair* pair = (Eaagles::Basic::Pair*)item->getValue();
-            if (pair != 0) {
-               Graphic* gr = (Graphic*)pair->object();
-               if (gr != 0) {
-                  // get the position of our graphic
-                  const glm::mat4 matrix = gr->getModelMatrix();
-                  std::cout << "HERE" << std::endl;
-               }
-            }
-            item = item->getNext();
-         }
-      }
-   }
-
-   return 0;
    // This is CPU intensive, use the viewport and the position of the graphic
 
 //   GLint viewport[4];
@@ -521,27 +483,27 @@ BasicGL2_0::Graphic* GlutDisplay::pick(const int item)
 //   int x = xm;
 //   int y = viewport[3] - ym;
 
-//   glMatrixMode(GL_PROJECTION);
-//   glPushMatrix();
-//   glLoadIdentity();
+////   glMatrixMode(GL_PROJECTION);
+////   glPushMatrix();
+////   glLoadIdentity();
 //   gluPickMatrix(x, y, getPickWidth(), getPickHeight(), viewport);
 
-//   // Get our ortho parameters
-//   GLdouble oLeft(0), oRight(0), oBottom(0), oTop(0), oNear(0), oFar(0);
-//   getOrtho(oLeft, oRight, oBottom, oTop, oNear, oFar);
+////   // Get our ortho parameters
+////   GLdouble oLeft(0), oRight(0), oBottom(0), oTop(0), oNear(0), oFar(0);
+////   getOrtho(oLeft, oRight, oBottom, oTop, oNear, oFar);
 
-//   glOrtho(oLeft, oRight, oBottom, oTop, oNear, oFar);
-//   glMatrixMode(GL_MODELVIEW);
+////   glOrtho(oLeft, oRight, oBottom, oTop, oNear, oFar);
+////   glMatrixMode(GL_MODELVIEW);
 
-//   if (getDisplayOrientation() != NORMAL) {
-//      glPushMatrix();
-//      if (getDisplayOrientation() == CW90)
-//         glRotated(-90.0, 0.0, 0.0, 1.0);
-//      else if (getDisplayOrientation() == CCW90)
-//         glRotated(90.0, 0.0, 0.0, 1.0);
-//      else
-//         glRotated(180.0, 0.0, 0.0, 1.0);
-//   }
+////   if (getDisplayOrientation() != NORMAL) {
+////      glPushMatrix();
+////      if (getDisplayOrientation() == CW90)
+////         glRotated(-90.0, 0.0, 0.0, 1.0);
+////      else if (getDisplayOrientation() == CCW90)
+////         glRotated(90.0, 0.0, 0.0, 1.0);
+////      else
+////         glRotated(180.0, 0.0, 0.0, 1.0);
+////   }
 
 //   static const unsigned int MAX_BUFF_SIZE = 1024;
 //   GLuint sbuff[MAX_BUFF_SIZE];
@@ -558,11 +520,12 @@ BasicGL2_0::Graphic* GlutDisplay::pick(const int item)
 
 //   Graphic* selected = findSelected(hits, sbuff, item);
 
-//   glMatrixMode(GL_PROJECTION);
-//   glPopMatrix();
-//   glMatrixMode(GL_MODELVIEW);
+////   glMatrixMode(GL_PROJECTION);
+////   glPopMatrix();
+////   glMatrixMode(GL_MODELVIEW);
 
 //   return selected;
+   return 0;
 }
 
 //-----------------------------------------------------------------------------

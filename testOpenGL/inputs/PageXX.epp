@@ -11,7 +11,6 @@ xx:
     components: {
         ( TriangleStrip2_0
             selectName: 301
-            //color: white
             //linewidth: 1
             textureName: t1
             vertices: {
@@ -27,19 +26,17 @@ xx:
                 [  1.0  1.0 ]
             }
         )
-#if 0
-        ( Polygon
-            transform: ( Translation 2.5 2.5 0.5)
-            selectName: 302
+
+        ( TriangleStrip2_0
+            transform: ( GlmTranslation 2.5 2.5 0.5)
             color: ( rgba 1.0 1.0 0.1 0.2 )
-            linewidth: 1
+            //linewidth: 1
             vertices: {
-                [  5  5 ]
-                [ -5  5 ]
-                [ -5 -5 ]
-                [  5 -5 ]
+               [  -5 -5  ]
+               [ -5  5 ]
+               [  5 -5 ]
+               [  5 5 ]
             }
         )
-#endif
     }
 )
