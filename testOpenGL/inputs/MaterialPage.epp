@@ -4,14 +4,17 @@
 
 // this is the page in which we will setup simple openGL materials, as well as masking as well
 materials:
-( MfdPage
+( Page2_0
     pagingEvent: {
         n: xx
         p: yiqcolors
     }
     components: {
+      ( AsciiText2_0
+            text: "Put Materials Here"
+      )
         
-#if 1    
+#if 0
         ( Teapot
             // test the material object
             material: 
@@ -328,6 +331,6 @@ materials:
         )
         
 #endif
-    }   
+    }
 )
 

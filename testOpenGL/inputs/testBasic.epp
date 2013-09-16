@@ -43,79 +43,40 @@
       )
    }
 
-   page: xx
-   pages: {
-      #include "worms.epp"
-      #include "PageYIQColors.epp"
-      #include "PageCMYColors.epp"
-      #include "PageHLSColors.epp"
-      #include "PageHSVColors.epp"
-      #include "PageXX.epp"
-      #include "PageYY.epp"
-   }
-
 
    // ---
    // Add a background box to the main display
    // ---
    components: {
-//      ( Graphic2_0
-//         color: white
-//         components: {
-//            ( TriangleStrip2_0
-//               color: blue
-//                      transform: ( GlmRotation 35 )
-//               vertices: {
-//                  [ -2 -2 ]
-//                  [ -2  2 ]
-//                  [ 2 -2 ]
-//                  [ 2 2 ]
-//               }
-//            )
-//            ( TriangleStrip2_0
-//               textureName: coffee
-//               transform: ( GlmTranslation 5 5  )
-//               textureVertices: {
-//                  [ 0 0 ]
-//                  [ 0 1 ]
-//                  [ 1 0 ]
-//                  [ 1 1 ]
-//                }
-//              // color: white
-//                vertices: {
-//                   [ -2 -2 ]
-//                   [ -2  2 ]
-//                   [ 2 -2 ]
-//                   [ 2 2 ]
-//                }
-//            )
-//         }
-//      )
-
       ( AsciiText2_0
-         //font: bigfont
          transform: ( GlmTranslation -10 -10.5 )
          color: white
          text: "Press 'p' to page back, 'n' to page forward."
       )
-
-//      ( AsciiText2_0
-//         // because of Bitmap font, we have to use the old method (no shading)
-//         // of drawing
-//         font: bigfont
-//         color: white
-//         //transform: ( GlmTranslation -10 -10.5 )
-//         text: "Press 'p' to page back, 'n' to page forward."
-//      )
-
-//      ( LineLoop2_0
-//         color: blue
-//         vertices: {
-//            [ -10 -10 ]
-//            [ -10  10 ]
-//            [  10  10 ]
-//            [  10 -10 ]
-//         }
-//      )
+      ( LineLoop2_0
+         color: blue
+         vertices: {
+            [ -10 -10 ]
+            [ -10  10 ]
+            [  10  10 ]
+            [  10 -10 ]
+         }
+      )
    }
 
+
+// ---
+// All the main page formats are here!
+// ---
+pages: {
+   #include "PageXX.epp"
+//   #include "PageYY.epp"
+//   #include "PageZZ.epp"
+//   #include "worms.epp"
+//   #include "sample.epp"
+//   #include "PageHSVColors.epp"
+//   #include "PageHLSColors.epp"
+//   #include "PageCMYColors.epp"
+//   #include "PageYIQColors.epp"
+   #include "MaterialPage.epp"
+}
