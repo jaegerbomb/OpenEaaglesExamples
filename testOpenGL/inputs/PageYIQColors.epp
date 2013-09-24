@@ -5,15 +5,15 @@
 yiqcolors:
 ( Page2_0
     pagingEvent: {
-        n: worms
+        n: materials
         p: cmycolors
     }
     components: {
       ( AsciiText2_0 text: "YIQ" position: [ 1 1 ] )
         ( LineLoop2_0
-            ////selectName: 601
+            selectName: 601
             color: (yiq 0.2 0 0)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  0.2  0.2 ]
                 [ -0.2  0.2 ]
@@ -22,9 +22,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 602
+            selectName: 602
             color: (yiq 0.4 0 0)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  0.4  0.4 ]
                 [ -0.4  0.4 ]
@@ -33,9 +33,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 603
+            selectName: 603
             color: (yiq 0.6 0 0)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  0.6  0.6 ]
                 [ -0.6  0.6 ]
@@ -44,9 +44,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 604
+            selectName: 604
             color: (yiq 0.8 0 0)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  0.8  0.8 ]
                 [ -0.8  0.8 ]
@@ -55,9 +55,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 605
+            selectName: 605
             color: (yiq 1 0 0)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  1  1 ]
                 [ -1  1 ]
@@ -66,9 +66,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 611
+            selectName: 611
             color: (yiq .532 .193 -.187)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  1.2  1.2 ]
                 [ -1.2  1.2 ]
@@ -77,9 +77,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 612
+            selectName: 612
             color: (yiq .709 .257 -.249)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  1.4  1.4 ]
                 [ -1.4  1.4 ]
@@ -88,9 +88,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 613
+            selectName: 613
             color: (yiq .886 .321 -.311)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  1.6  1.6 ]
                 [ -1.6  1.6 ]
@@ -99,9 +99,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 614
+            selectName: 614
             color: (yiq .909 .257 -.247)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  1.8  1.8 ]
                 [ -1.8  1.8 ]
@@ -110,9 +110,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 615
+            selectName: 615
             color: (yiq .932 .193 -.183)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  2  2 ]
                 [ -2  2 ]
@@ -121,9 +121,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 621
+            selectName: 621
             color: (yiq .352 -.165 -.311)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  2.2  2.2 ]
                 [ -2.2  2.2 ]
@@ -132,9 +132,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 622
+            selectName: 622
             color: (yiq .470 -.220 -.415)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  2.4  2.4 ]
                 [ -2.4  2.4 ]
@@ -143,9 +143,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 623
+            selectName: 623
             color: (yiq .587 -.275 -.52)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  2.6  2.6 ]
                 [ -2.6  2.6 ]
@@ -154,9 +154,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 624
+            selectName: 624
             color: (yiq .670 -.220 -.413)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  2.8  2.8 ]
                 [ -2.8  2.8 ]
@@ -165,9 +165,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 625
+            selectName: 625
             color: (yiq .752 -.165 -.307)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  3  3 ]
                 [ -3  3 ]
@@ -176,9 +176,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 631
+            selectName: 631
             color: (yiq .421 -.358 -.121)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  3.2  3.2 ]
                 [ -3.2  3.2 ]
@@ -187,9 +187,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 632
+            selectName: 632
             color: (yiq .561 -.479 -.162)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  3.4  3.4 ]
                 [ -3.4  3.4 ]
@@ -198,9 +198,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 633
+            selectName: 633
             color: (yiq .701 -.596 -.202)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  3.6  3.6 ]
                 [ -3.6  3.6 ]
@@ -209,9 +209,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 634
+            selectName: 634
             color: (yiq .761 -.477 -.160)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  3.8  3.8 ]
                 [ -3.8  3.8 ]
@@ -220,9 +220,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 635
+            selectName: 635
             color: (yiq .821 -.358 -.117)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  4  4 ]
                 [ -4  4 ]
@@ -231,9 +231,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 641
+            selectName: 641
             color: (yiq .068 -.193 .193)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  4.2  4.2 ]
                 [ -4.2  4.2 ]
@@ -242,9 +242,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 642
+            selectName: 642
             color: (yiq .091 -.257 .257)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  4.4  4.4 ]
                 [ -4.4  4.4 ]
@@ -253,9 +253,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 643
+            selectName: 643
             color: (yiq .114 -.321 .321)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  4.6  4.6 ]
                 [ -4.6  4.6 ]
@@ -264,9 +264,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 644
+            selectName: 644
             color: (yiq .291 -.257 .259)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  4.8  4.8 ]
                 [ -4.8  4.8 ]
@@ -275,9 +275,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 645
+            selectName: 645
             color: (yiq .468 -.193 .197)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  5  5 ]
                 [ -5  5 ]
@@ -286,9 +286,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 651
+            selectName: 651
             color: (yiq .248 .165 .307)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  5.2  5.2 ]
                 [ -5.2  5.2 ]
@@ -297,9 +297,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 652
+            selectName: 652
             color: (yiq .330 .220 .413)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  5.4  5.4 ]
                 [ -5.4  5.4 ]
@@ -308,9 +308,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 653
+            selectName: 653
             color: (yiq .413 .275 .52)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  5.6  5.6 ]
                 [ -5.6  5.6 ]
@@ -319,9 +319,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 654
+            selectName: 654
             color: (yiq .530 .220 .415)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  5.8  5.8 ]
                 [ -5.8  5.8 ]
@@ -330,9 +330,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 655
+            selectName: 655
             color: (yiq .648 .165 .311)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  6  6 ]
                 [ -6  6 ]
@@ -341,9 +341,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 661
+            selectName: 661
             color: (yiq .179 .358 .127)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  6.2  6.2 ]
                 [ -6.2  6.2 ]
@@ -352,9 +352,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 662
+            selectName: 662
             color: (yiq .239 .477 .170)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  6.4  6.4 ]
                 [ -6.4  6.4 ]
@@ -363,9 +363,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 663
+            selectName: 663
             color: (yiq .299 .596 .212)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  6.6  6.6 ]
                 [ -6.6  6.6 ]
@@ -374,9 +374,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 664
+            selectName: 664
             color: (yiq .439 .477 .172)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  6.8  6.8 ]
                 [ -6.8  6.8 ]
@@ -385,9 +385,9 @@ yiqcolors:
             }
         )
         ( LineLoop2_0
-            //selectName: 665
+            selectName: 665
             color: (yiq .579 .358 .131)
-            lineWidth: 5
+            //linewidth: 5
             vertices: {
                 [  7  7 ]
                 [ -7  7 ]

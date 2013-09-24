@@ -70,13 +70,13 @@
 // ---
 pages: {
    #include "PageXX.epp"
-//   #include "PageYY.epp"
-//   #include "PageZZ.epp"
-//   #include "worms.epp"
-//   #include "sample.epp"
-//   #include "PageHSVColors.epp"
-//   #include "PageHLSColors.epp"
-//   #include "PageCMYColors.epp"
-//   #include "PageYIQColors.epp"
+   #include "PageYY.epp"
+   #include "PageZZ.epp"
+   #include "worms.epp"
+   #include "sample.epp"
+   #include "PageHSVColors.epp"
+   #include "PageHLSColors.epp"
+   #include "PageCMYColors.epp"
+   #include "PageYIQColors.epp"
    #include "MaterialPage.epp"
 }

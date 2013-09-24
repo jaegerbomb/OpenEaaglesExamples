@@ -23,7 +23,6 @@
     
    clearDepth: 1.0
    clearColor: ( hsv 180.0 0.4 0.2 )
-   //clearColor: ( rgb 1 1 1 )
 
    vpX:        500
    vpY:        150
@@ -40,12 +39,12 @@
     )
  }
 
- #if BENCHMARK
-    benchmark: true
- #else
-      page:   materials // First page
-      #include "testBasic.epp"
- #endif
+#if BENCHMARK
+   benchmark: true
+#else
+   page:   materials // First page
+   #include "testBasic.epp"
+#endif
 
 
 #if 0
