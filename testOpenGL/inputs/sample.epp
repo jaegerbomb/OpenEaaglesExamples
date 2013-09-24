@@ -2,15 +2,15 @@
 // Some MFD stuff
 // ---
 
-
 sample:
-( MfdPage
+( Page2_0
     pagingEvent: {
         n: hsvcolors
         p: worms
     }
     components: {
 
+#if 0
         // --------------------------
         // Simple graphic example (two pointers)
         // --------------------------
@@ -192,5 +192,7 @@ sample:
 
             }
         )
+#endif
+         ( AsciiText2_0 text: "Put samples here." )
     }
 )
