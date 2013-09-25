@@ -24,7 +24,7 @@ yy:
            transform: { ( GlmTranslation -2.0 -2.0 -1.0 ) }
            //color: yellow
            textureName: t2
-           //linewidth: 1
+           lineWidth: 1
            vertices: {
                [ -4.5 -4.5 ]
                [ -4.5  4.5 ]
@@ -43,7 +43,7 @@ yy:
            transform: { ( GlmTranslation 1.0 1.0 2.0 ) }
            //color: yellow
            textureName: t3
-           //linewidth: 1
+           lineWidth: 1
            vertices: {
                [ -2.5 -2.5 ]
                [ -2.5  2.5 ]

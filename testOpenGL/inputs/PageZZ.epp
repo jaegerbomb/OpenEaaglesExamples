@@ -13,7 +13,7 @@ zz:
         ( TriangleStrip2_0
             selectName: 501
             //color: white
-            //linewidth: 1
+            lineWidth: 1
             textureName: t4
             vertices: {
                [ -1.5 -1.5 ]
