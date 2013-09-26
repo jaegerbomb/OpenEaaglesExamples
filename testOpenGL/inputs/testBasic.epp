@@ -43,6 +43,11 @@
       )
    }
 
+   // Bracket characters
+   leftBracketChar:  "*"
+   rightBracketChar: "*"
+   reverseVideoBrackets: 0
+
 
    // ---
    // Add a background box to the main display
