@@ -42,10 +42,65 @@
 #if BENCHMARK
    benchmark: true
 #else
-   page:   materials // First page
-   #include "testBasic.epp"
+//   page:   materials // First page
+//   #include "testBasic.epp"
 #endif
 
+components: {
+
+         // --------------------------
+         // Simple graphic example (two pointers)
+         // --------------------------
+         ( TestTwo
+             transform: { ( GlmTranslation 0.0 0.0 ) ( GlmScale 1.5 ) }
+             components: {
+                 ( TriangleStrip2_0
+                  transform: ( GlmTranslation -2.0 0 )
+                     color: red
+                     vertices: {
+                               [ -1 -1 ]
+                            [ -1 1 ]
+                            [ 1 -1 ]
+                            [ 1 1 ]
+                     }
+                     components: {
+                        ( TriangleStrip2_0
+                            color: yellow
+                            transform: ( GlmTranslation 0 -2 )
+                             vertices: {
+                                       [ -1 -1 ]
+                                    [ -1 1 ]
+                                    [ 1 -1 ]
+                                    [ 1 1 ]
+                             }
+                        )
+                     }
+                 )
+                 ( TriangleStrip2_0
+                     color: white
+                     transform: ( GlmTranslation 2.0 0 )
+                      vertices: {
+                                [ -1 -1 ]
+                             [ -1 1 ]
+                             [ 1 -1 ]
+                             [ 1 1 ]
+                      }
+                     components: {
+                        ( TriangleStrip2_0
+                            color: cyan
+                            transform: ( GlmTranslation 0 -2 )
+                             vertices: {
+                                       [ -1 -1 ]
+                                    [ -1 1 ]
+                                    [ 1 -1 ]
+                                    [ 1 1 ]
+                             }
+                        )
+                     }
+                 )
+             }
+         )
+}
 
 #if 0
    components: {

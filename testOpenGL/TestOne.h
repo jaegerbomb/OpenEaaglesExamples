@@ -75,7 +75,7 @@ private:
     bool bufferCreated;             // Has our vertex buffer been created
 };
 
-} // End MainW namespace
-} // End Eaagles namespace
+}
+}
 
-#endif // __TestOne_H__
+#endif

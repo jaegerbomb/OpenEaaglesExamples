@@ -192,9 +192,6 @@ void TestOne::updateData(const LCreal dt)
          bufferCreated = true;
       }
       else updateVertices(trail);
-//      for (unsigned int i = 0; i < nTrails; i++) {
-//         std::cout << "TRAIL VERTEX " << i << " = (" << trail[i].x << ", " << trail[i].y << ")" << std::endl;
-//      }
    }
 }
 

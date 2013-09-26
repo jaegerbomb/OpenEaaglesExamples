@@ -14,6 +14,8 @@
 #include "Display.h"
 #include "GlutDisplay.h"
 #include "TestOne.h"
+#include "TestTwo.h"
+#include "TdAzPtr.h"
 #include <GL/glut.h>
 #include "GLEW/glew.h"
 #include "GLFW/glfw3.h"
@@ -68,6 +70,12 @@ static Basic::Object* testFormFunc(const char* formname)
    }
    else if ( strcmp(formname, TestOne::getFormName()) == 0 ) {
       newform = new TestOne;
+   }
+   else if ( strcmp(formname, TestTwo::getFormName()) == 0 ) {
+      newform = new TestTwo;
+   }
+   else if ( strcmp(formname, TdAzPtr::getFormName()) == 0 ) {
+      newform = new TdAzPtr;
    }
    else {
       if (newform == 0) newform = BasicGL2_0::formFunc(formname);
@@ -232,6 +240,11 @@ int main(int argc, char* argv[])
          glfwSetWindowFocusCallback(win, focusCB);
       }
 
+      // prime the displays a bit
+      sys->event(Eaagles::Basic::Component::RESET_EVENT);
+      sys->updateTC(0.025);
+      sys->updateData(0.025);
+
       // let's remove vertical sync, to be able to print out true performance characteristics
       // WINDOW
 
@@ -277,6 +290,10 @@ int main(int argc, char* argv[])
       // ---
       // initialize glfw
       otherSys->createWindow();
+      // prime the displays a bit
+      otherSys->event(Eaagles::Basic::Component::RESET_EVENT);
+      otherSys->updateTC(0.025);
+      otherSys->updateData(0.025);
 
       // ---
       // Set timer
