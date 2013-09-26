@@ -9,69 +9,68 @@ sample:
         p: worms
     }
     components: {
+      // --------------------------
+      // Simple graphic example (two pointers)
+      // --------------------------
+      ( TestTwo
+
+          transform: { ( GlmTranslation 0.0 -2.0 ) ( GlmScale 4.0 ) }
+
+          v1: 0
+          v1Rate: 1
+          v1Max: 1
+          v1Min: -1
+
+          v2: 0.5
+          v2Rate: -0.5
+          v2Max:  1
+          v2Min: -1
+
+          components: {
+              ( Line2_0
+                  selectName: 280
+                  color: white
+                  vertices: {
+                      [ -1.0   0.0 ] [ -1.0    2.0 ]      // Left Side
+                      [  1.0   0.0 ] [  1.0    2.0 ]      // Right Side
+                      [ -1.0   0.0 ] [  1.0    0.0 ]      // Bottom
+                      [ -1.0   0.0 ] [ -1.0   -0.05 ]     // Left Az tic
+                      [ -0.67  0.0 ] [ -0.67  -0.05 ]     // Left Az tic
+                      [ -0.33  0.0 ] [ -0.33  -0.05 ]     // Left Az tic
+                      [  0.0   0.0 ] [  0.0   -0.05 ]     // Center Az tic
+                      [  1.0   0.0 ] [  1.0   -0.05 ]     // Right Az tic
+                      [  0.67  0.0 ] [  0.67  -0.05 ]     // Right Az tic
+                      [  0.33  0.0 ] [  0.33  -0.05 ]     // Right Az tic
+                      [ -1.0   1.0 ] [ -1.05   1.0 ]      // Elev tic
+                  }
+              )
+              v1: ( TdAzPtr
+                  selectName: 281
+                 // transform: ( GlmTranslation 1.0 -0.03 )
+                  components: {
+                      ( Line2_0 color: blue vertices: { [ 0 0 ] [ 0 -0.1 ] } )
+                      ( AsciiText2_0
+                          transform: { ( GlmTranslation -0.05 -0.3 ) ( GlmScale 0.1 ) }
+                          text: "AZ"
+                      )
+                  }
+              )
+//              v2: ( TdElevPtr
+//                  selectName: 282
+//                  transform: ( GlmTranslation -1.03 1.0 )
+//                  components: {
+//                      ( Line2_0 color: yellow vertices: { [ -0.1 0 ] [ 0 0 ] } )
+//                      ( AsciiText2_0
+//                          transform: { ( GlmTranslation -0.3 -0.05 ) ( GlmScale 0.1 ) }
+//                          text: "EL"
+//                      )
+//                  }
+//              )
+          }
+      )
+
 
 #if 0
-        // --------------------------
-        // Simple graphic example (two pointers)
-        // --------------------------
-        ( TestTwo
-
-            transform: { ( Translation 0.0 -2.0 ) ( Scale 4.0 ) }
-        
-            v1: 0
-            v1Rate: 1
-            v1Max: 1
-            v1Min: -1
-
-            v2: 0.5
-            v2Rate: -0.5
-            v2Max:  1
-            v2Min: -1
-
-            components: {
-                ( Line
-                    selectName: 280
-                    color: white
-                    segment: 1
-                    vertices: {
-                        [ -1.0   0.0 ] [ -1.0    2.0 ]      // Left Side
-                        [  1.0   0.0 ] [  1.0    2.0 ]      // Right Side
-                        [ -1.0   0.0 ] [  1.0    0.0 ]      // Bottom
-                        [ -1.0   0.0 ] [ -1.0   -0.05 ]     // Left Az tic
-                        [ -0.67  0.0 ] [ -0.67  -0.05 ]     // Left Az tic
-                        [ -0.33  0.0 ] [ -0.33  -0.05 ]     // Left Az tic
-                        [  0.0   0.0 ] [  0.0   -0.05 ]     // Center Az tic
-                        [  1.0   0.0 ] [  1.0   -0.05 ]     // Right Az tic
-                        [  0.67  0.0 ] [  0.67  -0.05 ]     // Right Az tic
-                        [  0.33  0.0 ] [  0.33  -0.05 ]     // Right Az tic
-                        [ -1.0   1.0 ] [ -1.05   1.0 ]      // Elev tic
-                    }
-                )
-                v1: ( TdAzPtr
-                    selectName: 281
-                    transform: ( Translation 0.0 -0.03 )
-                    components: {
-                        ( Line color: blue vertices: { [ 0 0 ] [ 0 -0.1 ] } )
-                        ( AsciiText 
-                            transform: { ( Translation -0.05 -0.3 ) ( Scale 0.1 ) }
-                            text: "AZ"
-                        )
-                    }
-                )
-                v2: ( TdElevPtr
-                    selectName: 282
-                    transform: ( Translation -1.03 1.0 )
-                    components: {
-                        ( Line color: yellow vertices: { [ -0.1 0 ] [ 0 0 ] } )
-                        ( AsciiText
-                            transform: { ( Translation -0.3 -0.05 ) ( Scale 0.1 ) }
-                            text: "EL"
-                        )
-                    }
-                )
-            }
-        )
-
         // --------------------------
         // Simple numerical readouts
         // --------------------------
