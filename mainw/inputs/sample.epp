@@ -58,7 +58,8 @@ sample:
                         )
                     }
                 )
-                v2: ( TdElevPtr
+                v2: 
+				( TdElevPtr
                     selectName: 282
                     transform: ( Translation -1.03 1.0 )
                     components: {
