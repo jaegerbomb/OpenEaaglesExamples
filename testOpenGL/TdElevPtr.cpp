@@ -1,21 +1,21 @@
 
-#include "./TdAzPtr.h"
+#include "./TdElevPtr.h"
 #include "openeaagles/basic/Number.h"
 
 namespace Eaagles {
 namespace TestOpenGL {
 
-IMPLEMENT_EMPTY_SLOTTABLE_SUBCLASS(TdAzPtr,"TdAzPtr")
-EMPTY_SERIALIZER(TdAzPtr)
+IMPLEMENT_EMPTY_SLOTTABLE_SUBCLASS(TdElevPtr,"TdElevPtr")
+EMPTY_SERIALIZER(TdElevPtr)
 
 
 //------------------------------------------------------------------------------
 // Constructor(s)
 //------------------------------------------------------------------------------
-TdAzPtr::TdAzPtr()
+TdElevPtr::TdElevPtr()
 {
     STANDARD_CONSTRUCTOR()
-    azimuth = 0.0;
+    elev = 0.0;
     // we move a lot
     setDrawType(GL_DYNAMIC_DRAW);
 }
@@ -23,19 +23,19 @@ TdAzPtr::TdAzPtr()
 //------------------------------------------------------------------------------
 // copyData(), deleteData() -- copy (delete) member data
 //------------------------------------------------------------------------------
-void TdAzPtr::copyData(const TdAzPtr& org, const bool)
+void TdElevPtr::copyData(const TdElevPtr& org, const bool)
 {
     BaseClass::copyData(org);
-    azimuth = 0.0;
+    elev = 0.0;
 }
 
-EMPTY_DELETEDATA(TdAzPtr)
+EMPTY_DELETEDATA(TdElevPtr)
 
 
 //------------------------------------------------------------------------------
 // event() -- default event handler
 //------------------------------------------------------------------------------
-bool TdAzPtr::event(const int event, Basic::Object* const obj)
+bool TdElevPtr::event(const int event, Basic::Object* const obj)
 {
     bool used = false;
 
@@ -43,12 +43,13 @@ bool TdAzPtr::event(const int event, Basic::Object* const obj)
     {
         const Basic::Number* num = dynamic_cast<const Basic::Number*>(obj);
         if (num != 0) {
-            double delta = 0.0f;
-            if (azimuth != 0.0f) {
-               delta = azimuth - num->getReal();
-            }
-            azimuth = num->getReal();
-            translateModelMatrix(delta, 0, 0);
+           // calclulate our delta
+           double delta = 0.0f;
+           if (elev != 0) {
+               delta = elev - num->getReal();
+           }
+            elev = num->getReal();
+            translateModelMatrix(0, delta, 0);
             used = true;
         }
     }
@@ -66,7 +67,7 @@ bool TdAzPtr::event(const int event, Basic::Object* const obj)
 //------------------------------------------------------------------------------
 // draw() -- draw the pointer
 //------------------------------------------------------------------------------
-void TdAzPtr::draw()
+void TdElevPtr::draw()
 {
    if (isVisible())  {
       // get our current model matrix, and translate it

@@ -46,7 +46,7 @@ sample:
               )
               v1: ( TdAzPtr
                   selectName: 281
-                 // transform: ( GlmTranslation 1.0 -0.03 )
+                  transform: ( GlmTranslation 0.0 -0.03 )
                   components: {
                       ( Line2_0 color: blue vertices: { [ 0 0 ] [ 0 -0.1 ] } )
                       ( AsciiText2_0
@@ -54,23 +54,23 @@ sample:
                           text: "AZ"
                       )
                   }
-              )
-//              v2: ( TdElevPtr
-//                  selectName: 282
-//                  transform: ( GlmTranslation -1.03 1.0 )
-//                  components: {
-//                      ( Line2_0 color: yellow vertices: { [ -0.1 0 ] [ 0 0 ] } )
-//                      ( AsciiText2_0
-//                          transform: { ( GlmTranslation -0.3 -0.05 ) ( GlmScale 0.1 ) }
-//                          text: "EL"
-//                      )
-//                  }
-//              )
-          }
-      )
+			)
+			v2: 
+			( TdElevPtr
+				selectName: 282
+				transform: ( GlmTranslation -1.03 0.5 )
+				components: {
+					( Line2_0 color: yellow vertices: { [ -0.1 0 ] [ 0 0 ] } )
+					( AsciiText2_0
+						transform: { ( GlmTranslation -0.3 -0.05 ) ( GlmScale 0.1 ) }
+						text: "EL"
+					)
+				}	
+			)
+		}
+	)
 
 
-#if 0
         // --------------------------
         // Simple numerical readouts
         // --------------------------
@@ -90,16 +90,17 @@ sample:
             components: {
 
                 // Rotary2 accepts false/true SELECT messages to select the first or second component
-                v1Title: ( Rotary2
+                v1Title: 
+				( Rotary2
                     position: [ 1 1 ]
                     components: {
-                        ( AsciiText text: "V1-UP:" )       // Rotary2 = false
-                        ( AsciiText text: "V1-DN:" )       // Rotary2 = true
+                        ( AsciiText2_0 text: "V1-UP:" )       // Rotary2 = false
+                        ( AsciiText2_0 text: "V1-DN:" )       // Rotary2 = true
                     }
                 )
 
                 // Simple Numeric Readout Example without leading zeros
-                v1: ( NumericReadout
+                v1: ( NumericReadout2_0
                     color: blue
                     position: [ 1 8 ]
                     format: "###.#"
@@ -109,15 +110,16 @@ sample:
                 v2Title: ( Rotary
                     position: [ 2 1 ]
                     components: {
-                        ( AsciiText text: "V2-UP:" )                  // Rotary = 1
-                        ( AsciiText text: "V2-UP:" color: red )       // Rotary = 2
-                        ( AsciiText text: "V2-DN:" )                  // Rotary = 3
-                        ( AsciiText text: "V2-DN:" color: red )       // Rotary = 4
+                        ( AsciiText2_0 text: "V2-UP:" )                  // Rotary = 1
+                        ( AsciiText2_0 text: "V2-UP:" color: red )       // Rotary = 2
+                        ( AsciiText2_0 text: "V2-DN:" )                  // Rotary = 3
+                        ( AsciiText2_0 text: "V2-DN:" color: red )       // Rotary = 4
                     }
                 )
 
                 // Simple Numeric Readout Example with leading zeros and plus sign
-                v2: ( NumericReadout
+                v2: 
+				( NumericReadout
                     color: blue
                     position: [ 2 8 ]
                     format: "+0#.#"
@@ -125,6 +127,7 @@ sample:
 
             }
         )
+#if 0
 
         // --------------------------
         // Lat/Lon readouts

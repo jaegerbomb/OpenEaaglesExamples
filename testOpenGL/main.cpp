@@ -16,6 +16,7 @@
 #include "TestOne.h"
 #include "TestTwo.h"
 #include "TdAzPtr.h"
+#include "TdElevPtr.h"
 #include <GL/glut.h>
 #include "GLEW/glew.h"
 #include "GLFW/glfw3.h"
@@ -76,6 +77,9 @@ static Basic::Object* testFormFunc(const char* formname)
    }
    else if ( strcmp(formname, TdAzPtr::getFormName()) == 0 ) {
       newform = new TdAzPtr;
+   }
+   else if ( strcmp(formname, TdElevPtr::getFormName()) == 0 ) {
+      newform = new TdElevPtr;
    }
    else {
       if (newform == 0) newform = BasicGL2_0::formFunc(formname);

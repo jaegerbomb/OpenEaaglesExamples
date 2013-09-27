@@ -42,40 +42,113 @@
 #if BENCHMARK
    benchmark: true
 #else
-//   page:   materials // First page
-//   #include "testBasic.epp"
+   page:   materials // First page
+   #include "testBasic.epp"
 #endif
 
+#if 0
 components: {
+
+		// Center lines
+		( Line2_0
+			color: yellow
+			lineWidth: 2.0
+			vertices: {
+				[ 0 -10.5 ] [ 0 10.5 ]
+				[ -10.5 0 ] [ 10.5 0 ]
+			}
+		)
+         // grid divider lines, every unit inch
+		( Line2_0
+			color: white
+			vertices: {
+				[ -1 -10.5 ] [ -1 10.5 ]
+				[ -2 -10.5 ] [ -2 10.5 ]
+				[ -3 -10.5 ] [ -3 10.5 ]
+				[ -4 -10.5 ] [ -4 10.5 ]
+				[ -5 -10.5 ] [ -5 10.5 ]
+				[ -6 -10.5 ] [ -6 10.5 ]
+				[ -7 -10.5 ] [ -7 10.5 ]
+				[ -8 -10.5 ] [ -8 10.5 ]
+				[ -9 -10.5 ] [ -9 10.5 ]
+				[ -10 -10.5 ] [ -10 10.5 ]
+				[ 1 -10.5 ] [ 1 10.5 ]
+				[ 2 -10.5 ] [ 2 10.5 ]
+				[ 3 -10.5 ] [ 3 10.5 ]
+				[ 4 -10.5 ] [ 4 10.5 ]
+				[ 5 -10.5 ] [ 5 10.5 ]
+				[ 6 -10.5 ] [ 6 10.5 ]
+				[ 7 -10.5 ] [ 7 10.5 ]
+				[ 8 -10.5 ] [ 8 10.5 ]
+				[ 9 -10.5 ] [ 9 10.5 ]
+				[ 10 -10.5 ] [ 10 10.5 ]
+				// side lines
+				[ -10.5 1 ] [ 10.5 1 ]
+				[ -10.5 2 ] [ 10.5 2 ]
+				[ -10.5 3 ] [ 10.5 3 ]
+				[ -10.5 4 ] [ 10.5 4 ]
+				[ -10.5 5 ] [ 10.5 5 ]
+				[ -10.5 6 ] [ 10.5 6 ]
+				[ -10.5 7 ] [ 10.5 7 ]
+				[ -10.5 8 ] [ 10.5 8 ]
+				[ -10.5 9 ] [ 10.5 9 ]
+				[ -10.5 10 ] [ 10.5 10 ]
+				[ -10.5 -1 ] [ 10.5 -1 ]
+				[ -10.5 -2 ] [ 10.5 -2 ]
+				[ -10.5 -3 ] [ 10.5 -3 ]
+				[ -10.5 -4 ] [ 10.5 -4 ]
+				[ -10.5 -5 ] [ 10.5 -5 ]
+				[ -10.5 -6 ] [ 10.5 -6 ]
+				[ -10.5 -7 ] [ 10.5 -7 ]
+				[ -10.5 -8 ] [ 10.5 -8 ]
+				[ -10.5 -9 ] [ 10.5 -9 ]
+				[ -10.5 -10 ] [ 10.5 -10 ]
+				
+			}
+		)
 
          // --------------------------
          // Simple graphic example (two pointers)
          // --------------------------
          ( TestTwo
-             transform: { ( GlmTranslation 0.0 0.0 ) ( GlmScale 1.5 ) }
+             transform: ( GlmScale 3.0 2.0 ) 
              components: {
                  ( TriangleStrip2_0
-                  transform: ( GlmTranslation -2.0 0 )
-                     color: red
-                     vertices: {
-                               [ -1 -1 ]
-                            [ -1 1 ]
-                            [ 1 -1 ]
-                            [ 1 1 ]
-                     }
-                     components: {
-                        ( TriangleStrip2_0
-                            color: yellow
-                            transform: ( GlmTranslation 0 -2 )
-                             vertices: {
-                                       [ -1 -1 ]
-                                    [ -1 1 ]
-                                    [ 1 -1 ]
-                                    [ 1 1 ]
-                             }
-                        )
-                     }
+					transform: ( GlmTranslation -1.0 0 )
+					color: red
+					vertices: {
+						[ -1 -1 ]
+						[ -1 1 ]
+						[ 1 -1 ]
+						[ 1 1 ]
+					}
+					#if 1
+					components: {
+						( TriangleStrip2_0
+							color: cyan
+							transform: ( GlmTranslation 0 -2 )
+							vertices: {
+								[ -1 -1 ]
+								[ -1 1 ]
+								[ 1 -1 ]
+								[ 1 1 ]
+							}
+						)
+						( TriangleStrip2_0
+							color: yellow
+							transform: ( GlmTranslation 0 -4 )
+							vertices: {
+								[ -1 -1 ]
+								[ -1 1 ]
+								[ 1 -1 ]
+								[ 1 1 ]
+							}
+						)
+					 }
+					 #endif
                  )
+				 
+				 #if 0
                  ( TriangleStrip2_0
                      color: white
                      transform: ( GlmTranslation 2.0 0 )
@@ -98,9 +171,11 @@ components: {
                         )
                      }
                  )
+				 #endif
              }
          )
 }
+#endif
 
 #if 0
    components: {
