@@ -91,7 +91,7 @@ sample:
 
                 // Rotary2 accepts false/true SELECT messages to select the first or second component
                 v1Title: 
-				( Rotary2
+            ( Rotary22_0
                     position: [ 1 1 ]
                     components: {
                         ( AsciiText2_0 text: "V1-UP:" )       // Rotary2 = false
@@ -107,7 +107,7 @@ sample:
                 )
 
                 // Second Rotary example
-                v2Title: ( Rotary
+                v2Title: ( Rotary2_0
                     position: [ 2 1 ]
                     components: {
                         ( AsciiText2_0 text: "V2-UP:" )                  // Rotary = 1
@@ -119,15 +119,14 @@ sample:
 
                 // Simple Numeric Readout Example with leading zeros and plus sign
                 v2: 
-				( NumericReadout
-                    color: blue
+               ( NumericReadout2_0
+                    color: red
                     position: [ 2 8 ]
                     format: "+0#.#"
                 )
 
             }
         )
-#if 0
 
         // --------------------------
         // Lat/Lon readouts
@@ -147,13 +146,13 @@ sample:
 
             components: {
 
-                v1: ( LatitudeReadout
+                v1: ( LatitudeReadout2_0
                     highLight: 1
                     position: [ 18 2 ]
                     format: "+0D@MM"
                 )
 
-                v2: ( LongitudeReadout
+                v2: ( LongitudeReadout2_0
                     color: white
                     position: [ 19 2 ]
                     format: "+0DD@MM"
@@ -180,13 +179,13 @@ sample:
 
             components: {
 
-                v1: ( TimeReadout
+                v1: ( TimeReadout2_0
                     color: cyan
                     position: [ 18 11 ]
                     format: "HH:MM:SS.S"
                 )
 
-                v2: ( DirectionReadout
+                v2: ( DirectionReadout2_0
                     color: cyan
                     position: [ 19 11 ]
                     format: "0DD@"
@@ -194,7 +193,5 @@ sample:
 
             }
         )
-#endif
-         ( AsciiText2_0 text: "Put samples here." )
     }
 )
