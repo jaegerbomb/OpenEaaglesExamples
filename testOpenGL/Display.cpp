@@ -138,7 +138,7 @@ int Display::createWindow()
    // check our gl major and minor version
 
    // antialiasing!
-   //glfwWindowHint(GLFW_SAMPLES, 4);
+   if (isAntialiasing()) glfwWindowHint(GLFW_SAMPLES, 4);
    if (glMajorVersion > 0) {
       glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, glMajorVersion);
       glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, glMinorVersion);
