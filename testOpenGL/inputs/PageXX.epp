@@ -1,0 +1,42 @@
+// ---
+// Example page XX
+// ---
+
+xx:
+( Page2_0
+    pagingEvent: {
+        n: yy
+        p: materials
+    }
+    components: {
+        ( TriangleStrip2_0
+            selectName: 301
+            lineWidth: 1
+            texture: t1
+            vertices: {
+                [  -5 -5  ]
+                [ -5  5 ]
+                [  5 -5 ]
+                [  5 5 ]
+            }
+            textureVertices: {
+                [  0.0  0.0 ]
+                [  0.0  1.0 ]
+                [  1.0  0.0 ]
+                [  1.0  1.0 ]
+            }
+        )
+
+        ( TriangleStrip2_0
+            transform: ( GlmTranslation 2.5 2.5 0.5)
+            color: ( rgba 1.0 1.0 0.1 0.2 )
+            lineWidth: 1
+            vertices: {
+               [  -5 -5  ]
+               [ -5  5 ]
+               [  5 -5 ]
+               [  5 5 ]
+            }
+        )
+    }
+)
