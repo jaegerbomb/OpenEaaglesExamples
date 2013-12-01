@@ -22,7 +22,7 @@
     
     fonts: {
         default:  
-        ( FTGLPolygonFonts 
+        ( FtglPolygonFont
             fontPosition: [ -10 10 ]
             fontWidth: 1.0       
             fontHeight: 1.0         

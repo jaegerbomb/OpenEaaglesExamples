@@ -52,7 +52,7 @@
          path: "../data/fonts/11x19/normal/"
       )
 
-      font3: ( FTGLPolygonFonts 
+      font3: ( FtglPolygonFont
          path: "../data/fonts/"
          file: "arialn.ttf"
          fontWidth: 1

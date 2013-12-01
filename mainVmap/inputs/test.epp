@@ -5,7 +5,7 @@
     normalFont: default
     fonts: {
         default: 
-        ( FTGLPolygonFonts 
+        ( FtglPolygonFont
             fontPosition: [ -10.5 10.5 ]
             fontWidth: 0.3          // Font width scaling 
             fontHeight: 0.3         // Font height scaling 

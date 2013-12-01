@@ -22,7 +22,7 @@
    fonts: {
       // normal font for most display stuff
       normal:
-      ( FTGLHaloFonts
+      ( FtglHaloFont
          fontPosition: [ -10 10 ]
          path: FONT_PATH
          file: "arialn.ttf"

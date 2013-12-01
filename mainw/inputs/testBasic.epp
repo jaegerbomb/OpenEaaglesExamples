@@ -47,7 +47,7 @@ fonts: {
       path: FONT_11_19_PATH
   )
   bigfont:  
-  ( FTGLPolygonFonts 
+  ( FtglPolygonFont
       fontPosition: [ -10.5 10.5 ]
       fontWidth: 2.0          // Font width scaling 
       fontHeight: 2.0         // Font height scaling 

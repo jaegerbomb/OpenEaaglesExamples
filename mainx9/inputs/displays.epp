@@ -34,7 +34,7 @@
 
    fonts: {
 
-      font1: ( FTGLPolygonFonts 
+      font1: ( FtglPolygonFont
          fontPosition: [ -2.7 2.0 ]
          path: FONT_PATH
          file: "arialn.ttf"        
@@ -45,7 +45,7 @@
          lineSpacing: 0.16
       )
 
-      font2: ( FTGLPolygonFonts 
+      font2: ( FtglPolygonFont
          path: FONT_PATH
          file: "arialn.ttf"
          fontWidth: 1
