@@ -25,16 +25,16 @@ project "testEvents"
       links {LibFtgl_d, LibFreetype_d, LibGlut_d, LibGLU, LibGL}
       links {"Ws2_32", "Winmm", "comctl32", "gdi32"}
 
--- testIo: I/O test
-project "testIo"
-   targetname "testIo"
-   targetdir "../../testIo"
-   debugdir "../../testIo"
+-- testIoHandler: I/O handler test
+project "testIoHandler"
+   targetname "testIoHandler"
+   targetdir "../../testIoHandler"
+   debugdir "../../testIoHandler"
    files {
-      "../../testIo/**.cpp",
-      "../../testIo/**.h",
-      "../../testIo/**.epp",
-      "../../testIo/**.edl"
+      "../../testIoHandler/**.cpp",
+      "../../testIoHandler/**.h",
+      "../../testIoHandler/**.epp",
+      "../../testIoHandler/**.edl"
    }
    includedirs { OEIncPath, OE3rdPartyIncPath }
    libdirs     { OELibPath, OE3rdPartyLibPath }
@@ -131,6 +131,37 @@ project "testNetHandler"
    configuration "Debug"
       links {"oeBasic_d"}
       links {"Ws2_32", "Winmm", "comctl32"}
+
+-- testRadar
+project "testRadar"
+   targetname "testRadar"
+   targetdir "../../testRadar"
+   debugdir "../../testRadar"
+   files {
+      "../../testRadar/**.cpp",
+      "../../testRadar/**.h",
+      "../../testRadar/**.epp",
+      "../../testRadar/**.edl"
+   }
+   includedirs { OEIncPath, OE3rdPartyIncPath }
+   libdirs     { OELibPath, OE3rdPartyLibPath }
+   defines { "_CONSOLE" }
+   configuration "Release"
+      links {"oeVehicles", "JSBSim"}
+      links {"oeOtw", LibCigi}
+      links {"oeDis", "oeSensors", "oeIoDevice"}
+      links {"oeSimulation", "oeDafif", "oeTerrain"}
+      links {"oeGlut", "oeInstruments", "oeBasicGL", "oeBasic"}
+      links {LibFtgl, LibFreetype, LibGlut, LibGLU, LibGL}
+      links {"Ws2_32", "Winmm", "comctl32", "gdi32"}
+   configuration "Debug"
+      links {"oeVehicles_d", "JSBSim_d"}
+      links {"oeOtw_d", LibCigi_d}
+      links {"oeDis_d", "oeSensors_d", "oeIoDevice_d"}
+      links {"oeSimulation_d", "oeDafif_d", "oeTerrain_d"}
+      links {"oeGlut_d", "oeInstruments_d", "oeBasicGL_d", "oeBasic_d"}
+      links {LibFtgl_d, LibFreetype_d, LibGlut_d, LibGLU, LibGL}
+      links {"Ws2_32", "Winmm", "comctl32", "gdi32"}
 
 -- testRecordData
 project "testRecordData"

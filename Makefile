@@ -26,8 +26,8 @@ APPLICATIONS += mainIr
 # simple simulation examples
 APPLICATIONS += mainSim1 mainSim2 mainSim3 mainSim4
 
-# radar and ground mapping radar examples
-APPLICATIONS += mainx9 mainGndMapRdr
+# ground mapping radar example
+APPLICATIONS += mainGndMapRdr
 
 # ubf example
 APPLICATIONS += mainUbf1
@@ -35,8 +35,6 @@ APPLICATIONS += mainUbf1
 # example demonstrates Laero model and autopilot functionality
 APPLICATIONS += mainLaero
 
-#
-APPLICATIONS += mainVmap
 #
 APPLICATIONS += mainy1
 
@@ -46,8 +44,11 @@ APPLICATIONS += testStateMach
 APPLICATIONS += testEvents
 APPLICATIONS += testTimer
 
+# radar test program
+APPLICATIONS += testRadar
+
 # device I/O test program
-APPLICATIONS += testIo
+APPLICATIONS += testIoHandler
 
 # matrix test program
 APPLICATIONS += testMatrix
