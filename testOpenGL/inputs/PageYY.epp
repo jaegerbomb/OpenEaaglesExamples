@@ -9,18 +9,18 @@ yy:
       p: xx
    }
    components: {
-      ( AsciiText2_0  font: bigfont position: [  1   1 ]   text: "ABCDEFG"  reversed: 1   selectName: 1401)
-      ( AsciiText2_0  font: bigfont position: [  2   2 ]   text: "ABCDEFG"  color: white  selectName: 1402 brackets: 1 )
-      ( AsciiText2_0  font: bigfont position: [  3   3 ]   text: "ABCDEFG"  color: cyan   selectName: 1403 )
-      ( AsciiText2_0  font: bigfont position: [  4   4 ]   text: "ABCDEFG"  color: cyan   selectName: 1404 )
-      ( AsciiText2_0  font: bigfont position: [  5   5 ]   text: "ABCDEFG"  color: red    selectName: 1405 reversed: 1 )
-      ( AsciiText2_0  font: bigfont position: [  6   6 ]   text: "ABCDEFG"  color: cyan   selectName: 1406 )
-      ( AsciiText2_0  font: bigfont position: [  7   7 ]   text: "ABCDEFG"  color: cyan   selectName: 1407 )
-      ( AsciiText2_0  font: bigfont position: [  8   8 ]   text: "ABCDEFG"  color: cyan   selectName: 1408 )
-      ( AsciiText2_0  font: bigfont position: [  9   9 ]   text: "ABCDEFG"  color: cyan   selectName: 1409  brackets: 1 )
-      ( AsciiText2_0  font: bigfont position: [ 10  10 ]   text: "ABCDEFG"  color: green  selectName: 1410 reversed: 1 )
+      ( AsciiText2_0  font: bigfont position: [  1   1 ]   text: "ABCDEFG"  reversed: 1   )
+      ( AsciiText2_0  font: bigfont position: [  2   2 ]   text: "ABCDEFG"  color: white  brackets: 1 )
+      ( AsciiText2_0  font: bigfont position: [  3   3 ]   text: "ABCDEFG"  color: cyan    )
+      ( AsciiText2_0  font: bigfont position: [  4   4 ]   text: "ABCDEFG"  color: cyan   )
+      ( AsciiText2_0  font: bigfont position: [  5   5 ]   text: "ABCDEFG"  color: red    reversed: 1 )
+      ( AsciiText2_0  font: bigfont position: [  6   6 ]   text: "ABCDEFG"  color: cyan    )
+      ( AsciiText2_0  font: bigfont position: [  7   7 ]   text: "ABCDEFG"  color: cyan    )
+      ( AsciiText2_0  font: bigfont position: [  8   8 ]   text: "ABCDEFG"  color: cyan  )
+      ( AsciiText2_0  font: bigfont position: [  9   9 ]   text: "ABCDEFG"  color: cyan   brackets: 1 )
+      ( AsciiText2_0  font: bigfont position: [ 10  10 ]   text: "ABCDEFG"  color: green  reversed: 1 )
       ( TriangleStrip2_0
-           selectName: 401
+           //selectName: 401
            transform: { ( GlmTranslation -2.0 -2.0 -1.0 ) }
            //color: yellow
            texture: t2
@@ -39,7 +39,7 @@ yy:
            }
        )
        ( TriangleStrip2_0
-           selectName: 402
+           //selectName: 402
            transform: { ( GlmTranslation 1.0 1.0 2.0 ) }
            //color: yellow
            texture: t3

@@ -10,7 +10,7 @@ xx:
     }
     components: {
         ( TriangleStrip2_0
-            selectName: 301
+            //selectName: 301
             lineWidth: 1
             texture: t1
             vertices: {

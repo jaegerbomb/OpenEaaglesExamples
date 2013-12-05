@@ -145,6 +145,22 @@ project "testOpenGL"
    }
 
    defines { "GLEW_STATIC" }
+   defines { "_CONSOLE" }
+
+   includedirs { OEIncPath, OE3rdPartyIncPath }
+   libdirs     { OELibPath, OE3rdPartyLibPath }
+   configuration "Release"
+      links {"oeGlut", "oeInstruments", "oeBasicGL2.0", "oeBasic"}
+      links {LibFtgl, LibFreetype, LibGlut, LibGLU, LibGL, "glfw3", "glew32s"}
+      links {"Ws2_32", "Winmm", "comctl32", "gdi32"}
+	configuration "Debug"
+      links {"oeVehicles_d", "JSBSim_d"}
+      links {"oeOtw_d", LibCigi_d}
+      links {"oeDis_d", "oeSensors_d", "oeIoDevice_d"}
+      links {"oeSimulation_d", "oeDafif_d", "oeTerrain_d"}
+      links {"oeGlut_d", "oeInstruments_d", "oeBasicGL2.0_d", "oeBasic_d"}
+      links {LibFtgl_d, LibFreetype_d, LibGlut_d, LibGLU, LibGL, "glfw3_d", "glew32s_d" }
+      links {"Ws2_32", "Winmm", "comctl32", "gdi32"}
 
 -- testRadar
 project "testRadar"
@@ -167,7 +183,7 @@ project "testRadar"
       links {"oeDis", "oeSensors", "oeIoDevice"}
       links {"oeSimulation", "oeDafif", "oeTerrain"}
       links {"oeGlut", "oeInstruments", "oeBasicGL", "oeBasic"}
-      links {LibFtgl, LibFreetype, LibGlut, LibGLU, LibGL, "glfw3", "glew32s"}
+      links {LibFtgl, LibFreetype, LibGlut, LibGLU, LibGL}
       links {"Ws2_32", "Winmm", "comctl32", "gdi32"}
    configuration "Debug"
       links {"oeVehicles_d", "JSBSim_d"}
@@ -175,7 +191,7 @@ project "testRadar"
       links {"oeDis_d", "oeSensors_d", "oeIoDevice_d"}
       links {"oeSimulation_d", "oeDafif_d", "oeTerrain_d"}
       links {"oeGlut_d", "oeInstruments_d", "oeBasicGL_d", "oeBasic_d"}
-      links {LibFtgl_d, LibFreetype_d, LibGlut_d, LibGLU, LibGL, "glfw3_d", "glew32s_d" }
+      links {LibFtgl_d, LibFreetype_d, LibGlut_d, LibGLU, LibGL }
       links {"Ws2_32", "Winmm", "comctl32", "gdi32"}
 
 -- testRecordData

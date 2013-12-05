@@ -11,6 +11,9 @@ materials:
     }
     components: {
       ( AsciiText2_0
+            shaderName: "font"
+            transform: ( GlmTranslation -5 0 )
+            color: red
             text: "Put Materials Here"
       )
         

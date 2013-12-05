@@ -1,5 +1,4 @@
 
-   // list of textures (only one for now)
    // Textures
    textures: {
      t1:  ( BitmapTexture2_0 width: 128 height: 128 path: TEXTURES_PATH  file: "Mesh.bmp" )
@@ -14,44 +13,26 @@
      rwr256: ( BitmapTexture2_0 width: 256 height: 256 path: TEXTURES_PATH  file: "RWR_256_256.bmp" )
      hsi128: ( BitmapTexture2_0 width: 128 height: 128 path: TEXTURES_PATH  file: "Hsi_128_128.bmp" )
      hsi256: ( BitmapTexture2_0 width: 256 height: 256 path: TEXTURES_PATH  file: "Hsi_256_256.bmp" )
-     //fontTex: ( Texture2_0 )
    }
 
    // This is the default font table, and all fields will use this font if their
    // page's do not have a font table.
    normalFont: default
    fonts: {
-      #if 0
-      default:
-      ( BitmapFont2_0
-          fontPosition: [ -9.5 9.5 ]
-          fontWidth: 0.462
-          fontHeight: 0.798
-          bitmapWidth: 11
-          bitmapHeight: 19
-          characterSpacing: 0.462
-          lineSpacing: 0.798
-          path: FONT_11_19_PATH
-      )
-      #endif
-      #if 1
       default:
       ( FreetypeFont
           fontPosition: [ -10.5 10.5 ]
           // font size is 12 point, for a display with dpi of 120x120 - change this as needed.
           // NOTE - needs to be scaled if our display orthogonal isn't a unit square
-          pointSize: 12
-          dpiWidth: 120       // default for windows 7 
-          dpiHeight: 120      // default for windows 7 
+          pointSize: 16
+          //dpiWidth: 120       // default for windows 7 
+          //dpiHeight: 120      // default for windows 7 
           // you could also specify pixel size, instead of point size and dpiWidth/height
-          //pixelWidth: 24
-          //pixelHeight: 24
-          //characterSpacing: 1.2   // This font is 2:1 (height:width) or (lineSpaceing:charSpacing)
-          lineSpacing: 2
+          //pixelWidth: 32
+          //pixelHeight: 32
           path: FONT_PATH
           file: "FreeSans.ttf"
       )
-      #endif
    }
 
    // Bracket characters
@@ -59,23 +40,22 @@
    rightBracketChar: "*"
    reverseVideoBrackets: 0
 
-
    // ---
    // Add a background box to the main display
    // ---
    components: {
+      #if 0
       ( AsciiText2_0
          //position: [ 1 1 ]
          // all font displays assume a unit square of (1x1). So if the orthogonal is
          // different - make sure to scale accordingly.
-         transform: { ( GlmTranslation -10.5 0 ) ( GlmScale 10.5 10.5 ) } 
-         color: black
+         transform: ( GlmTranslation -10.5 0 )  
+         color: white
          text: "The quick brown fox jumps over the lazy dog.1234567890"
          shaderName: "font"
       )
-      #if 0
         ( TriangleStrip2_0
-            selectName: 301
+            //selectName: 301
             lineWidth: 1
             texture: t1
             vertices: {
@@ -91,12 +71,13 @@
                 [  1.0  1.0 ]
             }
         )
+      #endif
       ( AsciiText2_0
          transform: ( GlmTranslation -10 -10.5 )
          color: white
+         shaderName: "font"
          text: "Press 'p' to page back, 'n' to page forward."
       )
-      #endif
       ( LineLoop2_0
          color: blue
          vertices: {
@@ -112,10 +93,10 @@
 // ---
 // All the main page formats are here!
 // ---
-#if 0
 pages: {
    #include "PageXX.epp"
    #include "PageYY.epp"
+#if 1
    #include "PageZZ.epp"
    #include "worms.epp"
    #include "sample.epp"
@@ -124,5 +105,5 @@ pages: {
    #include "PageCMYColors.epp"
    #include "PageYIQColors.epp"
    #include "MaterialPage.epp"
-}
 #endif
+}

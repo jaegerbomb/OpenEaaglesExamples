@@ -11,7 +11,7 @@ hsvcolors:
     components: {
       ( AsciiText2_0 text: "HSV" position: [ 1 1 ] )
         ( LineLoop2_0
-            selectName: 601
+            //selectName: 601
             color: (hsv 0 0 0.2)
             lineWidth: 5
             vertices: {
@@ -22,7 +22,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 602
+            //selectName: 602
             color: (hsv 0 0 0.4)
             lineWidth: 5
             vertices: {
@@ -33,7 +33,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 603
+            //selectName: 603
             color: (hsv 0 0 0.6)
             lineWidth: 5
             vertices: {
@@ -44,7 +44,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 604
+            //selectName: 604
             color: (hsv 0 0 0.8)
             lineWidth: 5
             vertices: {
@@ -55,7 +55,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 605
+            //selectName: 605
             color: (hsv 0 0 1)
             lineWidth: 5
             vertices: {
@@ -66,7 +66,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 611
+            //selectName: 611
             color: (hsv 60 1 0.2)
             lineWidth: 5
             vertices: {
@@ -77,7 +77,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 612
+            //selectName: 612
             color: (hsv 60 1 0.4)
             lineWidth: 5
             vertices: {
@@ -88,7 +88,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 613
+            //selectName: 613
             color: (hsv 60 1 0.6)
             lineWidth: 5
             vertices: {
@@ -99,7 +99,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 614
+            //selectName: 614
             color: (hsv 60 1 0.8)
             lineWidth: 5
             vertices: {
@@ -110,7 +110,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 615
+            //selectName: 615
             color: (hsv 60 1 1)
             lineWidth: 5
             vertices: {
@@ -121,7 +121,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 621
+            //selectName: 621
             color: (hsv 120 1 0.2)
             lineWidth: 5
             vertices: {
@@ -132,7 +132,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 622
+            //selectName: 622
             color: (hsv 120 1 0.4)
             lineWidth: 5
             vertices: {
@@ -143,7 +143,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 623
+            //selectName: 623
             color: (hsv 120 1 0.6)
             lineWidth: 5
             vertices: {
@@ -154,7 +154,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 624
+            //selectName: 624
             color: (hsv 120 1 0.8)
             lineWidth: 5
             vertices: {
@@ -165,7 +165,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 625
+            //selectName: 625
             color: (hsv 120 1 1)
             lineWidth: 5
             vertices: {
@@ -176,7 +176,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 631
+            //selectName: 631
             color: (hsv 180 1 0.2)
             lineWidth: 5
             vertices: {
@@ -187,7 +187,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 632
+            //selectName: 632
             color: (hsv 180 1 0.4)
             lineWidth: 5
             vertices: {
@@ -198,7 +198,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 633
+            //selectName: 633
             color: (hsv 180 1 0.6)
             lineWidth: 5
             vertices: {
@@ -209,7 +209,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 634
+            //selectName: 634
             color: (hsv 180 1 0.8)
             lineWidth: 5
             vertices: {
@@ -220,7 +220,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 635
+            //selectName: 635
             color: (hsv 180 1 1)
             lineWidth: 5
             vertices: {
@@ -231,7 +231,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 641
+            //selectName: 641
             color: (hsv 240 1 0.2)
             lineWidth: 5
             vertices: {
@@ -242,7 +242,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 642
+            //selectName: 642
             color: (hsv 240 1 0.4)
             lineWidth: 5
             vertices: {
@@ -253,7 +253,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 643
+            //selectName: 643
             color: (hsv 240 1 0.6)
             lineWidth: 5
             vertices: {
@@ -264,7 +264,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 644
+            //selectName: 644
             color: (hsv 240 1 0.8)
             lineWidth: 5
             vertices: {
@@ -275,7 +275,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 645
+            //selectName: 645
             color: (hsv 240 1 1)
             lineWidth: 5
             vertices: {
@@ -286,7 +286,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 651
+            //selectName: 651
             color: (hsv 300 1 0.2)
             lineWidth: 5
             vertices: {
@@ -297,7 +297,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 652
+            //selectName: 652
             color: (hsv 300 1 0.4)
             lineWidth: 5
             vertices: {
@@ -308,7 +308,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 653
+            //selectName: 653
             color: (hsv 300 1 0.6)
             lineWidth: 5
             vertices: {
@@ -319,7 +319,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 654
+            //selectName: 654
             color: (hsv 300 1 0.8)
             lineWidth: 5
             vertices: {
@@ -330,7 +330,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 655
+            //selectName: 655
             color: (hsv 300 1 1)
             lineWidth: 5
             vertices: {
@@ -341,7 +341,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 661
+            //selectName: 661
             color: (hsv 360 1 0.2)
             lineWidth: 5
             vertices: {
@@ -352,7 +352,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 662
+            //selectName: 662
             color: (hsv 360 1 0.4)
             lineWidth: 5
             vertices: {
@@ -363,7 +363,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 663
+            //selectName: 663
             color: (hsv 360 1 0.6)
             lineWidth: 5
             vertices: {
@@ -374,7 +374,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 664
+            //selectName: 664
             color: (hsv 360 1 0.8)
             lineWidth: 5
             vertices: {
@@ -385,7 +385,7 @@ hsvcolors:
             }
         )
         ( LineLoop2_0
-            selectName: 665
+            //selectName: 665
             color: (hsv 360 1 1)
             lineWidth: 5
             vertices: {

@@ -28,7 +28,7 @@ sample:
 
           components: {
               ( Line2_0
-                  selectName: 280
+                  //selectName: 280
                   color: white
                   vertices: {
                       [ -1.0   0.0 ] [ -1.0    2.0 ]      // Left Side
@@ -45,11 +45,13 @@ sample:
                   }
               )
               v1: ( TdAzPtr
-                  selectName: 281
+                  //selectName: 281
                   transform: ( GlmTranslation 0.0 -0.03 )
                   components: {
                       ( Line2_0 color: blue vertices: { [ 0 0 ] [ 0 -0.1 ] } )
                       ( AsciiText2_0
+                          shaderName: "font"
+                          color: white       
                           transform: { ( GlmTranslation -0.05 -0.3 ) ( GlmScale 0.1 ) }
                           text: "AZ"
                       )
@@ -57,11 +59,13 @@ sample:
 			)
 			v2: 
 			( TdElevPtr
-				selectName: 282
+				//selectName: 282
 				transform: ( GlmTranslation -1.03 0.5 )
 				components: {
 					( Line2_0 color: yellow vertices: { [ -0.1 0 ] [ 0 0 ] } )
 					( AsciiText2_0
+                  shaderName: "font"
+                  color: white
 						transform: { ( GlmTranslation -0.3 -0.05 ) ( GlmScale 0.1 ) }
 						text: "EL"
 					)
@@ -75,7 +79,7 @@ sample:
         // Simple numerical readouts
         // --------------------------
         ( TestTwo
-            selectName: 201
+            //selectName: 201
         
             v1: 0
             v1Rate: 1
@@ -94,26 +98,30 @@ sample:
             ( Rotary22_0
                     position: [ 1 1 ]
                     components: {
-                        ( AsciiText2_0 text: "V1-UP:" )       // Rotary2 = false
-                        ( AsciiText2_0 text: "V1-DN:" )       // Rotary2 = true
+                        ( AsciiText2_0 color: green shaderName: "font" text: "V1-UP:" )       // Rotary2 = false
+                        ( AsciiText2_0 color: green shaderName: "font" text: "V1-DN:" )       // Rotary2 = true
                     }
                 )
 
                 // Simple Numeric Readout Example without leading zeros
                 v1: ( NumericReadout2_0
                     color: blue
-                    position: [ 1 8 ]
+                    shaderName: "font"
+                    transform: ( GlmTranslation -8 8 )
+                    //position: [ 1 8 ]
                     format: "###.#"
                 )
 
                 // Second Rotary example
-                v2Title: ( Rotary2_0
-                    position: [ 2 1 ]
+                v2Title: 
+                ( Rotary2_0
+                    //position: [ 2 1 ]
+                    transform: ( GlmTranslation -5 8 )
                     components: {
-                        ( AsciiText2_0 text: "V2-UP:" )                  // Rotary = 1
-                        ( AsciiText2_0 text: "V2-UP:" color: red )       // Rotary = 2
-                        ( AsciiText2_0 text: "V2-DN:" )                  // Rotary = 3
-                        ( AsciiText2_0 text: "V2-DN:" color: red )       // Rotary = 4
+                        ( AsciiText2_0 shaderName: "font" text: "V2-UP:" color: green )     // Rotary = 1
+                        ( AsciiText2_0 shaderName: "font" text: "V2-UP:" color: red )       // Rotary = 2
+                        ( AsciiText2_0 shaderName: "font" text: "V2-DN:" color: green )     // Rotary = 3
+                        ( AsciiText2_0 shaderName: "font" text: "V2-DN:" color: red )       // Rotary = 4
                     }
                 )
 
@@ -121,7 +129,9 @@ sample:
                 v2: 
                ( NumericReadout2_0
                     color: red
-                    position: [ 2 8 ]
+                    //position: [ 2 8 ]
+                    shaderName: "font"
+                    transform: ( GlmTranslation 1 8 )
                     format: "+0#.#"
                 )
 
@@ -132,7 +142,7 @@ sample:
         // Lat/Lon readouts
         // --------------------------
         ( TestTwo
-            selectName: 202
+            //selectName: 202
         
             v1: 0
             v1Rate: 1
@@ -147,14 +157,18 @@ sample:
             components: {
 
                 v1: ( LatitudeReadout2_0
-                    highLight: 1
-                    position: [ 18 2 ]
+                   // highLight: 1
+                    shaderName: "font"
+                    //position: [ 18 2 ]
+                    transform: ( GlmTranslation -8 -6 )
                     format: "+0D@MM"
                 )
 
                 v2: ( LongitudeReadout2_0
                     color: white
-                    position: [ 19 2 ]
+                    shaderName: "font"
+                    transform: ( GlmTranslation -8 -8 )
+                    //position: [ 19 2 ]
                     format: "+0DD@MM"
                 )
 
@@ -165,7 +179,7 @@ sample:
         // Time and Angle readouts
         // --------------------------
         ( TestTwo
-            selectName: 203
+            //selectName: 203
         
             v1: 0
             v1Rate: 1
