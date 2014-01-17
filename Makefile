@@ -2,13 +2,17 @@
 include makedefs
 
 # shared libraries
-APPLICATIONS = shared-libs
+APPLICATIONS = shared
+
+# demos
+APPLICATIONS += demoEfis
+APPLICATIONS += demoFlightDisplays1
+APPLICATIONS += demoFlightDisplays2
+APPLICATIONS += demoInstruments
+APPLICATIONS += demoSubDisplays
 
 # graphic oriented examples
 APPLICATIONS += mainw
-APPLICATIONS += mainz1 mainz2 
-APPLICATIONS += mainfd1 mainfd2
-APPLICATIONS += mainEfis
 APPLICATIONS += mainGL
 
 # non-real-time simulation
@@ -32,7 +36,7 @@ APPLICATIONS += mainGndMapRdr
 # ubf example
 APPLICATIONS += mainUbf1
 
-# example demonstrates Laero model and autopilot functionality
+# example of Laero model and autopilot functionality
 APPLICATIONS += mainLaero
 
 #

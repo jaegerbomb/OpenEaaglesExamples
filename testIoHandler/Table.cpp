@@ -1,3 +1,6 @@
+//------------------------------------------------------------------------------
+// Class: Table
+//------------------------------------------------------------------------------
 #include "Table.h"
 
 #include "openeaagles/basic/Number.h"
@@ -13,7 +16,7 @@
 #endif
 
 namespace Eaagles {
-namespace TestIo {
+namespace Test {
 
 static const unsigned int DEFAULT_ROW     = 1;
 static const unsigned int DEFAULT_SPACING = 1;
@@ -22,8 +25,10 @@ static const unsigned int DEFAULT_SPACING = 1;
 // class TableRow -- One row of in the table (used by Table only)
 //          (The implementation is at the bottom of the file after the Table class)
 //==============================================================================
-class TableRow : public BasicGL::Field {
+class TableRow : public BasicGL::Field
+{
    DECLARE_SUBCLASS(TableRow,BasicGL::Field)
+
 public:
    TableRow();
    
@@ -307,7 +312,7 @@ std::ostream& Table::serialize(std::ostream& sout, const int i, const bool slots
     int j = 0;
     if ( !slotsOnly ) {
         //indent(sout,i);
-        sout << "( " << getFormName() << std::endl;
+        sout << "( " << getFactoryName() << std::endl;
         j = 4;
     }
     
@@ -413,5 +418,5 @@ void TableRow::position()
    }
 }
 
-} // End of TestIo namespace
+} // End of Test namespace
 } // End of Eaagles namespace

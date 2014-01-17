@@ -1,21 +1,21 @@
 //------------------------------------------------------------------------------
 // Class: Display
 //------------------------------------------------------------------------------
-#ifndef	__OpenEaagles_TestIo__Display_H__
-#define __OpenEaagles_TestIo__Display_H__
+#ifndef __Eaagles_Test_Display_H__
+#define __Eaagles_Test_Display_H__
 
 #include "openeaagles/gui/glut/GlutDisplay.h"
 
 namespace Eaagles {
    namespace Basic { class IoHandler; class Number; class String; }
 
-namespace TestIo {
+namespace Test {
 
 //------------------------------------------------------------------------------
 // Class Display
 // Description: Display class for the I/O devices test program (see display.epp)
 //
-// Form name: TestIoDisplay
+// Factory name: TestIoDisplay
 // Slots --
 //    ioHandler   <Basic::IoHandler>     Single I/O data handler
 //    item        <Basic::Integer>       Item number [ 1 ... TBL_SIZE ];
@@ -35,7 +35,8 @@ namespace TestIo {
 //       item:  5   di: 11    // Item #4 is DI #11
 //   )
 //------------------------------------------------------------------------------
-class Display : public Glut::GlutDisplay {
+class Display : public Glut::GlutDisplay
+{
    DECLARE_SUBCLASS(Display, Glut::GlutDisplay)
 
 public:
@@ -88,7 +89,7 @@ private:
    SendData table_aiSD[TBL_SIZE];
 };
 
-} // End of TestIo namespace
+} // End of Test namespace
 } // End of Eaagles namespace
 
 #endif

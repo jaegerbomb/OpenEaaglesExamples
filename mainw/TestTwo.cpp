@@ -3,7 +3,7 @@
 #include "openeaagles/basic/units/Angles.h"
 
 namespace Eaagles {
-namespace MainW {
+namespace Example {
 
 IMPLEMENT_SUBCLASS(TestTwo,"TestTwo")
 
@@ -167,7 +167,7 @@ std::ostream& TestTwo::serialize(std::ostream& sout, const int i, const bool slo
 {
     int j = 0;
     if ( !slotsOnly ) {
-        sout << "( " << getFormName() << std::endl;
+        sout << "( " << getFactoryName() << std::endl;
         j = 4;
     }
 
@@ -277,5 +277,5 @@ bool TestTwo::setV2Min(const Basic::Number* const sv2miobj)
     return true;
 }
 
-} // End MainW namespace
+} // End Example namespace
 } // End Eaagles namespace

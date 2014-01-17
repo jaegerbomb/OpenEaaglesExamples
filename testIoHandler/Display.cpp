@@ -1,4 +1,6 @@
-
+//------------------------------------------------------------------------------
+// Class: Display
+//------------------------------------------------------------------------------
 #include "Display.h"
 
 #include "openeaagles/basic/IoData.h"
@@ -15,7 +17,7 @@
 #endif
 
 namespace Eaagles {
-namespace TestIo {
+namespace Test {
 
 IMPLEMENT_SUBCLASS(Display,"TestIoDisplay")
 
@@ -49,7 +51,6 @@ Display::Display()
    STANDARD_CONSTRUCTOR()
    initData();
 }
-
 
 //------------------------------------------------------------------------------
 // initData() -- Init member data (from constructors and copyData())
@@ -358,7 +359,7 @@ std::ostream& Display::serialize(std::ostream& sout, const int i, const bool slo
    int j = 0;
    if ( !slotsOnly ) {
       indent(sout,i);
-      sout << "( " << getFormName() << std::endl;
+      sout << "( " << getFactoryName() << std::endl;
       j = 4;
    }
 
@@ -392,5 +393,5 @@ std::ostream& Display::serialize(std::ostream& sout, const int i, const bool slo
    return sout;
 }
 
-} // End of TestIo namespace
+} // End of Test namespace
 } // End of Eaagles namespace

@@ -28,7 +28,7 @@ if (_ACTION == "vs2008") or (_ACTION == "vs2010") or (_ACTION == "vs2012") or (_
    OELibPath         = OE_ROOT.."/lib/".._ACTION
    OE3rdPartyIncPath = OE_3RD_PARTY_ROOT.."/include"
    OE3rdPartyLibPath = OE_3RD_PARTY_ROOT.."/lib/".._ACTION.."-32"
-   OEExamplesIncPath = "../../shared-libs"
+   OEExamplesIncPath = "../../shared"
    OEExamplesLibPath = "../../lib/".._ACTION
 end
 if (_ACTION == "codelite") or (_ACTION == "codeblocks") then
@@ -36,7 +36,7 @@ if (_ACTION == "codelite") or (_ACTION == "codeblocks") then
    OELibPath         = OE_ROOT.."/lib/mingw"
    OE3rdPartyIncPath = OE_3RD_PARTY_ROOT.."/include"
    OE3rdPartyLibPath = OE_3RD_PARTY_ROOT.."/lib/mingw-32"
-   OEExamplesIncPath = "../../shared-libs"
+   OEExamplesIncPath = "../../shared"
    OEExamplesLibPath = "../../lib/mingw"
 end
 print ("OpenEaagles Paths:")
@@ -48,6 +48,24 @@ print ("  Libraries :"..OE3rdPartyLibPath)
 print ("OpenEaaglesExamples Paths:")
 print ("  Include   :"..OEExamplesIncPath)
 print ("  Libraries :"..OEExamplesLibPath)
+
+--
+-- directory location for HLA include and library paths
+--
+HLA_ROOT = "../../../portico-2.0.0"
+HLAIncPath = HLA_ROOT.."/include/hla13"
+if (_ACTION == "vs2008") then
+  HLALibPath = HLA_ROOT.."/lib/vc9"
+end
+if (_ACTION == "vs2010") then
+  HLALibPath = HLA_ROOT.."/lib/vc10"
+end
+if (_ACTION == "vs2012") then
+  HLALibPath = HLA_ROOT.."/lib/vc11"
+end
+print ("HLA Paths:")
+print ("  Include   : "..HLALibPath)
+--print ("  Libraries : "..OELibPath)
 
 locationPath  = "../" .. _ACTION
 
@@ -111,6 +129,9 @@ solution "examples"
 
    -- libraries
    dofile "libs.lua"
+
+   -- demos
+   dofile "demos.lua"
 
    -- examples
    dofile "examples.lua"

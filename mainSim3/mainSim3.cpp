@@ -4,7 +4,7 @@
 
 #include "SimStation.h"
 
-#include "formFunc.h"
+#include "Factory.h"
 
 #include "openeaagles/basic/Timers.h"
 #include "openeaagles/basic/Pair.h"
@@ -17,7 +17,7 @@
 #include <GL/glut.h>
 
 namespace Eaagles {
-namespace Sim3 {
+namespace Example {
 
 // Default configuration file
 static const char* const DEFAULT_CONFIG_FILE = "test0.edl";
@@ -34,7 +34,7 @@ static SimStation* station = 0;
 static SimStation* readTest(const char* const fileName)
 {
    int errors = 0;
-   Basic::Object* q1 = lcParser(fileName, sim3FormFunc, &errors);
+   Basic::Object* q1 = lcParser(fileName, Factory::createObj, &errors);
    if (errors > 0) {
       std::cerr << "Errors in reading file: " << errors << std::endl;
       return 0;
@@ -135,7 +135,7 @@ int main(int argc, char* argv[])
     return 0;
 }
 
-} // End Sim3 namespace
+} // End Example namespace
 } // End Eaagles namespace
 
 
@@ -144,5 +144,5 @@ int main(int argc, char* argv[])
 //-----------------------------------------------------------------------------
 int main(int argc, char* argv[])
 {
-   return Eaagles::Sim3::main(argc, argv);
+   return Eaagles::Example::main(argc, argv);
 }

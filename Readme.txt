@@ -5,18 +5,30 @@ Notes:
   1) Use makeEdl.bat to generate the example *.edl files under windows, and
      use 'make edl' to generate the *.edl files under linux. 
 
-  2) Most of the examples are under the 'Eaagles' namespace because they consisted to
-     to be part of the OpenEaagles package.  However, user wouldn't typically do this.
+  2) Most of the examples are in the 'Eaagles' namespace.
+
+
+Demonstration applications:
+--------------------------------------------------------------------------------------------
+
+   demoEfis              -- demo of an electronic flight instrument system
+
+   demoFlightDisplays1   -- demo of flight displays
+
+   demoFlightDisplays2   -- demo of flight displays
+
+   demoInstruments       -- Instrument library demo program
+                            1) Contains several test instrument pages 
+                            2) Use 'n' and 'p' (next and previous) to move between pages
+                            3) use ESC to exit
+
+   demoSubDisplays       -- Quad subdisplay version of the Instrument Library demo program
+                           1) Contains 4 subdisplays, each containing the instrument lib demo 
+                           2) See demoInstruments
 
 
 Example applications:
 --------------------------------------------------------------------------------------------
-
-   mainEfis      -- Example electronic flight instrument system
-
-   mainfd1       -- Example flight display
-
-   mainfd2       -- Example flight display
 
    mainGL        -- Example alignment pattern drawn using only configuration file graphics.
 
@@ -50,15 +62,6 @@ Example applications:
                     4) use ESC to exit
 
    mainy1        -- Simple flight simulation program
-
-   mainz1        -- Instrument library demo program
-                    1) Contains several test instrument pages 
-                    2) Use 'n' and 'p' (next and previous) to move between pages
-                    3) use ESC to exit
-
-   mainz2        -- Quad subdisplay version of the Instrument Library demo program
-                    1) Contains 4 subdisplays, each containing the instrument lib demo 
-                    2) See mainz1
 
 
 Test applications:
@@ -144,11 +147,14 @@ Tutorial applications:
 
 Libraries: (the 'x' in library name indicates eXample)
 --------------------------------------------------------------------------------------------
-   libxBehaviors      -- eXample UBF behaviors
+   xBehaviors        -- eXample UBF behaviors
 
-   libxRecorder       -- eXample extension of the Data Recorder
+   xHla              -- eXample HLA interface library
 
-   libxPanel          -- eXample components to display an instrument panel, used by 'mainy1',
-                         'mainUbf1' and 'testRecordData'
+   xPanel            -- eXample components to display an instrument panel, used by 'mainy1',
+                        'mainUbf1' and 'testRecordData'
 
+   xRecorder         -- eXample extension of the Data Recorder
+
+   xZeroMQHandlers   -- eXample ZeroMQ network handlers
 

@@ -1,19 +1,20 @@
 //------------------------------------------------------------------------------
 // Class: Echo
 //------------------------------------------------------------------------------
-#ifndef __Test_Echo_H__
-#define __Test_Echo_H__
+#ifndef __Eaagles_Test_Echo_H__
+#define __Eaagles_Test_Echo_H__
 
 #include "Endpoint.h"
 
+namespace Eaagles {
 namespace Test {
 
 //------------------------------------------------------------------------------
 // Class: Echo
 //
-// Description:  
+// Description:
 //
-// Form name: Echo
+// Factory name: Echo
 //
 //------------------------------------------------------------------------------
 class Echo : public Endpoint
@@ -24,13 +25,14 @@ public:
    Echo();
 
    // Component interface
-   virtual void updateData(const Eaagles::LCreal dt = 0.0f);
+   virtual void updateData(const LCreal dt = 0.0f);
    virtual void reset();
 
 private:
     unsigned int loopCounter;   // Loop counter 
 };
 
+}
 }
 
 #endif

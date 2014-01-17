@@ -1,19 +1,20 @@
 //------------------------------------------------------------------------------
 // Class: ServerTcpMultiple
 //------------------------------------------------------------------------------
-#ifndef __Test_ServerTcpMultiple_H__
-#define __Test_ServerTcpMultiple_H__
+#ifndef __Eaagles_Test_ServerTcpMultiple_H__
+#define __Eaagles_Test_ServerTcpMultiple_H__
 
 #include "Endpoint.h"
 
+namespace Eaagles {
 namespace Test {
 
 //------------------------------------------------------------------------------
 // Class:  ServerTcpMultiple
 //
-// Description:  
+// Description:
 //
-// Form name: ServerTcpMulti
+// Factory name: ServerTcpMulti
 //
 //------------------------------------------------------------------------------
 class ServerTcpMultiple : public Endpoint
@@ -24,11 +25,12 @@ public:
    ServerTcpMultiple();
 
    // Component interface
-   virtual void updateData(const Eaagles::LCreal dt = 0.0f);
+   virtual void updateData(const LCreal dt = 0.0f);
    virtual void reset();
 
 };
 
+}
 }
 
 #endif

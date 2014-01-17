@@ -1,8 +1,8 @@
 //------------------------------------------------------------------------------
 // Class: TestDisplay
 //------------------------------------------------------------------------------
-#ifndef __Eaagles_TestRecordData_TestDisplay_H__
-#define __Eaagles_TestRecordData_TestDisplay_H__
+#ifndef __Eaagles_Test_TestDisplay_H__
+#define __Eaagles_Test_TestDisplay_H__
 
 #include "openeaagles/gui/glut/GlutDisplay.h"
 
@@ -11,7 +11,7 @@ namespace Eaagles {
    namespace BasicGL { class SymbolLoader; }
    namespace xPanel { class DspRadar; class DspRwr; }
 
-namespace TestRecordData {
+namespace Test {
 
 //------------------------------------------------------------------------------
 // Class: TestDisplay
@@ -21,7 +21,7 @@ namespace TestRecordData {
 //              display that shows the 'truth' location of the players, and
 //              Primary Flight Display (PFD).
 //
-// Form Name: TestDisplay
+// Factory name: TestDisplay
 //
 // Events: (all keyboard events)
 //   'r' or 'R'   -- Reset simulation
@@ -148,7 +148,7 @@ private:
     LCreal baroRate;
 };
 
-} // End TestRecordData namespace
+} // End Test namespace
 } // End Eaagles namespace
 
 #endif

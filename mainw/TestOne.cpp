@@ -3,7 +3,7 @@
 #include "openeaagles/basic/units/Angles.h"
 
 namespace Eaagles {
-namespace MainW {
+namespace Example {
 
 IMPLEMENT_SUBCLASS(TestOne,"TestOne")
 
@@ -208,7 +208,7 @@ std::ostream& TestOne::serialize(std::ostream& sout, const int i, const bool slo
 {
     int j = 0;
     if ( !slotsOnly ) {
-        sout << "( " << getFormName() << std::endl;
+        sout << "( " << getFactoryName() << std::endl;
         j = 4;
     }
 
@@ -263,5 +263,5 @@ bool TestOne::setAngle(const Basic::Number* const saobj)
     return true;
 }
 
-} // End MainW namespace
+} // End Example namespace
 } // End Eaagles namespace
