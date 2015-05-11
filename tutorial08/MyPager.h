@@ -1,30 +1,27 @@
 //------------------------------------------------------------------------------
-// Class:	MyPager
-// Base class:	Object -> Graphic -> Page -> MyPager
-// Description:	Example pager
+// Class: MyPager
+// Description: Example pager
 //------------------------------------------------------------------------------
-#ifndef _MYPAGER_INCLUDE
-#define _MYPAGER_INCLUDE
+#ifndef __Eaagles_Tutorial_MyPager_H__
+#define __Eaagles_Tutorial_MyPager_H__
 
 #include "openeaagles/basicGL/Page.h"
 
 namespace Eaagles {
-namespace Example08 {
+namespace Tutorial {
 
-class MyPager : public BasicGL::Page {
-
-  DECLARE_SUBCLASS(MyPager, BasicGL::Page)
+class MyPager : public BasicGL::Page
+{
+   DECLARE_SUBCLASS(MyPager, BasicGL::Page)
 
 public:
 
-  MyPager();
+   MyPager();
 
-  // Page Interface
-  virtual bool onEntry();
+   bool onEntry() override;
 };
 
-} // namespace Example08
+} // namespace Tutorial
 } // namespace Eaagles
 
 #endif
-

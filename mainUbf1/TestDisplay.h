@@ -1,8 +1,6 @@
-//------------------------------------------------------------------------------
-// Class: TestDisplay
-//------------------------------------------------------------------------------
-#ifndef __Eaagles_MainUbf1_TestDisplay_H__
-#define __Eaagles_MainUbf1_TestDisplay_H__
+
+#ifndef __Eaagles_Example_TestDisplay_H__
+#define __Eaagles_Example_TestDisplay_H__
 
 #include "openeaagles/gui/glut/GlutDisplay.h"
 
@@ -11,17 +9,18 @@ namespace Eaagles {
    namespace BasicGL { class SymbolLoader; }
    namespace xPanel { class DspRadar; class DspRwr; }
 
-namespace MainUbf1 {
+namespace Example {
 
 //------------------------------------------------------------------------------
 // Class: TestDisplay
+//
 // Description: Test GLUT-display that will manage a simple real-beam, b-scan radar
 //              display, plus a Radar receiver display, which shows received
 //              signal strength and angle of arrival, a simple situation
 //              display that shows the 'truth' location of the players, and
 //              Primary Flight Display (PFD).
 //
-// Form Name: TestDisplay
+// Factory name: TestDisplay
 //
 // Events: (all keyboard events)
 //   'r' or 'R'   -- Reset simulation
@@ -36,7 +35,7 @@ namespace MainUbf1 {
 //------------------------------------------------------------------------------
 class TestDisplay : public Glut::GlutDisplay
 {
-    DECLARE_SUBCLASS(TestDisplay,Glut::GlutDisplay)
+    DECLARE_SUBCLASS(TestDisplay, Glut::GlutDisplay)
 
 public:
     enum { MAX_TRACKS = 60 };
@@ -52,12 +51,10 @@ public:
 
     void maintainAirTrackSymbols(BasicGL::SymbolLoader* loader, const LCreal rng);
 
-    // Display Interface
-    virtual void mouseEvent(const int button, const int state, const int x, const int y);
+    void mouseEvent(const int button, const int state, const int x, const int y) override;
 
-    // Component interface
-    virtual bool event(const int event, Basic::Object* const obj = 0);
-    virtual void updateData(const LCreal dt = 0.0f);
+    bool event(const int event, Basic::Object* const obj = nullptr) override;
+    void updateData(const LCreal dt = 0.0) override;
 
 private:
     // Key event handlers
@@ -78,10 +75,10 @@ private:
     xPanel::DspRwr*     rwrDisplay;     // Test RWR display
     LCreal          range;          // SD range
 
-    SendData        headingSD;
-    SendData        rangeSD;
-    
-    SPtr<Simulation::Station> myStation;
+    SendData headingSD;
+    SendData rangeSD;
+
+    Basic::safe_ptr<Simulation::Station> myStation;
 
     Simulation::Player* tracks[MAX_TRACKS];    // players that we're displaying
     int              trkIdx[MAX_TRACKS];    // Index of track symbols
@@ -133,13 +130,13 @@ private:
     LCreal fDirBankRate;
     LCreal fDirPitch;
     LCreal fDirPitchRate;
-    
+
     // barometric pressure
     LCreal baro;
     LCreal baroRate;
 };
 
-} // End MainUbf1 namespace
+} // End Example namespace
 } // End Eaagles namespace
 
-#endif // __TestDisplay_H_C4AA7699_BDAD_40e8_BA4A_288E6A036868__
+#endif

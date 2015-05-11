@@ -19,29 +19,28 @@ namespace Test {
 //              (HOTAS) device, which is usually just a joystick, and adds stepping
 //              of our ownship to the next local, air vehicle player.
 //
-// Form Name: TestStation
+// Factory name: TestStation
 // Slots:
 //   glutDisplay  <BasicGL::GlutDisplay>  ! All of our display components
 //------------------------------------------------------------------------------
 class TestStation : public Simulation::Station
 {
    DECLARE_SUBCLASS(TestStation,Simulation::Station)
-    
+
 public:
    TestStation();
 
    // Step our "ownship" to the next local air vehicle
    void stepOwnshipPlayer();
 
-   // Basic::Component functions
-   virtual void updateTC(const LCreal dt = 0.0f);
-   virtual void updateData(const LCreal dt = 0.0f);
-   virtual void reset();
-    
+   void updateTC(const LCreal dt = 0.0) override;
+   void updateData(const LCreal dt = 0.0) override;
+   void reset() override;
+
 private:
    bool setSlotGlutDisplay(Glut::GlutDisplay* const msg);
 
-   SPtr<Glut::GlutDisplay> glutDisplay;
+   Basic::safe_ptr<Glut::GlutDisplay> glutDisplay;
    bool glutDisplayInit;
 
    // Past (N-1) switches and values

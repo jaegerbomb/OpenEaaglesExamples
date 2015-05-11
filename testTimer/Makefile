@@ -3,7 +3,7 @@ include ../makedefs
 
 PGM = testTimer
 
-OBJS = testTimer.o Tester.o 
+OBJS = main.o Tester.o 
 
 LDFLAGS += -loeBasic 
 LDFLAGS += -lpthread -lrt
@@ -14,7 +14,7 @@ $(PGM): $(OBJS)
 	$(CXX) -o $(PGM) $(OBJS) $(LDFLAGS)
 
 edl:
-	@echo "No input files to process"
+	cpp inputs/test01.epp >test01.edl   $(EPPFLAGS)
 
 clean:
 	-rm -f *.o

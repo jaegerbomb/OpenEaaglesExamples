@@ -6,7 +6,7 @@
 #include "TestStation.h"
 #include "MapPage.h"
 
-#include "openeaagles/vehicles/LaeroModel.h"
+#include "openeaagles/dynamics/LaeroModel.h"
 #include "openeaagles/simulation/AirVehicle.h"
 #include "openeaagles/simulation/Autopilot.h"
 #include "openeaagles/simulation/Player.h"
@@ -20,7 +20,7 @@
 #include <iomanip>
 
 namespace Eaagles {
-namespace MainLaero {
+namespace Example {
 
 IMPLEMENT_EMPTY_SLOTTABLE_SUBCLASS(MapDisplay, "MapTestDisplay")
 EMPTY_SERIALIZER(MapDisplay)
@@ -158,7 +158,7 @@ void MapDisplay::passiveMotionEvent(const int x, const int y)
 void MapDisplay::mouseMotionEvent(const int x, const int y)
 {
     if (dragging) {
-        MapPage* page = (MapPage*)(subpage());
+        MapPage* page = static_cast<MapPage*>(subpage());
         if (page != 0) {
             // get our ref lat, because we won't go passed 70 degrees lat (either way);
             double lat = page->getReferenceLatDeg();
@@ -184,13 +184,13 @@ void MapDisplay::mouseMotionEvent(const int x, const int y)
 void MapDisplay::buttonEvent(const int b)
 {
    // cmdRange up, down
-   MapPage* page = (MapPage*)(subpage());
+   MapPage* page = static_cast<MapPage*>(subpage());
 
    // cmdAirspeed, cmdAltitude, cmdHeading up, down
    Simulation::Player* pA = getOwnship();
    Simulation::Autopilot* ap = 0;
    if (pA != 0) {
-      ap = (Simulation::Autopilot*)pA->getPilot();
+      ap = static_cast<Simulation::Autopilot*>(pA->getPilot());
    }
    if (page != 0 && ap != 0) {
       if (b == DEC_RANGE) {
@@ -327,9 +327,9 @@ void MapDisplay::updateData(const LCreal dt)
 
    // get pointer to MapPage data
    int cmdRange = 0;
-   MapPage* page = (MapPage*)(subpage());
+   MapPage* page = static_cast<MapPage*>(subpage());
    if (page != 0) {
-      cmdRange = (int) page->getRange();
+      cmdRange = static_cast<int>(page->getRange());
    }
 
    double cmdAirspeed = 0, cmdAltitude = 0, cmdHeading = 0;
@@ -338,9 +338,9 @@ void MapDisplay::updateData(const LCreal dt)
    double maxAccel = 0, maxTurn = 0, maxBank = 0, maxClimb = 0;
    // default to autopilot mode off
    int apMode = 1;
-   Simulation::Aircraft* pA = (Simulation::Aircraft*)getOwnship();
+   Simulation::Aircraft* pA = static_cast<Simulation::Aircraft*>(getOwnship());
    if (pA != 0) {
-      Simulation::Autopilot* ap = (Simulation::Autopilot*)pA->getPilot();
+      Simulation::Autopilot* ap = static_cast<Simulation::Autopilot*>(pA->getPilot());
       if (ap != 0) {
          // button visibility is based on autopilot being in NO modes
          apButtonsVis = (ap->isNavModeOn() || ap->isLoiterModeOn() || ap->isFollowTheLeadModeOn());
@@ -371,7 +371,6 @@ void MapDisplay::updateData(const LCreal dt)
    send("cmdClimb",   UPDATE_VALUE, maxClimb,   maxClimbSD);
    send("cmdRot",   UPDATE_VALUE, maxTurn,   maxTurnSD);
    send("cmdBank", UPDATE_VALUE, maxBank, maxBankSD);
-
 }
 
 //------------------------------------------------------------------------------
@@ -396,5 +395,5 @@ Simulation::Aircraft* MapDisplay::getOwnship()
    return p;
 }
 
-}  
-}  
+}
+}

@@ -5,10 +5,10 @@ PGM = testRecordData
 
 OBJS  = SimStation.o TestDisplay.o
 OBJS += TestIoHandler.o
-OBJS += formFunc.o main.o
+OBJS += Factory.o main.o
 
 LDFLAGS += -lxRecorder -lxPanel
-LDFLAGS += -loeRecorder -loeSensors -loeVehicles
+LDFLAGS += -loeRecorder -loeSensors -loeDynamics
 LDFLAGS += -loeSimulation -loeInstruments -loeDis
 LDFLAGS += -loeIoDevice -loeOtw -loeDafif
 LDFLAGS += -loeGlut -loeBasicGL -loeBasic
@@ -28,7 +28,7 @@ $(PGM): $(OBJS)
 	$(CXX) -o $(PGM) $(OBJS) $(LDFLAGS)
 
 edl:
-	cpp inputs/test.epp >test.edl   $(EPPFLAGS)
+	cpp configs/test.epp >test.edl   $(EPPFLAGS)
 
 clean:
 	-rm -f *.o

@@ -1,13 +1,12 @@
 //------------------------------------------------------------------------------
 // Uniform
 //------------------------------------------------------------------------------
-
 #include "Uniform.h"
 #include "openeaagles/basic/Number.h"
 #include <cstdlib>
 
 namespace Eaagles {
-namespace Example04 {
+namespace Tutorial {
 
 IMPLEMENT_SUBCLASS(Uniform,"Uniform")
 // setup slot table
@@ -28,11 +27,11 @@ EMPTY_SERIALIZER(Uniform)
 //------------------------------------------------------------------------------
 Uniform::Uniform(void)
 {
-  STANDARD_CONSTRUCTOR()
-  setMin(0);
-  setMax(1);
+   STANDARD_CONSTRUCTOR()
+   min = 0;
+   max = 1;
 
-  std::cout << "Uniform::Uniform() called\n";
+   std::cout << "Uniform::Uniform() called\n";
 }
 
 //------------------------------------------------------------------------------
@@ -40,7 +39,7 @@ Uniform::Uniform(void)
 //------------------------------------------------------------------------------
 void Uniform::copyData(const Uniform& org, const bool)
 {
-	BaseClass::copyData(org);
+   BaseClass::copyData(org);
 
    max = org.max;
    min = org.min;
@@ -59,41 +58,40 @@ void Uniform::deleteData()
 //------------------------------------------------------------------------------
 void Uniform::setMin(const int x)
 {
-  min = x;
+   min = x;
 }
 
 void Uniform::setMax(const int x)
 {
-  max = x;
+   max = x;
 }
 
 int Uniform::getNum(void) const
 {
-  return (int)(min+(max-min)*(rand()/(RAND_MAX+1.0)));
+   return static_cast<int>((min+(max-min)*(std::rand()/(RAND_MAX+1.0))));
 }
-
 
 //------------------------------------------------------------------------------
 // slot table functions
 //------------------------------------------------------------------------------
 Basic::Object* Uniform::getSlotByIndex(const int si)
 {
-  return BaseClass::getSlotByIndex(si);
+   return BaseClass::getSlotByIndex(si);
 }
 
 bool Uniform::setSlotMin(const Basic::Number* const x)
 {
-  if(x != 0)
-    setMin(x->getInt());
-  return true;
+   if (x != 0)
+      setMin(x->getInt());
+   return true;
 }
 
 bool Uniform::setSlotMax(const Basic::Number* const x)
 {
-  if(x != 0)
-    setMax(x->getInt());
-  return true;
+   if (x != 0)
+      setMax(x->getInt());
+   return true;
 }
 
-} // namespace Example04
+} // namespace Tutorial
 } // namespace Eaagles

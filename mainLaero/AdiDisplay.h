@@ -1,18 +1,19 @@
 //------------------------------------------------------------------------------
 // Class: AdiDisplay
 //------------------------------------------------------------------------------
-#ifndef __Eaagles_MainLaero_AdiDisplay_H__
-#define __Eaagles_MainLaero_AdiDisplay_H__
+#ifndef __Eaagles_Example_AdiDisplay_H__
+#define __Eaagles_Example_AdiDisplay_H__
 
 #include "openeaagles/gui/glut/GlutDisplay.h"
 
 namespace Eaagles {
-   namespace Simulation { 
-      class Station; 
-      class Aircraft; 
+   namespace Simulation {
+      class Station;
+      class Aircraft;
    }
 
-namespace MainLaero {
+namespace Example {
+
 class AdiDisplay : public Glut::GlutDisplay
 {
    DECLARE_SUBCLASS(AdiDisplay, Glut::GlutDisplay)
@@ -23,10 +24,10 @@ public:
    Simulation::Aircraft* getOwnship();
    Simulation::Station* getStation();
 
-   virtual void updateData(const LCreal dt = 0.0f);
+   void updateData(const LCreal dt = 0.0) override;
 
 private:
-   SPtr<Simulation::Station> myStation;
+   Basic::safe_ptr<Simulation::Station> myStation;
 
    //-----------------------------
    double psiRO;     // [deg]
@@ -48,16 +49,16 @@ private:
    SendData phiRO_SD;
    SendData velRO_SD;
    SendData altRO_SD;
-    
+
    SendData pRO_SD;
    SendData qRO_SD;
    SendData rRO_SD;
-    
+
    SendData bankADI_SD;
    SendData pitchADI_SD;
 };
 
-} 
-} 
+}
+}
 
 #endif

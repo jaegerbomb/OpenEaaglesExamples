@@ -7,18 +7,19 @@
 #include <cstdlib>
 
 namespace Eaagles {
-namespace Example03 {
+namespace Tutorial {
 
 IMPLEMENT_SUBCLASS(Random,"Random")
 // setup slot table
 BEGIN_SLOTTABLE(Random)
-  	"seed",
+    "seed",
 END_SLOTTABLE(Random)
 // map attributes to slots
 BEGIN_SLOT_MAP(Random)
     ON_SLOT(1, setSlotSeed, Basic::Number)
 END_SLOT_MAP()
-// nothing to serialize
+
+EMPTY_DELETEDATA(Random)
 EMPTY_SERIALIZER(Random)
 
 //------------------------------------------------------------------------------
@@ -36,14 +37,7 @@ Random::Random(void)
 //------------------------------------------------------------------------------
 void Random::copyData(const Random& org, const bool)
 {
-	BaseClass::copyData(org);
-}
-
-//------------------------------------------------------------------------------
-//deleteData() -- delete member data
-//------------------------------------------------------------------------------
-void Random::deleteData()
-{
+  BaseClass::copyData(org);
 }
 
 //------------------------------------------------------------------------------
@@ -51,13 +45,13 @@ void Random::deleteData()
 //------------------------------------------------------------------------------
 bool Random::setSeed(const unsigned int seed)
 {
-  srand(seed);
+  std::srand(seed);
   return true;
 }
 
 int Random::getNum(void) const
 {
-  return rand();
+  return std::rand();
 }
 
 //------------------------------------------------------------------------------
@@ -71,10 +65,10 @@ Basic::Object* Random::getSlotByIndex(const int si)
 bool Random::setSlotSeed(const Basic::Number* const seed)
 {
   bool ok = false;
-  if(seed != 0)
+  if (seed != 0)
     ok = setSeed(seed->getInt());
   return ok;
 }
 
-} // namespace Example03
+} // namespace Tutorial
 } // namespace Eaagles

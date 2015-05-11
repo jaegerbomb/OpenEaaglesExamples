@@ -1,125 +1,130 @@
 
 #include "openeaagles/simulation/Station.h"
-#include "openeaagles/simulation/simulationFF.h"
-#include "openeaagles/vehicles/vehiclesFF.h"
-#include "openeaagles/sensors/sensorsFF.h"
-#include "openeaagles/dis/disFF.h"
-#include "openeaagles/otw/otwFF.h"
-#include "openeaagles/basic/basicFF.h"
 #include "openeaagles/basic/Parser.h"
 #include "openeaagles/basic/Pair.h"
 #include "openeaagles/basic/Integer.h"
 #include "openeaagles/basic/units/Angles.h"
 #include "openeaagles/basic/osg/Vec3"
-#include "openeaagles/otw/OtwPC.h"         // for OTW
+#include "openeaagles/otw/OtwPC.h"
 
+// class factories
+#include "../shared/xZeroMQHandlers/Factory.h"
+#include "openeaagles/simulation/Factory.h"
+#include "openeaagles/dynamics/Factory.h"
+#include "openeaagles/sensors/Factory.h"
+#include "openeaagles/dis/Factory.h"
+#include "openeaagles/otw/Factory.h"
+#include "openeaagles/basic/Factory.h"
+
+#include <cstring>
+#include <cstdlib>
 
 namespace Eaagles {
-namespace Sim2 {
+namespace Example {
 
-// Test file
-const char* testFile = "test1.edl";
-
-// Background frame rate
+// background frame rate
 const int bgRate = 10;
 
-static Simulation::Station* sys = 0;
+static Simulation::Station* station = nullptr;
 
-//-----------------------------------------------------------------------------
-// testFormFunc() -- our form function used by the parser
-//-----------------------------------------------------------------------------
-static Basic::Object* testFormFunc(const char* formname)
+// our class factory
+static Basic::Object* factory(const char* name)
 {
-  Basic::Object* newform = 0;
+   Basic::Object* obj = nullptr;
 
-  if (newform == 0) newform = Simulation::simulationFormFunc(formname);
-  if (newform == 0) newform = Vehicle::vehiclesFormFunc(formname);
-  if (newform == 0) newform = Sensor::sensorsFormFunc(formname);
-  if (newform == 0) newform = Network::Dis::disFormFunc(formname);
-  if (newform == 0) newform = Basic::basicFormFunc(formname);
-  return newform;
+   // example libraries
+   if (obj == nullptr) obj = xZeroMQHandlers::Factory::createObj(name);
+
+   // framework libraries
+   if (obj == nullptr) obj = Simulation::Factory::createObj(name);
+   if (obj == nullptr) obj = Dynamics::Factory::createObj(name);
+   if (obj == nullptr) obj = Sensor::Factory::createObj(name);
+   if (obj == nullptr) obj = Network::Dis::Factory::createObj(name);
+   if (obj == nullptr) obj = Basic::Factory::createObj(name);
+   return obj;
 }
 
-//-----------------------------------------------------------------------------
-// readTest() -- function to the read description files
-//-----------------------------------------------------------------------------
-static void readTest()
+// station builder
+static Simulation::Station* builder(const char* const filename)
 {
-  std::cout << "Reading file : " << testFile << std::endl;
+   // read configuration file
+   int errors = 0;
+   Basic::Object* obj = Basic::lcParser(filename, factory, &errors);
+   if (errors > 0) {
+      std::cerr << "File: " << filename << ", errors: " << errors << std::endl;
+      std::exit(EXIT_FAILURE);
+   }
 
-  // Read the description file
-  int errors = 0;
-  Basic::Object* q1 = lcParser(testFile, testFormFunc, &errors);
-  if (errors > 0) {
-    std::cerr << "File: " << testFile << ", errors: " << errors << std::endl;
-    exit(1);
-  }
+   // test to see if an object was created
+   if (obj == nullptr) {
+      std::cerr << "Invalid configuration file, no objects defined!" << std::endl;
+      std::exit(EXIT_FAILURE);
+   }
 
-  // Set 'sys' to our basic description object.
-  sys = 0;
-  if (q1 != 0) {
+   // do we have a Basic::Pair, if so, point to object in Pair, not Pair itself
+   Basic::Pair* pair = dynamic_cast<Basic::Pair*>(obj);
+   if (pair != nullptr) {
+      obj = pair->object();
+      obj->ref();
+      pair->unref();
+   }
 
-    // When we were given a Pair, get the pointer to its object.
-    Basic::Pair* pp = dynamic_cast<Basic::Pair*>(q1);
-    if (pp != 0) {
-      q1 = pp->object();
-    }
-
-    // What we should have here is the description object and
-    // it should be of type 'Station'.
-    sys = dynamic_cast<Simulation::Station*>(q1);
-  }
-
-  // Make sure we did get a valid Station object (we must have one!)
-  if (sys == 0) {
-    std::cout << "Invalid description file!" << std::endl;
-    exit(EXIT_FAILURE);
-  }
+   // try to cast to proper object, and check
+   Simulation::Station* station = dynamic_cast<Simulation::Station*>(obj);
+   if (station == nullptr) {
+      std::cerr << "Invalid configuration file!" << std::endl;
+      std::exit(EXIT_FAILURE);
+   }
+   return station;
 }
 
-int exec(int argc, char* argv[])
+int main(int argc, char* argv[])
 {
-  for (int i = 1; i < argc; i++) {
-    if (strcmp(argv[i],"-f") == 0) {
-      testFile = argv[++i];
-    }
-  }
+   // default configuration filename
+   const char* configFilename = "test1.edl";
 
-  // Read in the description files
-  readTest();
-  // send a reset event and frame sim once
-  sys->event(Basic::Component::RESET_EVENT);
-  sys->tcFrame( (LCreal) (1.0/double(sys->getTimeCriticalRate())) );
+   for (int i = 1; i < argc; i++) {
+      if (std::strcmp(argv[i],"-f") == 0) {
+         configFilename = argv[++i];
+      }
+   }
 
-  // Create Time Critical Thread
-  sys->createTimeCriticalProcess();
-  // short pause to allow os to startup thread
-  lcSleep(2000);
+   //
+   station = builder(configFilename);
 
-  // Calc delta time for background thread
-  double dt = 1.0/double(bgRate);
+   // send a reset event and frame sim once
+   station->event(Basic::Component::RESET_EVENT);
+   station->tcFrame( static_cast<LCreal>(1.0/static_cast<double>(station->getTimeCriticalRate())) );
 
-  // System Time of Day 
-  double simTime = 0.0;                    // Simulator time reference
-  double startTime = getComputerTime();    // Time of day (sec) run started
+   // create time critical thread
+   station->createTimeCriticalProcess();
+   // short pause to allow os to startup thread
+   lcSleep(2000);
 
-  int k = 0;
-  std::cout << "Starting background main loop ..." << std::endl;
-  for(;;) {
+   // calculate delta time for background thread
+   double dt = 1.0/static_cast<double>(bgRate);
 
-    // Update background thread
-    sys->updateData( LCreal(dt) );
+   // system time of day
+   double simTime = 0.0;                    // Simulator time reference
+   double startTime = getComputerTime();    // Time of day (sec) run started
 
-    simTime += dt;                       // time of next frame
-    double timeNow = getComputerTime();  // time now
+   //int k = 0;
+   std::cout << "Starting background main loop ..." << std::endl;
+   for(;;) {
 
-    double elapsedTime = timeNow - startTime;
-    double nextFrameStart = simTime - elapsedTime;
-    int sleepTime = int(nextFrameStart*1000.0);
+      // update background thread
+      station->updateData( static_cast<LCreal>(dt) );
 
-    // wait for the next frame
-    if (sleepTime > 0)
-      lcSleep(sleepTime);
+      simTime += dt;                       // time of next frame
+      double timeNow = getComputerTime();  // time now
+
+      double elapsedTime = timeNow - startTime;
+      double nextFrameStart = simTime - elapsedTime;
+      int sleepTime = static_cast<int>(nextFrameStart*1000.0);
+
+      // wait for the next frame
+      if (sleepTime > 0)
+         lcSleep(sleepTime);
 
 /*
     std::cout << ".";
@@ -130,17 +135,15 @@ int exec(int argc, char* argv[])
     }
 */
 
-  }
-  return 0;
+   }
+   return 0;
 }
 
-} // namespace Sim2
+} // namespace Example
 } // namespace Eaagles
 
-//-----------------------------------------------------------------------------
-// main() -- Main routine
-//-----------------------------------------------------------------------------
+//
 int main(int argc, char* argv[])
 {
-  return Eaagles::Sim2::exec(argc, argv);
+   return Eaagles::Example::main(argc, argv);
 }

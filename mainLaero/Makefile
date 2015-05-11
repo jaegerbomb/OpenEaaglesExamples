@@ -6,12 +6,13 @@ PGM = mainLaero
 OBJS =  \
 	main.o \
 	AdiDisplay.o \
-	formFunc.o \
+	Factory.o \
 	MapDisplay.o \
 	MapPage.o \
-	TestStation.o	
+	TestStation.o
 
-LDFLAGS += -loeSimulation -loeVehicles -loeDafif
+LDFLAGS += -L../lib/linux -lxZeroMQHandlers -lzmq
+LDFLAGS += -loeSimulation -loeDynamics -loeDafif
 LDFLAGS += -loeSensors -loeDis
 LDFLAGS += -lJSBSim
 LDFLAGS += -loeGlut -loeInstruments -loeBasicGL -loeBasic
@@ -21,7 +22,7 @@ LDFLAGS += -lrt
 all: $(PGM)
 
 edl:
-	cpp inputs/test.epp >test.edl $(EPPFLAGS)
+	cpp configs/test.epp >test.edl $(EPPFLAGS)
 
 $(PGM): $(OBJS)
 	$(CXX) -o $(PGM) $(OBJS) $(LDFLAGS)

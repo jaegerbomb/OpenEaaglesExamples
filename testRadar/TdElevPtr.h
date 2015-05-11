@@ -17,7 +17,7 @@
 //    2) Movement is limited to +/- 30 degrees, which is scaled to +/- 1.0 in
 //       world coordinates.
 //
-// Form Name: TdElevPtr
+// Factory name: TdElevPtr
 // Events:
 //    UPDATE_VALUE  <Number>  ! elevation angle (degs)
 //------------------------------------------------------------------------------
@@ -35,11 +35,9 @@ public:
    LCreal getElevation() const;     // degs
    bool setElevation(const LCreal); // degs
 
-   // BasicGL::Graphic class functions
-   virtual void draw();
+   void draw() override;
 
-   // Basic::Component class functions 
-   virtual bool event(const int event, Basic::Object* const obj = 0);
+   bool event(const int event, Basic::Object* const obj = nullptr) override;
 
 private:
    bool onUpdateValue(const Basic::Number* const);

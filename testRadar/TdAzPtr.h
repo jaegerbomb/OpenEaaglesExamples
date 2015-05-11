@@ -21,14 +21,14 @@ namespace Test {
 //    2) Movement is limited to +/- 30 degrees, which is scaled to +/- 1.0 in
 //       world coordinates.
 //
-// Form Name: TdAzPtr
+// Factory name: TdAzPtr
 //
 // Events:
 //    UPDATE_VALUE  <Number>  ! azimuth angle (degs)
 //------------------------------------------------------------------------------
 class TdAzPtr : public BasicGL::Graphic
 {
-   DECLARE_SUBCLASS(TdAzPtr,BasicGL::Graphic)
+   DECLARE_SUBCLASS(TdAzPtr, BasicGL::Graphic)
 
 public:
    TdAzPtr();
@@ -36,11 +36,9 @@ public:
    LCreal getAzimuth() const;       // degs
    bool setAzimuth(const LCreal);   // degs
 
-   // BasicGL::Graphic class functions
-   virtual void draw();
+   void draw() override;
 
-   // Basic::Component class functions 
-   virtual bool event(const int event, Basic::Object* const obj = 0);
+   bool event(const int event, Basic::Object* const obj = nullptr) override;
 
 private:
    bool onUpdateValue(const Basic::Number* const msg);

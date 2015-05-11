@@ -3,8 +3,8 @@
 //
 // Description: Application class which processes GUI events
 //------------------------------------------------------------------------------
-#ifndef __Eaagles_mainFox_Application_H__
-#define __Eaagles_mainFox_Application_H__
+#ifndef __Eaagles_Example_Application_H__
+#define __Eaagles_Example_Application_H__
 
 #include "fx.h"
 
@@ -12,7 +12,7 @@
 
 namespace Eaagles {
 
-namespace mainFox {
+namespace Example {
 
 class Station;
 
@@ -24,7 +24,7 @@ public:
 
    // We define additional ID's, starting from the last one used by the base class+1.
    // This way, we know the ID's are all unique for this particular target.
-   enum{
+   enum {
       ID_TIMEOUT=FX::FXApp::ID_LAST,      // Timer ID
       ID_LAST,
    };
@@ -40,8 +40,8 @@ public:
    // Message handlers
    long onTimeout(FXObject*,FXSelector,void*);
 
-   void setStation(FoxStation* s)           { station = s; station->ref();  }
-   FoxStation* getStation()                 { return station; }
+   void setStation(FoxStation* s);
+   FoxStation* getStation();
 
 protected:
 
@@ -52,7 +52,7 @@ private:
   FoxStation* station;
 };
 
-} // end mainFox namespace
+} // end Example namespace
 } // end Eaagles namespace
 
 #endif

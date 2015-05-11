@@ -1,5 +1,6 @@
 #
 # windows specific directories
+#
 vs2008/
 vs2010/
 vs2012/
@@ -7,16 +8,33 @@ vs2013/
 codeblocks/
 codelite/
 
+#
+# qt user project file and build directories
+#
+mainSim4-qt/mainSim4-qt.pro.user
+mainSim4-qt/Makefile
+mainSim4-qt/tmp/
+build-mainSim4-qt-Desktop_Qt*
+
 # visual studio generated files
 *.idb
 *.ilk
 *.pdb
+*.exp
+
+#
+# eclipse files (for now)
+#
+.cproject
+.project
+.settings/
 
 # gcc compiled object files
 *.[oa]
 
 # windows executables
-*.exe
+*.exe*
+
 # windows libraries
 *.lib
 # keep premake executable
@@ -24,23 +42,18 @@ codelite/
 
 # backup files
 *.bak
+*~
 
 # preprocessed input (scenario) files
 *.edl
 
-#
-# Qt directories to ignore (created upon build)
-#
-tmp/
-build/qt/*Makefile*
-build/qt/*/*Makefile*
-build/qt/*/*/*Makefile*
-*.pro.user
-
 # linux executables
-mainEfis/mainEfis
-mainfd1/mainfd1
-mainfd2/mainfd2
+demoEfis/demoEfis
+demoFlightDisplays1/demoFlightDisplays1
+demoFlightDisplays2/demoFlightDisplays2
+demoInstruments/demoInstruments
+demoSubDisplays/demoSubDisplays
+mainCockpit/mainCockpit
 mainFltk1/mainFltk1
 mainFox1/mainFox1
 mainGL/mainGL
@@ -55,12 +68,9 @@ mainSim2/mainSim2
 mainSim3/mainSim3
 mainSim4/mainSim4
 mainTerrain/mainTerrain
-mainw/mainw
-mainy1/mainy1
-mainz1/mainz1
-mainz2/mainz2
 mainUbf1/mainUbf1
 testEvents/testEvents
+testGraphics/testGraphics
 testIoHandler/testIoHandler
 testLinearSys/testLinearSys
 testMatrix/testMatrix

@@ -1,33 +1,33 @@
 //------------------------------------------------------------------------------
 // Class: TestStateMachine04A
 //------------------------------------------------------------------------------
-#ifndef __TestStateMach_TestStateMachine04A_H__
-#define __TestStateMach_TestStateMachine04A_H__
+#ifndef __Eaagles_Test_TestStateMachine04A_H__
+#define __Eaagles_Test_TestStateMachine04A_H__
 
 #include "openeaagles/basic/StateMachine.h"
 
 namespace Eaagles {
-namespace TestStateMach {
+namespace Test {
 
 //------------------------------------------------------------------------------
 // Class: TestStateMachine04A -- (sub) State Machine test #4a
 //
 //
 //------------------------------------------------------------------------------
-class TestStateMachine04A : public Basic::StateMachine {
-   DECLARE_SUBCLASS(TestStateMachine04A,Basic::StateMachine)
+class TestStateMachine04A : public Basic::StateMachine
+{
+   DECLARE_SUBCLASS(TestStateMachine04A, Basic::StateMachine)
 
 public:
    TestStateMachine04A();
 
 protected:
-   // Basic::StateMachine protected interface function
-   virtual void preStateProc(const LCreal dt);
-   virtual unsigned short stateTable(
+   void preStateProc(const LCreal dt) override;
+   unsigned short stateTable(
          const unsigned short cstate,
          const StateTableCode code,
          const LCreal dt=0
-      );
+      ) override;
 
 private:
    // State specific functions
@@ -38,7 +38,7 @@ private:
    void stateFunc04(const LCreal dt);
 };
 
-} // End TestStateMach namespace
+} // End Test namespace
 } // End Eaagles namespace
 
-#endif	/* __TestStateMach_TestStateMachine04A_H__ */
+#endif

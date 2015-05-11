@@ -1,35 +1,35 @@
 //------------------------------------------------------------------------------
 // Class: PrintMyData
 //------------------------------------------------------------------------------
-#ifndef __TestRecorder_PrintMyData_H__
-#define __TestRecorder_PrintMyData_H__
+#ifndef __Eaagles_Test_PrintMyData_H__
+#define __Eaagles_Test_PrintMyData_H__
 
 #include "openeaagles/recorder/PrintHandler.h"
 
-namespace TestRecorder {
+namespace Eaagles {
+namespace Test {
 
 //------------------------------------------------------------------------------
 // Class: PrintMyData
 // Description: Print my extended recorder data
 //
-// Form name: PrintMyData
+// Factory name: PrintMyData
 //------------------------------------------------------------------------------
-class PrintMyData : public Eaagles::Recorder::PrintHandler
+class PrintMyData : public Recorder::PrintHandler
 {
-    DECLARE_SUBCLASS(PrintMyData, Eaagles::Recorder::PrintHandler)
+    DECLARE_SUBCLASS(PrintMyData, Recorder::PrintHandler)
 
 public:
    PrintMyData();
 
 protected:
-   // OutputHandler class private functions
-   virtual void processRecordImp(const Eaagles::Recorder::DataRecordHandle* const handle);
+   void processRecordImp(const Recorder::DataRecordHandle* const handle) override;
 
 private:
    void initData();
 };
 
-} // End TestRecorder namespace
+}
+}
 
 #endif
-

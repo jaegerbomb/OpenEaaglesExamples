@@ -1,8 +1,8 @@
 //------------------------------------------------------------------------------
 // Class: TestDisplay
 //------------------------------------------------------------------------------
-#ifndef __Eaagles_TestDisplay_H__
-#define __Eaagles_TestDisplay_H__
+#ifndef __Eaagles_Test_TestDisplay_H__
+#define __Eaagles_Test_TestDisplay_H__
 
 #include "openeaagles/gui/glut/GlutDisplay.h"
 
@@ -21,7 +21,7 @@ namespace Test {
 //              signal strength and angle of arrival, and a simple situation
 //              display that shows the 'truth' location of the players.
 //
-// Form Name: TestDisplay
+// Factory name: TestDisplay
 //
 // Events: (all keyboard events)
 //   'r' or 'R'   -- Reset simulation
@@ -48,12 +48,10 @@ public:
 
     virtual void maintainAirTrackSymbols(BasicGL::SymbolLoader* loader, const LCreal rng);
 
-    // Display Interface
-    virtual void mouseEvent(const int button, const int state, const int x, const int y);
+    void mouseEvent(const int button, const int state, const int x, const int y) override;
 
-    // Component interface
-    virtual bool event(const int event, Basic::Object* const obj = 0);
-    virtual void updateData(const LCreal dt = 0.0f);
+    bool event(const int event, Basic::Object* const obj = nullptr) override;
+    void updateData(const LCreal dt = 0.0) override;
 
 private:
     // Key event handlers
@@ -76,8 +74,8 @@ private:
 
     SendData        headingSD;
     SendData        rangeSD;
-    
-    SPtr<Simulation::Station> myStation;
+
+    Basic::safe_ptr<Simulation::Station> myStation;
 
     static const unsigned int MAX_TRACKS = 200;
     Simulation::Player* tracks[MAX_TRACKS];    // players that we're displaying

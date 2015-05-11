@@ -1,13 +1,13 @@
 //------------------------------------------------------------------------------
-// Class:	Worm
+// Class: Worm
 //
 // Description: Move within a user defined box displaying a trail
 //
 //  ( def-form Worm
 //  )
 //------------------------------------------------------------------------------
-#ifndef __Eaagles_mainFox_Worm_H__
-#define __Eaagles_mainFox_Worm_H__
+#ifndef __Eaagles_Example_Worm_H__
+#define __Eaagles_Example_Worm_H__
 
 #include "openeaagles/basicGL/Graphic.h"
 
@@ -15,7 +15,7 @@ namespace Eaagles {
 
 namespace Basic { class Angle; }
 
-namespace mainFox {
+namespace Example {
 
 class Worm : public BasicGL::Graphic
 {
@@ -46,17 +46,15 @@ public:
   void setStartAngle(const LCreal deg);
   void setSpeed(const LCreal xx);
 
-  // Graphic class Interface
-  virtual void drawFunc();
+  void drawFunc() override;
 
-  // Component class Interface
-  virtual void updateTC(const LCreal dt = 0.0);
-  virtual void updateData(const LCreal dt = 0.0);
-  virtual bool event(const int event, Basic::Object* const obj = 0);
-  virtual void reset();
+  void updateTC(const LCreal dt = 0.0) override;
+  void updateData(const LCreal dt = 0.0) override;
+  bool event(const int event, Basic::Object* const obj = nullptr) override;
+  void reset() override;
 
 private:
-    
+
   enum { maxHist = 10 };
   LCreal left, right;         // X limits
   LCreal bottom, top;         // Y limits
@@ -72,7 +70,7 @@ private:
 
 };
 
-} // namespace mainFox
+} // namespace Example
 } // namespace Eaagles
 
 #endif

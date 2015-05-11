@@ -1,7 +1,7 @@
 
 #include "TestIoHandler.h"
 #include "SimStation.h"
-#include "inputs/f16HotasIo.h"
+#include "configs/io/f16HotasIo.h"
 
 #include "openeaagles/simulation/Autopilot.h"
 #include "openeaagles/simulation/AirVehicle.h"
@@ -12,15 +12,16 @@
 #include "openeaagles/basic/IoData.h"
 
 namespace Eaagles {
-namespace MainUbf1 {
+namespace Example {
 
-//==============================================================================
+//------------------------------------------------------------------------------
 // TestIoHandler
-//==============================================================================
+//------------------------------------------------------------------------------
 
 IMPLEMENT_SUBCLASS(TestIoHandler,"TestIoHandler")
 EMPTY_SLOTTABLE(TestIoHandler)
 EMPTY_SERIALIZER(TestIoHandler)
+EMPTY_DELETEDATA(TestIoHandler)
 
 //------------------------------------------------------------------------------
 // Constructor(s)
@@ -75,13 +76,6 @@ void TestIoHandler::copyData(const TestIoHandler& org, const bool cc)
 }
 
 //------------------------------------------------------------------------------
-//deleteData() -- delete member data
-//------------------------------------------------------------------------------
-void TestIoHandler::deleteData()
-{
-}
-
-//------------------------------------------------------------------------------
 // Handle input devices
 //------------------------------------------------------------------------------
 void TestIoHandler::inputDevices(const LCreal)
@@ -94,7 +88,7 @@ void TestIoHandler::inputDevices(const LCreal)
 //    ---
 //    get the Station, Simulation and our ownship player
 //    ---
-   SimStation* const sta = (SimStation*)( findContainerByType(typeid(SimStation)) );
+   SimStation* const sta = static_cast<SimStation*>( findContainerByType(typeid(SimStation)) );
 
    Simulation::Simulation* sim = 0;
    Simulation::AirVehicle* av = 0;
@@ -113,7 +107,7 @@ void TestIoHandler::inputDevices(const LCreal)
       Simulation::Autopilot* ap = 0;
       {
          Basic::Pair* p = av->getPilotByType( typeid( Simulation::Autopilot) );
-         if (p != 0) ap = (Simulation::Autopilot*)( p->object() );
+         if (p != 0) ap = static_cast<Simulation::Autopilot*>(p->object());
       }
 
       // ------------------------------------------------------------
@@ -128,7 +122,7 @@ void TestIoHandler::inputDevices(const LCreal)
             bool sw = false;
             inData->getDiscreteInput(FREEZE_SW, &sw);
             bool frzSw = sw && enabled;
-            if(frzSw && !frzSw1) {
+            if (frzSw && !frzSw1) {
                Basic::Boolean newFrz( !sim->isFrozen() );
                sim->event(FREEZE_EVENT, &newFrz);
             }
@@ -139,7 +133,7 @@ void TestIoHandler::inputDevices(const LCreal)
             bool sw = false;
             inData->getDiscreteInput(RESET_SW, &sw);
             bool rstSw = sw && enabled;
-            if(rstSw && !rstSw1) {
+            if (rstSw && !rstSw1) {
                sta->event(RESET_EVENT);
             }
             rstSw1 = rstSw;
@@ -149,7 +143,7 @@ void TestIoHandler::inputDevices(const LCreal)
             bool sw = false;
             inData->getDiscreteInput(RELOAD_SW, &sw);
             bool wpnReloadSw = sw && enabled;
-            if(wpnReloadSw && !wpnReloadSw1) {
+            if (wpnReloadSw && !wpnReloadSw1) {
                sta->event(WPN_RELOAD);
             }
             wpnReloadSw1 = wpnReloadSw;
@@ -198,7 +192,7 @@ void TestIoHandler::inputDevices(const LCreal)
       { // Weapons Release
          bool sw = false;
          inData->getDiscreteInput(PICKLE_SW, &sw);
-         if(sw != wpnRelSw1) {
+         if (sw != wpnRelSw1) {
             Basic::Boolean sw(sw);
             av->event(WPN_REL_EVENT, &sw);
          }
@@ -208,7 +202,7 @@ void TestIoHandler::inputDevices(const LCreal)
       { // Trigger switch
          bool sw = false;
          inData->getDiscreteInput(TRIGGER_SW2, &sw);
-         if(sw != trgSw1) {
+         if (sw != trgSw1) {
             Basic::Boolean sw(sw);
             av->event(TRIGGER_SW_EVENT, &sw);
          }
@@ -218,7 +212,7 @@ void TestIoHandler::inputDevices(const LCreal)
       { // Target Step (reject)
          bool sw = false;
          inData->getDiscreteInput(TMS_RIGHT_SW, &sw);
-         if(sw && !tgtStepSw1) {
+         if (sw && !tgtStepSw1) {
             av->event(TGT_STEP_EVENT);
          }
          tgtStepSw1 = sw;
@@ -227,7 +221,7 @@ void TestIoHandler::inputDevices(const LCreal)
       { // Target Designate
          bool sw = false;
          inData->getDiscreteInput(TMS_UP_SW, &sw);
-         if(sw && !tgtDesSw1) {
+         if (sw && !tgtDesSw1) {
             av->event(TGT_DESIGNATE);
          }
          tgtDesSw1 = sw;
@@ -236,7 +230,7 @@ void TestIoHandler::inputDevices(const LCreal)
       { // Return-To-Search
          bool sw = false;
          inData->getDiscreteInput(TMS_DOWN_SW, &sw);
-         if(sw && !rtn2SrchSw1) {
+         if (sw && !rtn2SrchSw1) {
             av->event(SENSOR_RTS);
          }
          rtn2SrchSw1 = sw;
@@ -273,7 +267,7 @@ void TestIoHandler::inputDevices(const LCreal)
       { // Steerpoint increment
          bool incStptSw = false;
          inData->getDiscreteInput(DMS_UP_SW, &incStptSw);
-         if(incStptSw && !incStptSw1) {
+         if (incStptSw && !incStptSw1) {
             // find our route and increment the steerpoint
             Simulation::Navigation* myNav = av->getNavigation();
             if (myNav != 0) {
@@ -292,7 +286,7 @@ void TestIoHandler::inputDevices(const LCreal)
       { // Steerpoint decrement
          bool decStptSw = false;
          inData->getDiscreteInput(DMS_DOWN_SW, &decStptSw);
-         if(decStptSw && !decStptSw1) {
+         if (decStptSw && !decStptSw1) {
             // find our route and increment the steerpoint
             Simulation::Navigation* myNav = av->getNavigation();
             if (myNav != 0) {
@@ -307,10 +301,7 @@ void TestIoHandler::inputDevices(const LCreal)
          }
          decStptSw1 = decStptSw;
       }
-
-
    }
-
 }
 
 // -----------------------------------------------------------------------------
@@ -321,5 +312,5 @@ void TestIoHandler::clear()
 {
 }
 
-} // End MainUbf1
-} // end Eaagles namespace
+} // End Example namespace
+} // End Eaagles namespace

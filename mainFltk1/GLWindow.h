@@ -5,21 +5,21 @@
 //              drawing will be done
 //-----------------------------------------------------
 
-#ifndef __Eaagles_mainFltk1_GLWindow_H__
-#define __Eaagles_mainFltk1_GLWindow_H__
+#ifndef __Eaagles_Example_GLWindow_H__
+#define __Eaagles_Example_GLWindow_H__
 
 #include <FL/Fl_Gl_Window.H>
 
 namespace Eaagles {
-namespace mainFltk1 {
+namespace Example {
 
 class FltkDisplay;
 
-class GLWindow : public Fl_Gl_Window 
+class GLWindow : public Fl_Gl_Window
 {
 public:
 
-   GLWindow(int x,int y,int w,int h,const char *l = 0); 
+   GLWindow(int x,int y,int w,int h,const char *l = 0);
    GLWindow(int x,int y);
    virtual ~GLWindow();
 
@@ -28,10 +28,9 @@ public:
    // get function(s)
    FltkDisplay* getDisplay()   { return display; }
 
-   // Fltk interface
-   virtual void draw();
-   virtual int handle(int x);
-   virtual void resize(int x, int y, int w, int h);
+   void draw() override;
+   int handle(int x) override;
+   void resize(int x, int y, int w, int h) override;
 
 private:
 
@@ -41,7 +40,7 @@ private:
    FltkDisplay* display;
 };
 
-};
-};
+}
+}
 
 #endif

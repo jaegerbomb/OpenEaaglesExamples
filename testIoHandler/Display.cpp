@@ -1,4 +1,6 @@
-
+//------------------------------------------------------------------------------
+// Class: Display
+//------------------------------------------------------------------------------
 #include "Display.h"
 
 #include "openeaagles/basic/IoData.h"
@@ -7,6 +9,7 @@
 #include "openeaagles/basic/String.h"
 
 #include <cstdio>
+#include <cstdlib>
 
 // disable all deprecation warnings for now, until we fix
 // they are quite annoying to see over and over again...
@@ -15,7 +18,7 @@
 #endif
 
 namespace Eaagles {
-namespace TestIo {
+namespace Test {
 
 IMPLEMENT_SUBCLASS(Display,"TestIoDisplay")
 
@@ -50,13 +53,12 @@ Display::Display()
    initData();
 }
 
-
 //------------------------------------------------------------------------------
 // initData() -- Init member data (from constructors and copyData())
 //------------------------------------------------------------------------------
 void Display::initData()
 {
-   ioHandler = 0;
+   ioHandler = nullptr;
 
    // Item/Channel mapping
    for (unsigned int i = 0; i < TBL_SIZE; i++) {
@@ -85,12 +87,12 @@ void Display::copyData(const Display& org, const bool cc)
    BaseClass::copyData(org);
    if (cc) initData();
 
-   if (org.ioHandler != 0) {
+   if (org.ioHandler != nullptr) {
       Basic::IoHandler* copy = org.ioHandler->clone();
       setSlotIoHandler(copy);
       copy->unref();
    }
-   else setSlotIoHandler(0);
+   else setSlotIoHandler(nullptr);
 
    // Item/Channel mapping
    for (unsigned int i = 0; i < TBL_SIZE; i++) {
@@ -115,7 +117,7 @@ void Display::copyData(const Display& org, const bool cc)
 //------------------------------------------------------------------------------
 void Display::deleteData()
 {
-   setSlotIoHandler(0);
+   setSlotIoHandler(nullptr);
 }
 
 //-----------------------------------------------------------------------------
@@ -124,7 +126,7 @@ void Display::deleteData()
 bool Display::onEscKey()
 {
    std::cout<<"Display::onEscKey() -- Exit by the ESC key!"<<std::endl;
-   exit(0);
+   std::exit(EXIT_FAILURE);
 }
 
 //------------------------------------------------------------------------------
@@ -135,9 +137,9 @@ void Display::reset()
    BaseClass::reset();
    setNormColor( getColor("NormalText") );
    setHighlightColor( getColor("HighlightText") );
-    
+
    // Reset the I/O Handler
-   if (ioHandler != 0) {
+   if (ioHandler != nullptr) {
       ioHandler->event(RESET_EVENT);
    }
 }
@@ -146,7 +148,7 @@ void Display::reset()
 // updateTC() -- update time critical stuff here
 //------------------------------------------------------------------------------
 void Display::updateTC(const LCreal dt)
-{ 
+{
    // I/O Handler
    if (ioHandler != 0) {
       ioHandler->inputDevices(dt);
@@ -202,15 +204,15 @@ void Display::updateData(const LCreal dt)
 //------------------------------------------------------------------------------
 void Display::updateDisplay()
 {
-   Basic::IoData* ioData = 0;
-   if (ioHandler != 0) ioData = ioHandler->getInputData();
+   Basic::IoData* ioData = nullptr;
+   if (ioHandler != nullptr) ioData = ioHandler->getInputData();
 
    // Item/channel mapping
    for (unsigned int i = 0; i < TBL_SIZE; i++) {
 
       bool ok = false;
 
-      if (types[i] != NONE && ioData != 0) {
+      if (types[i] != NONE && ioData != nullptr) {
 
          // Set the data
          if (types[i] == AI) {
@@ -235,8 +237,8 @@ void Display::updateDisplay()
             // if not provided; make the default label
             if (!labelFlags[i]) {
                char cbuff[32];
-               if (types[i] == AI) sprintf(cbuff, "AI(%03d)", channels[i]);
-               else                sprintf(cbuff, "DI(%03d)", channels[i]);
+               if (types[i] == AI) std::sprintf(cbuff, "AI(%03d)", channels[i]);
+               else                std::sprintf(cbuff, "DI(%03d)", channels[i]);
                lcStrcpy(labels[i], sizeof(labels[i]), cbuff);
             }
 
@@ -260,11 +262,11 @@ void Display::updateDisplay()
 
 bool Display::setSlotIoHandler(Basic::IoHandler* const msg)
 {
-   if (ioHandler != 0) {
-      ioHandler->container(0);
+   if (ioHandler != nullptr) {
+      ioHandler->container(nullptr);
    }
    ioHandler = msg;
-   if (ioHandler != 0) {
+   if (ioHandler != nullptr) {
       ioHandler->container(this);
    }
    return true;
@@ -273,10 +275,10 @@ bool Display::setSlotIoHandler(Basic::IoHandler* const msg)
 bool Display::setSlotItem(const Basic::Number* const msg)
 {
    bool ok = false;
-   if (msg != 0) {
+   if (msg != nullptr) {
       int v = msg->getInt();
       if (v >= 1 && v <= TBL_SIZE) {
-         item = (unsigned short) v;
+         item = static_cast<unsigned short>(v);
          types[item-1] = NONE;
          channels[item-1] = 0;
          ok = true;
@@ -291,10 +293,10 @@ bool Display::setSlotItem(const Basic::Number* const msg)
 bool Display::setSlotAiChannel(const Basic::Number* const msg)
 {
    bool ok = false;
-   if (msg != 0 && item >= 1 && item <= TBL_SIZE) {
+   if (msg != nullptr && item >= 1 && item <= TBL_SIZE) {
       int v = msg->getInt();
       if (v >= 0 && v <= 0xFFFF) {
-         channels[item-1] = (unsigned short) v;
+         channels[item-1] = static_cast<unsigned short>(v);
          types[item-1] = AI;
          ok = true;
       }
@@ -308,10 +310,10 @@ bool Display::setSlotAiChannel(const Basic::Number* const msg)
 bool Display::setSlotDiChannel(const Basic::Number* const msg)
 {
    bool ok = false;
-   if (msg != 0 && item >= 1 && item <= TBL_SIZE) {
+   if (msg != nullptr && item >= 1 && item <= TBL_SIZE) {
       int v = msg->getInt();
       if (v >= 0 && v <= 0xFFFF) {
-         channels[item-1] = (unsigned short) v;
+         channels[item-1] = static_cast<unsigned short>(v);
          types[item-1] = DI;
          ok = true;
       }
@@ -326,7 +328,7 @@ bool Display::setSlotLabel(const Basic::String* const msg)
 {
    bool ok = false;
    if (item >= 1 && item <= TBL_SIZE) {
-      if (msg != 0) {
+      if (msg != nullptr) {
          lcStrcpy(labels[item-1], sizeof(labels[item-1]), *msg);
          labelFlags[item-1] = true;
       }
@@ -349,7 +351,6 @@ Basic::Object* Display::getSlotByIndex(const int si)
     return BaseClass::getSlotByIndex(si);
 }
 
-
 //------------------------------------------------------------------------------
 // serialize
 //------------------------------------------------------------------------------
@@ -358,12 +359,12 @@ std::ostream& Display::serialize(std::ostream& sout, const int i, const bool slo
    int j = 0;
    if ( !slotsOnly ) {
       indent(sout,i);
-      sout << "( " << getFormName() << std::endl;
+      sout << "( " << getFactoryName() << std::endl;
       j = 4;
    }
 
    // I/O handlers
-   if (ioHandler != 0) {
+   if (ioHandler != nullptr) {
       indent(sout,i+j);
       sout << "ioHandler: " << std::endl;
       ioHandler->serialize(sout,i+j+4);
@@ -392,5 +393,5 @@ std::ostream& Display::serialize(std::ostream& sout, const int i, const bool slo
    return sout;
 }
 
-} // End of TestIo namespace
+} // End of Test namespace
 } // End of Eaagles namespace

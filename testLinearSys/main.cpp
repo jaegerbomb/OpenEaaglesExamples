@@ -1,9 +1,10 @@
 
 #include "openeaagles/linearSys/Sz1.h"
 #include <iostream>
+#include <cstdlib>
 
 namespace Eaagles {
-namespace TestLinearSys {
+namespace Test {
 
 int main(int, char**)
 {
@@ -31,7 +32,7 @@ int main(int, char**)
    }
 
    LCreal time = 0;
-   LCreal deltaTime = 1.0f / LCreal(RATE);
+   LCreal deltaTime = 1.0 / static_cast<LCreal>(RATE);
 
    for (unsigned int i = 0; i < RATE; i++) {
       time += deltaTime;
@@ -53,11 +54,11 @@ int main(int, char**)
    return EXIT_SUCCESS;
 }
 
-} // End TestLinearSys namespace
+} // End Test namespace
 } // End Eaagles namespace
 
 
 int main(int argc, char* argv[], char**)
 {
-   return Eaagles::TestLinearSys::main(argc,argv);
+   return Eaagles::Test::main(argc,argv);
 }

@@ -2,14 +2,16 @@
 // Timer Tester class
 //------------------------------------------------------------------------------
 
-#include "./Tester.h"
+#include "Tester.h"
 
 #include "openeaagles/basic/Pair.h"
 #include "openeaagles/basic/PairStream.h"
 #include "openeaagles/basic/Timers.h"
 
+#include <cstdio>
+
 namespace Eaagles {
-namespace TestTimer {
+namespace Test {
 
 IMPLEMENT_SUBCLASS(Tester,"Tester")
 EMPTY_SERIALIZER(Tester)
@@ -63,8 +65,8 @@ bool Tester::areAllActiveTimerAlarmsOn() const
 
       const Basic::List::Item* item = timers->getFirstItem();
       while (item != 0 && on) {
-         const Basic::Pair* pair = (const Basic::Pair*) item->getValue();
-         const Basic::Timer* timer = (const Basic::Timer*)( pair->object() );
+         const Basic::Pair* pair = static_cast<const Basic::Pair*>(item->getValue());
+         const Basic::Timer* timer = static_cast<const Basic::Timer*>(pair->object());
          on = timer->alarm() || timer->isNotRunning();
          item = item->getNext();
       }
@@ -84,23 +86,23 @@ void Tester::printTimers() const
 
       const Basic::List::Item* item = timers->getFirstItem();
       while (item != 0) {
-         const Basic::Pair* pair = (const Basic::Pair*) item->getValue();
-         const Basic::Timer* timer = (const Basic::Timer*)( pair->object() );
+         const Basic::Pair* pair = static_cast<const Basic::Pair*>(item->getValue());
+         const Basic::Timer* timer = static_cast<const Basic::Timer*>(pair->object());
 
          printf("  timer(%s)", pair->slot()->getString());
          printf(" = %4.1f", timer->getCurrentTime());
 
          if (timer->getType() == Basic::Timer::UP) printf(", up");
-         else printf(", down");
+         else std::printf(", down");
 
          if (timer->isRunning()) printf(", active");
-         else printf(", inactive");
+         else std::printf(", inactive");
 
-         printf(", alarm(%4.1f", timer->getAlarmTime());
+         std::printf(", alarm(%4.1f", timer->getAlarmTime());
          if (timer->alarm()) printf(", ON)");
-         printf(", OFF);");
+         std::printf(", OFF);");
 
-         printf("\n");
+         std::printf("\n");
 
          item = item->getNext();
       }
@@ -118,8 +120,8 @@ void Tester::restartAllTimers()
 
       Basic::List::Item* item = timers->getFirstItem();
       while (item != 0) {
-         Basic::Pair* pair = (Basic::Pair*) item->getValue();
-         Basic::Timer* timer = (Basic::Timer*)( pair->object() );
+         Basic::Pair* pair = static_cast<Basic::Pair*>(item->getValue());
+         Basic::Timer* timer = static_cast<Basic::Timer*>(pair->object());
          timer->restart();
          item = item->getNext();
       }
@@ -138,8 +140,8 @@ void Tester::reset()
 
       Basic::List::Item* item = timers->getFirstItem();
       while (item != 0) {
-         Basic::Pair* pair = (Basic::Pair*) item->getValue();
-         Basic::Timer* timer = (Basic::Timer*)( pair->object() );
+         Basic::Pair* pair = static_cast<Basic::Pair*>(item->getValue());
+         Basic::Timer* timer = static_cast<Basic::Timer*>(pair->object());
          timer->reset();
          item = item->getNext();
       }
@@ -166,8 +168,8 @@ bool Tester::setSlotTimers(const Basic::PairStream* const msg)
       const Basic::List::Item* item = msg->getFirstItem();
       while (item != 0) {
          n++;
-         const Basic::Pair* const pair = (const Basic::Pair*) item->getValue();
-         const Basic::Timer* const timer = dynamic_cast<const Basic::Timer*>( pair->object() );
+         const Basic::Pair* const pair = static_cast<const Basic::Pair*>(item->getValue());
+         const Basic::Timer* const timer = dynamic_cast<const Basic::Timer*>(pair->object());
          if (timer != 0) {
             Basic::Pair* newPair = pair->clone();
             newList->put(newPair);
@@ -195,6 +197,5 @@ Basic::Object* Tester::getSlotByIndex(const int si)
     return BaseClass::getSlotByIndex(si);
 }
 
-} // namespace Example07
+} // namespace Test
 } // namespace Eaagles
-

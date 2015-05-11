@@ -12,14 +12,14 @@
 #include "openeaagles/basic/NetHandler.h"
 #include "openeaagles/basic/Pair.h"
 #include "openeaagles/basic/PairStream.h"
-#include "openeaagles/basic/Tables.h"
+#include "openeaagles/basic/functors/Tables.h"
 #include "openeaagles/basic/Timers.h"
 #include "openeaagles/basic/units/Angles.h"
 #include "openeaagles/basic/units/Times.h"
 #include "openeaagles/basic/osg/Vec4"
 
 namespace Eaagles {
-namespace MainUbf1 {
+namespace Example {
 
 IMPLEMENT_SUBCLASS(SimStation,"SimStation")
 EMPTY_SERIALIZER(SimStation)
@@ -31,7 +31,7 @@ BEGIN_SLOTTABLE(SimStation)
     "display",                  //  1) Main Display
 END_SLOTTABLE(SimStation)
 
-//  Map slot table to handles 
+//  Map slot table to handles
 BEGIN_SLOT_MAP(SimStation)
     ON_SLOT( 1, setSlotMainDisplay, Glut::GlutDisplay)
 END_SLOT_MAP()
@@ -48,7 +48,7 @@ SimStation::SimStation()
 }
 
 //------------------------------------------------------------------------------
-// reset() -- Reset the station 
+// reset() -- Reset the station
 //------------------------------------------------------------------------------
 void SimStation::reset()
 {
@@ -58,14 +58,14 @@ void SimStation::reset()
     if (!displayInit && mainDisplay != 0) {
         mainDisplay->createWindow();
         Basic::Pair* p = mainDisplay->findByType(typeid(BasicGL::Page));
-        if (p != 0) mainDisplay->focus((BasicGL::Graphic*)(p->object()));
+        if (p != 0) mainDisplay->focus(static_cast<BasicGL::Graphic*>(p->object()));
         else mainDisplay->focus(0);
-        displayInit = true;        
+        displayInit = true;
     }
     // reset all of our subcomponents
     if (mainDisplay != 0) mainDisplay->reset();
 
-    // reset our baseclass 
+    // reset our baseclass
     BaseClass::reset();
 }
 
@@ -79,7 +79,7 @@ void SimStation::updateTC(const LCreal dt)
 
     Basic::Timer::updateTimers(dt);
     BasicGL::Graphic::flashTimer(dt);
-    
+
     // Update any TC stuff in our main display
     if (mainDisplay != 0) mainDisplay->updateTC(dt);
 }
@@ -99,9 +99,9 @@ void SimStation::stepOwnshipPlayer()
       // Find the next player
       Basic::List::Item* item = pl->getFirstItem();
       while (item != 0) {
-         Basic::Pair* pair = (Basic::Pair*)(item->getValue());
+         Basic::Pair* pair = static_cast<Basic::Pair*>(item->getValue());
          if (pair != 0) {
-            Simulation::Player* ip = (Simulation::Player*)( pair->object() );
+            Simulation::Player* ip = static_cast<Simulation::Player*>(pair->object());
             if ( ip->isMode(Simulation::Player::ACTIVE) &&
                ip->isLocalPlayer() &&
                ip->isClassType(typeid(Simulation::AirVehicle))
@@ -127,9 +127,9 @@ void SimStation::stepOwnshipPlayer()
 // Main display
 bool SimStation::setSlotMainDisplay(Glut::GlutDisplay* const d)
 {
-    if (mainDisplay != 0) mainDisplay->container(0);
+    if (mainDisplay != nullptr) mainDisplay->container(nullptr);
     mainDisplay = d;
-    if (mainDisplay != 0) mainDisplay->container(this);
+    if (mainDisplay != nullptr) mainDisplay->container(this);
     displayInit = false;
     return true;
 }
@@ -142,5 +142,5 @@ Basic::Object* SimStation::getSlotByIndex(const int si)
     return BaseClass::getSlotByIndex(si);
 }
 
-} // End MainUbf1 namespace
+} // End Example namespace
 } // End Eaagles namespace

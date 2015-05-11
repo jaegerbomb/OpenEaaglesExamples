@@ -8,12 +8,14 @@
 #include "openeaagles/basic/Number.h"
 
 #include <cstdio>
+#include <cstdlib>
 
 // disable all deprecation warnings for now, until we fix
 #if(_MSC_VER>=1400)   // VC8+
 # pragma warning(disable: 4996)
 #endif
 
+namespace Eaagles {
 namespace Test {
 
 //==============================================================================
@@ -84,7 +86,7 @@ void Sender::updateData(const Eaagles::LCreal dt)
         else {
             char buffer[MAX_SIZE];
             sprintf(buffer, "Message(%d)", ++msgCounter);
-            unsigned int n = (unsigned int)strlen(buffer);
+            unsigned int n = static_cast<unsigned int>(std::strlen(buffer));
             Eaagles::lcSleep(1000);
             bool ok = sendData(buffer, n);
             if (ok) {
@@ -97,10 +99,11 @@ void Sender::updateData(const Eaagles::LCreal dt)
         if (!recvMode && getLoops() > 0 && msgCounter >= getLoops()) {
             closeConnections();
             std::cout << "Exit: " << getLoops() << " loops completed!" << std::endl;
-            exit(0);
+            std::exit(0);
         }
     }
 }
 
-} // End namespace
+}
+}
 

@@ -1,20 +1,21 @@
 //------------------------------------------------------------------------------
 // Class: TestDisplay
 //------------------------------------------------------------------------------
-#ifndef __TestDisplay_H__
-#define __TestDisplay_H__
+#ifndef __Eaagles_Example_TestDisplay_H__
+#define __Eaagles_Example_TestDisplay_H__
 
 #include "openeaagles/gui/glut/GlutDisplay.h"
 
 namespace Eaagles {
    namespace Simulation { class Missile; class Player; class Simulation; class Station; }
    namespace BasicGL { class SymbolLoader; }
-namespace MainIR {
+
+namespace Example {
 
 //------------------------------------------------------------------------------
 // Class: TestDisplay
 //
-// Form Name: TestDisplay
+// Factory name: TestDisplay
 //
 // Events: (all keyboard events)
 //   'r' or 'R'   -- Reset simulation
@@ -38,9 +39,8 @@ public:
 
     virtual void maintainAirTrackSymbols(BasicGL::SymbolLoader* loader, const LCreal rng);
 
-    // Basic::Component interface
-    virtual bool event(const int event, Basic::Object* const obj = 0);
-    virtual void updateData(const LCreal dt = 0.0f);
+    bool event(const int event, Basic::Object* const obj = nullptr) override;
+    void updateData(const LCreal dt = 0.0) override;
 
 private:
     // Key event handlers
@@ -57,15 +57,15 @@ private:
 
     SendData        headingSD;
     SendData        rangeSD;
-    
-    SPtr<Simulation::Station> myStation;
+
+    Basic::safe_ptr<Simulation::Station> myStation;
 
     static const unsigned int MAX_TRACKS = 200;
     Simulation::Player* tracks[MAX_TRACKS];    // players that we're displaying
     int trkIdx[MAX_TRACKS];    // Index of track symbols
 };
 
-} // End MainIR namespace
+} // End Example namespace
 } // End Eaagles namespace
 
 #endif

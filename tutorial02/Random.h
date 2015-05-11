@@ -1,30 +1,28 @@
 //------------------------------------------------------------------------------
-// Class:  Random
-// Base class:  Object-> Random
-// Description:  Generates Random Numbers
+// Class: Random
+// Description: Generates Random Numbers
 //------------------------------------------------------------------------------
 
-#ifndef _RANDOM_INCLUDE
-#define _RANDOM_INCLUDE
+#ifndef __Eaagles_Tutorial_Random_H__
+#define __Eaagles_Tutorial_Random_H__
 
 #include "openeaagles/basic/Object.h"
 
 namespace Eaagles {
-namespace Example02 {
+namespace Tutorial {
 
 class Random : public Basic::Object
 {
-  DECLARE_SUBCLASS(Random, Basic::Object)
+   DECLARE_SUBCLASS(Random, Basic::Object)
 
 public:
+   Random();
 
-  Random();
-
-  int getNum() const;
-  void setSeed(const unsigned int);
+   int getNum() const;
+   void setSeed(const unsigned int);
 };
 
-} // namespace Example02
+} // namespace Tutorial
 } // namespace Eaagles
 
 

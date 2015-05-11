@@ -7,7 +7,7 @@
 #include <cstdlib>
 
 namespace Eaagles {
-namespace Example04 {
+namespace Tutorial {
 
 IMPLEMENT_SUBCLASS(Exp,"Exp")
 // setup slot table
@@ -37,8 +37,7 @@ Exp::Exp(void)
 //------------------------------------------------------------------------------
 void Exp::copyData(const Exp& org, const bool)
 {
-	BaseClass::copyData(org);
-
+   BaseClass::copyData(org);
    mean = org.mean;
 }
 
@@ -54,15 +53,15 @@ void Exp::deleteData()
 // data access functions
 //------------------------------------------------------------------------------
 
-void Exp::setMean(const float x)
+void Exp::setMean(const double x)
 {
   mean = x;
 }
 
 int Exp::getNum(void) const
 {
-  double r = (double)(rand()/(RAND_MAX+1.0));
-  int v = -(int)(mean*log(r));
+  double r = static_cast<double>(std::rand()/(RAND_MAX+1.0));
+  int v = -static_cast<int>(mean * std::log(r));
   return v;
 }
 
@@ -73,8 +72,8 @@ int Exp::getNum(void) const
 
 bool Exp::setSlotMean(const Basic::Number* const mean)
 {
-  if(mean != 0)
-    setMean(mean->getFloat());
+  if (mean != 0)
+    setMean(mean->getDouble());
   return true;
 }
 
@@ -86,5 +85,5 @@ Basic::Object* Exp::getSlotByIndex(const int si)
   return BaseClass::getSlotByIndex(si);
 }
 
-} // namespace Example04
+} // namespace Tutorial
 } // namespace Eaagles

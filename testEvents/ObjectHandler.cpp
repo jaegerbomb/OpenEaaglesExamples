@@ -1,8 +1,11 @@
+//------------------------------------------------------------------------------
+// Class: ObjectHandler
+//------------------------------------------------------------------------------
 #include "ObjectHandler.h"
 #include "TestObject.h"
 
 namespace Eaagles {
-namespace TestEvents {
+namespace Test {
 
 IMPLEMENT_EMPTY_SLOTTABLE_SUBCLASS(ObjectHandler, "ObjectHandler")
 EMPTY_SERIALIZER(ObjectHandler)
@@ -52,7 +55,7 @@ EMPTY_DELETEDATA(ObjectHandler)
 bool ObjectHandler::onUpdateObject(const TestObject* const x)
 {
     if (x != 0) {
-        TestObject* obj = (TestObject*)x;
+        TestObject* obj = const_cast<TestObject*>(x);
         bool boolVal = obj->getBoolean();
         send("objboolean", UPDATE_VALUE, boolVal, boolSD);
         int intVal = obj->getInteger();
@@ -70,5 +73,5 @@ bool ObjectHandler::onUpdateObject(const TestObject* const x)
     return true;
 }
 
-} // End TestEvents namespace
+} // End Test namespace
 } // End Eaagles namespace

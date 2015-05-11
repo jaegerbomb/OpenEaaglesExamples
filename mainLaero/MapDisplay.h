@@ -4,35 +4,35 @@
 // Description:
 //      Derived MapDisplay that will simply make our map page move.
 // -------------------------------------------------------------------------------
-#ifndef __Eaagles_MainLaero_MapDisplay_H__
-#define __Eaagles_MainLaero_MapDisplay_H__
+#ifndef __Eaagles_Example_MapDisplay_H__
+#define __Eaagles_Example_MapDisplay_H__
 
 #include "openeaagles/gui/glut/GlutDisplay.h"
 
 namespace Eaagles {
-   namespace Simulation { 
-      class Station; 
-      class Aircraft; 
+   namespace Simulation {
+      class Station;
+      class Aircraft;
    }
 
-namespace MainLaero {
+namespace Example {
 
 class MapDisplay : public Glut::GlutDisplay
 {
    DECLARE_SUBCLASS(MapDisplay, Glut::GlutDisplay)
 
 public:
-   MapDisplay();  
+   MapDisplay();
 
    Simulation::Aircraft* getOwnship();
    Simulation::Station* getStation();
 
-   // MapDisplay interface
-   virtual void mouseMotionEvent(const int x, const int y);
-   virtual void mouseEvent(const int button, const int state, const int x, const int y);
-   virtual void passiveMotionEvent(const int x, const int y);
-   virtual void buttonEvent(const int b);
-   virtual void updateData(const LCreal dt = 0.000000);
+   void mouseMotionEvent(const int x, const int y) override;
+   void mouseEvent(const int button, const int state, const int x, const int y) override;
+   void passiveMotionEvent(const int x, const int y) override;
+   void buttonEvent(const int b) override;
+
+   void updateData(const LCreal dt = 0.0) override;
 
 private:
    // button hit enumerations
@@ -43,11 +43,11 @@ private:
       INC_CMD_AS,
       DEC_CMD_ALT,               // Increase / decrease the commanded altitude (Ft - only works with no autopilot mode engaged)
       INC_CMD_ALT,
-      DEC_CMD_HDG,               // Increase / decrease the commanded heading (Degs - only works with no autopilot mode engaged) 
+      DEC_CMD_HDG,               // Increase / decrease the commanded heading (Degs - only works with no autopilot mode engaged)
       INC_CMD_HDG,
       PASSIVE_ENABLE,
       PASSIVE_DISABLE,
-      INC_CMD_AS_NPS,            // Increase / decrease our rate of acceleration 
+      INC_CMD_AS_NPS,            // Increase / decrease our rate of acceleration
       DEC_CMD_AS_NPS,
       INC_CMD_ALT_MPS,           // Increase / decrease our rate of climb / dive
       DEC_CMD_ALT_MPS,
@@ -58,7 +58,7 @@ private:
       CHANGE_AP_MODE             // Change the autopilot mode (Nav/Loiter/FollowTheLead or None)
    };
 
-   SPtr<Simulation::Station> myStation;
+   Basic::safe_ptr<Simulation::Station> myStation;
 
    int startX;         // startX of our last mouse position
    int startY;         // startY of our last mouse position
@@ -83,8 +83,8 @@ private:
    bool passiveEnable;
 };
 
-}  
-}  
+}
+}
 
 #endif
 

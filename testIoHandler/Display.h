@@ -1,25 +1,25 @@
 //------------------------------------------------------------------------------
 // Class: Display
 //------------------------------------------------------------------------------
-#ifndef	__OpenEaagles_TestIo__Display_H__
-#define __OpenEaagles_TestIo__Display_H__
+#ifndef __Eaagles_Test_Display_H__
+#define __Eaagles_Test_Display_H__
 
 #include "openeaagles/gui/glut/GlutDisplay.h"
 
 namespace Eaagles {
    namespace Basic { class IoHandler; class Number; class String; }
 
-namespace TestIo {
+namespace Test {
 
 //------------------------------------------------------------------------------
 // Class Display
 // Description: Display class for the I/O devices test program (see display.epp)
 //
-// Form name: TestIoDisplay
+// Factory name: TestIoDisplay
 // Slots --
 //    ioHandler   <Basic::IoHandler>     Single I/O data handler
 //    item        <Basic::Integer>       Item number [ 1 ... TBL_SIZE ];
-//                                         -- clear current channel number and 
+//                                         -- clear current channel number and
 //                                         -- type for this item.  Next 'ai' or
 //                                         -- 'di' will define for this 'item'.
 //    di          <Basic::Integer>       DI channel number for last 'item'
@@ -35,7 +35,8 @@ namespace TestIo {
 //       item:  5   di: 11    // Item #4 is DI #11
 //   )
 //------------------------------------------------------------------------------
-class Display : public Glut::GlutDisplay {
+class Display : public Glut::GlutDisplay
+{
    DECLARE_SUBCLASS(Display, Glut::GlutDisplay)
 
 public:
@@ -47,10 +48,9 @@ public:
 public:
    Display();
 
-   // Basic::Component functions
-   virtual void reset();
-   virtual void updateData(const LCreal dt = 0.0f);
-   virtual void updateTC(const LCreal dt = 0.0f);
+   void reset() override;
+   void updateData(const LCreal dt = 0.0) override;
+   void updateTC(const LCreal dt = 0.0) override;
 
 protected:
    virtual bool setSlotIoHandler(Basic::IoHandler* const msg);
@@ -59,8 +59,7 @@ protected:
    virtual bool setSlotDiChannel(const Basic::Number* const msg);
    virtual bool setSlotLabel(const Basic::String* const msg);
 
-   // BasicGL::GlutDisplay functions
-   virtual bool onEscKey();
+   bool onEscKey() override;
 
 private:
    enum Type { NONE, AI, DI };
@@ -69,7 +68,7 @@ private:
    void initData();
    void updateDisplay();
 
-   SPtr<Basic::IoHandler> ioHandler;   // The I/O data handler
+   Basic::safe_ptr<Basic::IoHandler> ioHandler;   // The I/O data handler
 
    // Item/Channel mapping
    unsigned short item;
@@ -88,7 +87,7 @@ private:
    SendData table_aiSD[TBL_SIZE];
 };
 
-} // End of TestIo namespace
+} // End of Test namespace
 } // End of Eaagles namespace
 
 #endif

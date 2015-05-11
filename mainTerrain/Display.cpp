@@ -14,11 +14,10 @@
 #include "Display.h"
 
 namespace Eaagles {
-namespace MainTerrain {
+namespace Example {
 
 IMPLEMENT_SUBCLASS(Display,"TerrainDisplay")
 EMPTY_SERIALIZER(Display)
-
 
 BEGIN_SLOTTABLE(Display)
    "terrain",        //  1) Terrain database
@@ -212,7 +211,7 @@ bool Display::setSlotLookAngle(const Basic::Angle* const msg)
 {
    bool ok = false;
    if (msg != 0) {
-      lookAngle = (LCreal)Basic::Degrees::convertStatic(*msg);
+      lookAngle = static_cast<LCreal>(Basic::Degrees::convertStatic(*msg));
       ok = true;
    }
    return ok;
@@ -223,7 +222,7 @@ bool Display::setSlotBeamWidth(const Basic::Angle* const msg)
 {
    bool ok = false;
    if (msg != 0) {
-      beamWidth = (LCreal)Basic::Degrees::convertStatic(*msg);
+      beamWidth = static_cast<LCreal>(Basic::Degrees::convertStatic(*msg));
       ok = true;
    }
    return ok;
@@ -376,10 +375,10 @@ void Display::updateData(const LCreal dt)
          LCreal* curvature =0;
          if (testEarthCurv) {
             curvature = new LCreal[NUM_ROWS];
-            LCreal radius = (LCreal) (Basic::Nav::ERAD60 * Basic::Distance::NM2M);
-            LCreal maxRng = (LCreal)(deltaLat * 60.0f * Basic::Distance::NM2M);
+            LCreal radius = static_cast<LCreal>(Basic::Nav::ERAD60 * Basic::Distance::NM2M);
+            LCreal maxRng = static_cast<LCreal>(deltaLat * 60.0f * Basic::Distance::NM2M);
             for (int irow = 0; irow < NUM_ROWS; irow++) {
-               LCreal curRng = maxRng * LCreal(irow)/LCreal(NUM_ROWS);
+               LCreal curRng = maxRng * static_cast<LCreal>(irow)/static_cast<LCreal>(NUM_ROWS);
                LCreal arc = curRng / radius;
                LCreal cs = 1.0f;
                LCreal c0 = lcCos(arc);
@@ -447,10 +446,10 @@ void Display::updateData(const LCreal dt)
 
                // the Lat/long of the southern most point
                double latitude = cLat + (0 - NUM_ROWS/2) * spacingLat;
-               LCreal maxRng = (LCreal)(deltaLat * 60.0f * Basic::Distance::NM2M);
+               LCreal maxRng = static_cast<LCreal>(deltaLat * 60.0f * Basic::Distance::NM2M);
 
                // Direction
-               //LCreal direction = 30.0f * LCreal(icol - NUM_COLUMNS/2)/LCreal(NUM_COLUMNS/2);
+               //LCreal direction = 30.0f * static_cast<LCreal>(icol - NUM_COLUMNS/2)/static_cast<LCreal>(NUM_COLUMNS/2);
                LCreal direction = 0;
 
                // get a strip of elevations from south to north
@@ -471,7 +470,7 @@ void Display::updateData(const LCreal dt)
                // Compute AAC data
                if (testAac) {
                   //Simulation::Terrain::aac(aacData, elevations, maskFlgs, NUM_ROWS, maxRng, altitude);
-                  LCreal angle = (LCreal)(-10.0f * Basic::Angle::D2RCC);
+                  LCreal angle = static_cast<LCreal>(-10.0f * Basic::Angle::D2RCC);
                   osg::Vec2 vec(lcCos(angle),lcSin(angle));
                   Basic::Terrain::cLight(aacData, elevations, maskFlgs, NUM_ROWS, maxRng, vec);
                }
@@ -527,7 +526,8 @@ void Display::updateData(const LCreal dt)
 
          double end = getComputerTime();
          double dtime = (end - start);
-         std::cout << "Image finished: time(s) = " << dtime << ", per line(us) = " << (dtime/(double)NUM_COLUMNS)*1000000.0 << std::endl;
+         std::cout << "Image finished: time(s) = " << dtime << ", per line(us) = "
+                   << (dtime/static_cast<double>(NUM_COLUMNS))*1000000.0 << std::endl;
 
       }
 
@@ -625,20 +625,18 @@ void Display::configure()
 //------------------------------------------------------------------------------
 bool Display::copyImageMemory(const Display& org)
 {
-   if (&org != 0) {
-      // First free our old memory
-      freeImageMemory();
+   // First free our old memory
+   freeImageMemory();
 
-      // Now allocate the new memory (if needed)
-      bool ok = initImageMemory(org.imgWidth, org.imgHeight);
-      if (ok) {
-         for (GLsizei irow = 0; irow < imgHeight; irow++) {
-            for (GLsizei icol = 0; icol < imgWidth; icol++) {
-               GLsizei idx = irow*imgWidth*PIXEL_SIZE + icol*PIXEL_SIZE;
-               image[idx+0] = org.image[idx+0];
-               image[idx+1] = org.image[idx+1];
-               image[idx+2] = org.image[idx+2];
-            }
+   // Now allocate the new memory (if needed)
+   bool ok = initImageMemory(org.imgWidth, org.imgHeight);
+   if (ok) {
+      for (GLsizei irow = 0; irow < imgHeight; irow++) {
+         for (GLsizei icol = 0; icol < imgWidth; icol++) {
+            GLsizei idx = irow*imgWidth*PIXEL_SIZE + icol*PIXEL_SIZE;
+            image[idx+0] = org.image[idx+0];
+            image[idx+1] = org.image[idx+1];
+            image[idx+2] = org.image[idx+2];
          }
       }
    }
@@ -702,6 +700,6 @@ Basic::Object* Display::getSlotByIndex(const int si)
     return BaseClass::getSlotByIndex(si);
 }
 
-}; // end MainTerrain namespace
+}; // end Example namespace
 }; // end Eaagles namespace
 

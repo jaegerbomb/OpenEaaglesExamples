@@ -1,8 +1,8 @@
 //------------------------------------------------------------------------------
 // Class: TestDisplay
 //------------------------------------------------------------------------------
-#ifndef __Eaagles_TestRecordData_TestDisplay_H__
-#define __Eaagles_TestRecordData_TestDisplay_H__
+#ifndef __Eaagles_Test_TestDisplay_H__
+#define __Eaagles_Test_TestDisplay_H__
 
 #include "openeaagles/gui/glut/GlutDisplay.h"
 
@@ -11,7 +11,7 @@ namespace Eaagles {
    namespace BasicGL { class SymbolLoader; }
    namespace xPanel { class DspRadar; class DspRwr; }
 
-namespace TestRecordData {
+namespace Test {
 
 //------------------------------------------------------------------------------
 // Class: TestDisplay
@@ -21,7 +21,7 @@ namespace TestRecordData {
 //              display that shows the 'truth' location of the players, and
 //              Primary Flight Display (PFD).
 //
-// Form Name: TestDisplay
+// Factory name: TestDisplay
 //
 // Events: (all keyboard events)
 //   'r' or 'R'   -- Reset simulation
@@ -52,16 +52,13 @@ public:
 
     void maintainAirTrackSymbols(BasicGL::SymbolLoader* loader, const LCreal rng);
 
-    // Display Interface
-    virtual void mouseEvent(const int button, const int state, const int x, const int y);
+    void mouseEvent(const int button, const int state, const int x, const int y) override;
 
-    // Component interface
-    virtual bool event(const int event, Basic::Object* const obj = 0);
-    virtual void updateData(const LCreal dt = 0.0f);
+    bool event(const int event, Basic::Object* const obj = nullptr) override;
+    void updateData(const LCreal dt = 0.0) override;
 
 protected:
-   // Basic::Component protected interface
-   virtual bool shutdownNotification();
+   bool shutdownNotification() override;
 
 private:
     // Key event handlers
@@ -89,8 +86,8 @@ private:
 
     SendData        headingSD;
     SendData        rangeSD;
-    
-    SPtr<Simulation::Station> myStation;
+
+    Basic::safe_ptr<Simulation::Station> myStation;
 
     Simulation::Player* tracks[MAX_TRACKS];    // players that we're displaying
     int                 trkIdx[MAX_TRACKS];    // Index of track symbols
@@ -142,13 +139,13 @@ private:
     LCreal fDirBankRate;
     LCreal fDirPitch;
     LCreal fDirPitchRate;
-    
+
     // barometric pressure
     LCreal baro;
     LCreal baroRate;
 };
 
-} // End TestRecordData namespace
+} // End Test namespace
 } // End Eaagles namespace
 
 #endif

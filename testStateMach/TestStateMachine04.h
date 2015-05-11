@@ -1,13 +1,13 @@
 //------------------------------------------------------------------------------
 // Class: TestStateMachine04
 //------------------------------------------------------------------------------
-#ifndef __TestStateMach_TestStateMachine04_H__
-#define __TestStateMach_TestStateMachine04_H__
+#ifndef __Eaagles_Test_TestStateMachine04_H__
+#define __Eaagles_Test_TestStateMachine04_H__
 
 #include "openeaagles/basic/StateMachine.h"
 
 namespace Eaagles {
-namespace TestStateMach {
+namespace Test {
 
 //------------------------------------------------------------------------------
 // Class: TestStateMachine04
@@ -16,8 +16,9 @@ namespace TestStateMach {
 //    functions: nextSubstate() and goToSubstate().
 //
 //------------------------------------------------------------------------------
-class TestStateMachine04 : public Basic::StateMachine {
-   DECLARE_SUBCLASS(TestStateMachine04,Basic::StateMachine)
+class TestStateMachine04 : public Basic::StateMachine
+{
+   DECLARE_SUBCLASS(TestStateMachine04, Basic::StateMachine)
 
 public:
    enum { CALL_01 = 11, CALL_02 = 22 };
@@ -26,14 +27,13 @@ public:
    TestStateMachine04();
 
 protected:
-   // Basic::StateMachine protected interface function
-   virtual void preStateProc(const LCreal dt);
-   virtual void postStateProc(const LCreal dt);
-   virtual unsigned short stateTable(
+   void preStateProc(const LCreal dt) override;
+   void postStateProc(const LCreal dt) override;
+   unsigned short stateTable(
          const unsigned short cstate,
          const StateTableCode code,
          const LCreal dt=0
-      );
+      ) override;
 
 private:
    // State specific functions
@@ -51,7 +51,7 @@ private:
    void stateFunc99(const LCreal dt);
 };
 
-} // End TestStateMach namespace
+} // End Test namespace
 } // End Eaagles namespace
 
-#endif	/* __TestStateMach_TestStateMachine04_H__ */
+#endif

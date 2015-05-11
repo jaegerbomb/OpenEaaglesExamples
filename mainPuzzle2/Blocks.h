@@ -1,14 +1,15 @@
 //------------------------------------------------------------------------------
 // Class:  Block1, Block2, ... Block15, Block
 //------------------------------------------------------------------------------
-#ifndef __Block_H_64771F48_3151_4bfc_B104_DDBF0F33D7DA__
-#define __Block_H_64771F48_3151_4bfc_B104_DDBF0F33D7DA__
+#ifndef __Eaagles_Example_Blocks_H__
+#define __Eaagles_Example_Blocks_H__
 
 #include "openeaagles/basic/Object.h"
 
 namespace Eaagles {
    namespace Basic { class List; class Integer; }
-namespace Puzzle2 {
+
+namespace Example {
 
 class Puzzle;
 
@@ -20,11 +21,10 @@ class Puzzle;
 //
 // Block locations (x, y): lower left is (1,1)
 // Block type IDs are unique to blocks of the same type (e.g., size and shape)
-//
-// GUID: {64771F48-3151-4bfc-B104-DDBF0F33D7DA}
 //------------------------------------------------------------------------------
-class Block : public Basic::Object {
-    DECLARE_SUBCLASS(Block,Basic::Object)
+class Block : public Basic::Object
+{
+    DECLARE_SUBCLASS(Block, Basic::Object)
 
 public:
    Block();
@@ -74,10 +74,9 @@ class Block1 : public Block {
 public:
    Block1();
 
-   // Block class interface
-   virtual unsigned int getTypeId() const;
-   virtual unsigned int getSizeX() const;
-   virtual unsigned int getSizeY() const;
+   unsigned int getTypeId() const override;
+   unsigned int getSizeX() const override;
+   unsigned int getSizeY() const override;
 };
 
 //------------------------------------------------------------------------------
@@ -88,10 +87,9 @@ class Block2 : public Block {
 public:
    Block2();
 
-   // Block class interface
-   virtual unsigned int getTypeId() const;
-   virtual unsigned int getSizeX() const;
-   virtual unsigned int getSizeY() const;
+   unsigned int getTypeId() const override;
+   unsigned int getSizeX() const override;
+   unsigned int getSizeY() const override;
 };
 
 //------------------------------------------------------------------------------
@@ -102,10 +100,9 @@ class Block3 : public Block {
 public:
    Block3();
 
-   // Block class interface
-   virtual unsigned int getTypeId() const;
-   virtual unsigned int getSizeX() const;
-   virtual unsigned int getSizeY() const;
+   unsigned int getTypeId() const override;
+   unsigned int getSizeX() const override;
+   unsigned int getSizeY() const override;
 };
 
 //------------------------------------------------------------------------------
@@ -116,10 +113,9 @@ class Block4 : public Block {
 public:
    Block4();
 
-   // Block class interface
-   virtual unsigned int getTypeId() const;
-   virtual unsigned int getSizeX() const;
-   virtual unsigned int getSizeY() const;
+   unsigned int getTypeId() const override;
+   unsigned int getSizeX() const override;
+   unsigned int getSizeY() const override;
 };
 
 //------------------------------------------------------------------------------
@@ -130,10 +126,9 @@ class Block5 : public Block {
 public:
    Block5();
 
-   // Block class interface
-   virtual unsigned int getTypeId() const;
-   virtual unsigned int getSizeX() const;
-   virtual unsigned int getSizeY() const;
+   unsigned int getTypeId() const override;
+   unsigned int getSizeX() const override;
+   unsigned int getSizeY() const override;
 };
 
 //------------------------------------------------------------------------------
@@ -144,10 +139,9 @@ class Block6 : public Block {
 public:
    Block6();
 
-   // Block class interface
-   virtual unsigned int getTypeId() const;
-   virtual unsigned int getSizeX() const;
-   virtual unsigned int getSizeY() const;
+   unsigned int getTypeId() const override;
+   unsigned int getSizeX() const override;
+   unsigned int getSizeY() const override;
 };
 
 //------------------------------------------------------------------------------
@@ -158,10 +152,9 @@ class Block7 : public Block {
 public:
    Block7();
 
-   // Block class interface
-   virtual unsigned int getTypeId() const;
-   virtual unsigned int getSizeX() const;
-   virtual unsigned int getSizeY() const;
+   unsigned int getTypeId() const override;
+   unsigned int getSizeX() const override;
+   unsigned int getSizeY() const override;
 };
 
 //------------------------------------------------------------------------------
@@ -172,10 +165,9 @@ class Block8 : public Block {
 public:
    Block8();
 
-   // Block class interface
-   virtual unsigned int getTypeId() const;
-   virtual unsigned int getSizeX() const;
-   virtual unsigned int getSizeY() const;
+   unsigned int getTypeId() const override;
+   unsigned int getSizeX() const override;
+   unsigned int getSizeY() const override;
 };
 
 //------------------------------------------------------------------------------
@@ -186,10 +178,9 @@ class Block9 : public Block {
 public:
    Block9();
 
-   // Block class interface
-   virtual unsigned int getTypeId() const;
-   virtual unsigned int getSizeX() const;
-   virtual unsigned int getSizeY() const;
+   unsigned int getTypeId() const override;
+   unsigned int getSizeX() const override;
+   unsigned int getSizeY() const override;
 };
 
 //------------------------------------------------------------------------------
@@ -200,10 +191,9 @@ class Block10 : public Block {
 public:
    Block10();
 
-   // Block class interface
-   virtual unsigned int getTypeId() const;
-   virtual unsigned int getSizeX() const;
-   virtual unsigned int getSizeY() const;
+   unsigned int getTypeId() const override;
+   unsigned int getSizeX() const override;
+   unsigned int getSizeY() const override;
 };
 
 //------------------------------------------------------------------------------
@@ -214,10 +204,9 @@ class Block11 : public Block {
 public:
    Block11();
 
-   // Block class interface
-   virtual unsigned int getTypeId() const;
-   virtual unsigned int getSizeX() const;
-   virtual unsigned int getSizeY() const;
+   unsigned int getTypeId() const override;
+   unsigned int getSizeX() const override;
+   unsigned int getSizeY() const override;
 };
 
 //------------------------------------------------------------------------------
@@ -228,10 +217,9 @@ class Block12 : public Block {
 public:
    Block12();
 
-   // Block class interface
-   virtual unsigned int getTypeId() const;
-   virtual unsigned int getSizeX() const;
-   virtual unsigned int getSizeY() const;
+   unsigned int getTypeId() const override;
+   unsigned int getSizeX() const override;
+   unsigned int getSizeY() const override;
 };
 
 //------------------------------------------------------------------------------
@@ -242,10 +230,9 @@ class Block13 : public Block {
 public:
    Block13();
 
-   // Block class interface
-   virtual unsigned int getTypeId() const;
-   virtual unsigned int getSizeX() const;
-   virtual unsigned int getSizeY() const;
+   unsigned int getTypeId() const override;
+   unsigned int getSizeX() const override;
+   unsigned int getSizeY() const override;
 };
 
 //------------------------------------------------------------------------------
@@ -256,10 +243,9 @@ class Block14 : public Block {
 public:
    Block14();
 
-   // Block class interface
-   virtual unsigned int getTypeId() const;
-   virtual unsigned int getSizeX() const;
-   virtual unsigned int getSizeY() const;
+   unsigned int getTypeId() const override;
+   unsigned int getSizeX() const override;
+   unsigned int getSizeY() const override;
 };
 
 //------------------------------------------------------------------------------
@@ -270,13 +256,12 @@ class Block15 : public Block {
 public:
    Block15();
 
-   // Block class interface
-   virtual unsigned int getTypeId() const;
-   virtual unsigned int getSizeX() const;
-   virtual unsigned int getSizeY() const;
+   unsigned int getTypeId() const override;
+   unsigned int getSizeX() const override;
+   unsigned int getSizeY() const override;
 };
 
-}  // End of Puzzle2 namespace
+}  // End of Example namespace
 }  // End of Eaagles namespace
 
-#endif /* __Block_H_64771F48_3151_4bfc_B104_DDBF0F33D7DA__ */
+#endif

@@ -1,11 +1,10 @@
 //------------------------------------------------------------------------------
 // Class: MyObj
-// Base class: Object-> MyObj
 // Description: example class
 //------------------------------------------------------------------------------
 
-#ifndef _MYOBJ_INCLUDE
-#define _MYOBJ_INCLUDE
+#ifndef __Eaagles_Tutorial_MyObj_H__
+#define __Eaagles_Tutorial_MyObj_H__
 
 #include "openeaagles/basic/Object.h"
 
@@ -14,14 +13,13 @@ namespace Eaagles {
 namespace Basic { class PairStream; class List; class String;
                   class Number; class Identifier; }
 
-namespace Example05 {
+namespace Tutorial {
 
 class MyObj : public Basic::Object
 {
   DECLARE_SUBCLASS(MyObj, Basic::Object)
 
 public:
-
   MyObj();
 
   // data access functions
@@ -50,9 +48,7 @@ public:
   bool setSlotVisible(const Basic::Number* const);
   bool setSlotMessage(const Basic::String* const);
 
-   // Object class method this can be overridden to check object data
-   // This method is called by the parser after object construction
-   virtual bool isValid() const;
+   bool isValid() const override;
 
 private:
   const Basic::PairStream* colorTable;
@@ -63,7 +59,7 @@ private:
   bool visible;
 };
 
-} // namespace Example05
+} // namespace Tutorial
 } // namespace Eaagles
 
 #endif

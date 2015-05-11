@@ -1,8 +1,8 @@
 //------------------------------------------------------------------------------
 // Class: SimStation
 //------------------------------------------------------------------------------
-#ifndef __SimStation_H__
-#define __SimStation_H__
+#ifndef __Eaagles_Example_SimStation_H__
+#define __Eaagles_Example_SimStation_H__
 
 #include "openeaagles/simulation/Station.h"
 
@@ -11,7 +11,7 @@ namespace Eaagles {
    namespace Glut { class GlutDisplay; }
    namespace Simulation { class AirVehicle; }
 
-namespace Sim3 {
+namespace Example {
 
 //------------------------------------------------------------------------------
 // Class: SimStation
@@ -21,15 +21,15 @@ namespace Sim3 {
 //              (HOTAS) device, which is usually just a joystick, and adds stepping
 //              of our ownship to the next local, air vehicle player.
 //
-// Form Name: SimStation
+// Factory name: SimStation
 // Slots:
 //      display                 <Glut::GlutDisplay>  ! Main graphics display
 //      autoResetTimer          <Time>               ! Auto RESET timer value (Basic::Time); default: 0
 //------------------------------------------------------------------------------
 class SimStation : public Simulation::Station
 {
-    DECLARE_SUBCLASS(SimStation,Simulation::Station)
-    
+    DECLARE_SUBCLASS(SimStation, Simulation::Station)
+
 public:
     SimStation();
 
@@ -40,14 +40,13 @@ public:
    virtual bool setSlotMainDisplay(Glut::GlutDisplay* const d);
    virtual bool setSlotAutoResetTime(const Basic::Time* const num);     // Sets the auto RESET timer
 
-   // Basic::Component Interface
-   virtual void updateTC(const LCreal dt = 0.0f);
-   virtual void updateData(const LCreal dt = 0.0f);
-   virtual void reset();
+   void updateTC(const LCreal dt = 0.0) override;
+   void updateData(const LCreal dt = 0.0) override;
+   void reset() override;
 
 private:
     // Main Display
-    SPtr<Glut::GlutDisplay> mainDisplay;
+    Basic::safe_ptr<Glut::GlutDisplay> mainDisplay;
     bool displayInit;
 
     // Auto reset timer
@@ -55,7 +54,7 @@ private:
     const Basic::Time* autoResetTimer0;   // Init value of the Auto RESET timer
 };
 
-} // End Sim3 namespace
+} // End Example namespace
 } // End Eaagles namespace
 
-#endif // __SimStation_H__
+#endif

@@ -7,12 +7,12 @@
 #include <cstdlib>
 
 namespace Eaagles {
-namespace Example04 {
+namespace Tutorial {
 
 IMPLEMENT_ABSTRACT_SUBCLASS(Random,"Random")
 // setup slot table
 BEGIN_SLOTTABLE(Random)
-  	"seed", 	// random number seed value
+    "seed",              // random number seed value
 END_SLOTTABLE(Random)
 // map attributes to slots
 BEGIN_SLOT_MAP(Random)
@@ -53,7 +53,7 @@ void Random::deleteData()
 //------------------------------------------------------------------------------
 bool Random::setSeed(const unsigned int seed)
 {
-   srand(seed);
+   std::srand(seed);
    return true;
 }
 
@@ -68,11 +68,11 @@ Basic::Object* Random::getSlotByIndex(const int si)
 bool Random::setSlotSeed(const Basic::Number* const seed)
 {
    bool ok = false;
-   if(seed != 0)
+   if (seed != 0)
       ok = setSeed(seed->getInt());
    return ok;
 }
 
-} // namespace Example04
+} // namespace Tutorial
 } // namespace Eaagles
 

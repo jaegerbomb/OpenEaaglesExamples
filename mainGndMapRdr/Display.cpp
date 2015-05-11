@@ -20,7 +20,7 @@
 #include "openeaagles/basic/units/Distances.h"
 
 namespace Eaagles {
-namespace MainGndMapRdr {
+namespace Example {
 
 IMPLEMENT_SUBCLASS(Display,"RbrDisplay")
 EMPTY_SERIALIZER(Display)
@@ -126,7 +126,7 @@ void Display::drawFunc()
    if (own != 0) pair = own->getSensorByType(typeid(RealBeamRadar));
 
    const RealBeamRadar* rdr = 0;
-   if (pair != 0) rdr = (const RealBeamRadar*)( pair->object() );
+   if (pair != 0) rdr = static_cast<const RealBeamRadar*>( pair->object() );
 
    const GLubyte* image = 0;  // The image pixels 
    if (rdr != 0) image = rdr->getImage();
@@ -216,10 +216,8 @@ void Display::configure()
    glDisable(GL_LINE_SMOOTH);
    glDisable(GL_POLYGON_SMOOTH);
    glDisable(GL_BLEND);
-   glBlendFunc(GL_ONE,  GL_ZERO);
+   glBlendFunc(GL_ONE, GL_ZERO);
 }
-
-
 
 //------------------------------------------------------------------------------
 // getSlotByIndex()
@@ -229,6 +227,6 @@ Basic::Object* Display::getSlotByIndex(const int si)
     return BaseClass::getSlotByIndex(si);
 }
 
-}; // end MainGm namespace
+}; // end Example namespace
 }; // end Eaagles namespace
 

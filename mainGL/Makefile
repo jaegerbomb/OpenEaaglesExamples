@@ -3,7 +3,7 @@ include ../makedefs
 
 PGM = mainGL
 
-OBJS = mainGL.o 
+OBJS = main.o 
 
 LDFLAGS += -loeGlut -loeBasicGL -loeBasic
 LDFLAGS += -lftgl -lfreetype -lglut -lGLU -lGL -lX11 -lpthread
@@ -13,7 +13,7 @@ LDFLAGS += -lrt
 all: $(PGM)
 
 edl:
-	cpp inputs/test.epp >test.edl   $(EPPFLAGS)
+	cpp configs/test.epp >test.edl   $(EPPFLAGS)
 
 
 $(PGM): $(OBJS)

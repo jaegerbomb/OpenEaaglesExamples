@@ -5,19 +5,19 @@
 // mainFox::Application and mainFox::Display
 //
 //------------------------------------------------------------------
-#ifndef __Eaagles_mainFox_MainWindow_H__
-#define __Eaagles_mainFox_MainWindow_H__
+#ifndef __Eaagles_Example_MainWindow_H__
+#define __Eaagles_Example_MainWindow_H__
 
 #include "fx.h"
 
 namespace Eaagles {
-namespace mainFox {
+namespace Example {
 
 class Application;
 class FoxDisplay;  
 
-class MainWindow : public FX::FXMainWindow {
-
+class MainWindow : public FX::FXMainWindow
+{
    FXDECLARE(MainWindow)
 
 public:
@@ -64,7 +64,7 @@ private:
 
 };
 
-} // end mainFox namespace
+} // end Example namespace
 } // end Eaagles namespace
 
 #endif

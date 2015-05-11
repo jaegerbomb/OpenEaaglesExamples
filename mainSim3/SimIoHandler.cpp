@@ -1,7 +1,7 @@
 
 #include "SimIoHandler.h"
 #include "SimStation.h"
-#include "inputs/f16HotasIo.h"
+#include "configs/f16HotasIo.h"
 
 #include "openeaagles/simulation/Autopilot.h"
 #include "openeaagles/simulation/AirVehicle.h"
@@ -12,7 +12,7 @@
 #include "openeaagles/basic/IoData.h"
 
 namespace Eaagles {
-namespace Sim3 {
+namespace Example {
 
 //==============================================================================
 // SimIoHandler
@@ -97,7 +97,7 @@ void SimIoHandler::inputDevices(const LCreal dt)
    // ---
    // get the Station, Simulation and our ownship player
    // ---
-   SimStation* const sta = (SimStation*)( findContainerByType(typeid(SimStation)) );
+   SimStation* const sta = static_cast<SimStation*>( findContainerByType(typeid(SimStation)) );
 
    Simulation::Simulation* sim = 0;
    Simulation::AirVehicle* av = 0;
@@ -116,7 +116,7 @@ void SimIoHandler::inputDevices(const LCreal dt)
       Simulation::Autopilot* ap = 0;
       {
          Basic::Pair* p = av->getPilotByType( typeid( Simulation::Autopilot) );
-         if (p != 0) ap = (Simulation::Autopilot*)( p->object() );
+         if (p != 0) ap = static_cast<Simulation::Autopilot*>(p->object());
       }
 
       // ------------------------------------------------------------
@@ -324,5 +324,5 @@ void SimIoHandler::clear()
 {
 }
 
-} // End Sim3
+} // End Example
 } // end Eaagles namespace

@@ -3,7 +3,7 @@ include ../makedefs
 
 PGM = testIoHandler
 
-OBJS = Display.o Table.o formFunc.o main.o
+OBJS = Display.o Table.o Factory.o main.o
 
 LDFLAGS += -loeIoDevice -loeGlut -loeBasicGL -loeBasic
 LDFLAGS += -lftgl -lfreetype -lglut -lGLU -lGL -lX11 -lpthread
@@ -21,8 +21,8 @@ $(PGM): $(OBJS)
 	g++ -o $(PGM) $(OBJS) $(LDFLAGS)
 
 edl:
-	cpp inputs/test1.epp >test1.edl $(EPPFLAGS)
-	cpp inputs/test2.epp >test2.edl $(EPPFLAGS)
+	cpp configs/test1.epp >test1.edl $(EPPFLAGS)
+	cpp configs/test2.epp >test2.edl $(EPPFLAGS)
 
 clean:
 	-rm -f *.o

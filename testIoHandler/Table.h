@@ -1,27 +1,28 @@
 //------------------------------------------------------------------------------
 // Class: Table
 //------------------------------------------------------------------------------
-#ifndef __OpenEaagles_TestIo_Table_H__
-#define __OpenEaagles_TestIo_Table_H__
+#ifndef __Eaagles_Test_Table_H__
+#define __Eaagles_Test_Table_H__
 
 #include "openeaagles/basicGL/Field.h"
 
 namespace Eaagles {
    namespace Basic { class Number; class PairStream; }
 
-namespace TestIo {
+namespace Test {
 
 //------------------------------------------------------------------------------
-// Class:	Table
+// Class: Table
 // Description: Manages a table
 //
-// Form name: Table
+// Factory name: Table
 // Slots:
 //    rows     <Number>     ! Number of rows (default: 1)
 //    spacing  <Number>     ! Spacing between rows (default: 1)
 //    columns  <PairStream> ! Column descriptions: list of items in each row
 //------------------------------------------------------------------------------
-class Table : public BasicGL::Field {
+class Table : public BasicGL::Field
+{
    DECLARE_SUBCLASS(Table,BasicGL::Field)
 
 public:
@@ -35,14 +36,12 @@ public:
    virtual bool setSlotSpacing(Basic::Number* const);
    virtual bool setSlotColumns(Basic::PairStream* const);
 
-   // BasicGL::Field class interface
-   virtual int line() const;
-   virtual int line(const int ll);
-   virtual int column() const;
-   virtual int column(const int cc);
+   int line() const override;
+   int line(const int ll) override;
+   int column() const override;
+   int column(const int cc) override;
 
-   // Basic::Component class interface
-   virtual void reset();
+   void reset() override;
 
 private:
    void initData();
@@ -54,8 +53,8 @@ private:
    const Basic::PairStream* columns;  // columns items
 };
 
-} // End of TestIo namespace
+} // End of Test namespace
 } // End of Eaagles namespace
 
-#endif  /* __OpenEaagles_TestIo_Table_H__ */
+#endif
 

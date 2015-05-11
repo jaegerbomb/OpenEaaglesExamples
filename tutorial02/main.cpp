@@ -1,11 +1,12 @@
 
 #include <iostream>
+
 #include "Random.h"
 
 namespace Eaagles {
-namespace Example02 {
+namespace Tutorial {
 
-int exec (int, char **)
+int main(int argc, char* argv[])
 {
    std::cout << "Creating Random object\n";
    Random* rgen = new Random();
@@ -13,7 +14,7 @@ int exec (int, char **)
 
    rgen->setSeed(25);
 
-   for( int i=0; i<10; i++)
+   for(unsigned int i=0; i<10; i++)
       std::cout << rgen->getNum() << std::endl;
 
    std::cout << "Unref'ing random object\n";
@@ -23,7 +24,7 @@ int exec (int, char **)
    return 0;
 }
 
-} // namespace Example02
+} // namespace Tutorial
 } // namespace Eaagles
 
 //-----------------------------------------------------------------------------
@@ -31,6 +32,6 @@ int exec (int, char **)
 //-----------------------------------------------------------------------------
 int main(int argc, char* argv[])
 {
-   Eaagles::Example02::exec(argc, argv);
+   Eaagles::Tutorial::main(argc, argv);
 }
 

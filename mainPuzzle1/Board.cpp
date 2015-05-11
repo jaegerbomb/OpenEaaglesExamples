@@ -8,7 +8,7 @@
 #include "openeaagles/basic/PairStream.h"
 
 namespace Eaagles {
-namespace Puzzle {
+namespace Example {
 
 IMPLEMENT_SUBCLASS(Board,"PuzzleBoard")
 
@@ -62,6 +62,7 @@ Board::Board()
    curPathState = 0;
    moveTimer = 0;
    startupTimer = 0;
+   movingFlg = false;
 }
 
 //------------------------------------------------------------------------------
@@ -151,7 +152,7 @@ void Board::updateData(const LCreal dt)
          const State* s = finalState;
          while (s->getGeneration() > 0 && nstates < MAX_STATES) {
             path[nstates++] = s;
-            s = (const State*) s->container();
+            s = static_cast<const State*>( s->container() );
          }
          resetSolutionPath();
          std::cout << "Board::updateData() Number moves : " << nstates << std::endl;
@@ -194,8 +195,8 @@ unsigned int Board::setupBlockGraphics()
                      blocks[nblocks] = g->clone();
                      blocks[nblocks]->container(this);
                      blockId[nblocks] = b->getReferenceID();
-                     xp[nblocks] = (LCreal) b->getX();
-                     yp[nblocks] = (LCreal) b->getY();
+                     xp[nblocks] = static_cast<LCreal>(b->getX());
+                     yp[nblocks] = static_cast<LCreal>(b->getY());
                      xd[nblocks] = 0;
                      yd[nblocks] = 0;
                      nblocks++;
@@ -345,7 +346,7 @@ std::ostream& Board::serialize(std::ostream& sout, const int i, const bool slots
 {
    int j = 0;
    if ( !slotsOnly ) {
-      sout << "( " << getFormName() << std::endl;
+      sout << "( " << getFactoryName() << std::endl;
       j = 4;
    }
 
@@ -377,5 +378,5 @@ std::ostream& Board::serialize(std::ostream& sout, const int i, const bool slots
    return sout;
 }
 
-}  // End of Puzzle namespace
+}  // End of Example namespace
 }  // End of Eaagles namespace

@@ -13,7 +13,7 @@
 #include "openeaagles/basic/units/Times.h"
 
 namespace Eaagles {
-namespace MainLaero {
+namespace Example {
 
 IMPLEMENT_EMPTY_SLOTTABLE_SUBCLASS(AdiDisplay,"AdiDisplay")
 EMPTY_SERIALIZER(AdiDisplay)
@@ -138,12 +138,12 @@ Simulation::Aircraft* AdiDisplay::getOwnship()
    if (sta != 0) {
       pA = dynamic_cast<Simulation::Aircraft*>(sta->getOwnship());
 
-      const unsigned int ffrate = 5;    //LDB
-      sta->setFastForwardRate(ffrate);  //LDB
+      //const unsigned int ffrate = 5;    //LDB
+      //sta->setFastForwardRate(ffrate);  //LDB
    }
    return pA;
 }
 
-} 
-} 
+}
+}
 

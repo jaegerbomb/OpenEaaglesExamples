@@ -1,9 +1,8 @@
-//*****************************************************************************
-// Main I/O Device Test program
-//*****************************************************************************
-
+//----------------------------------------------------------------
+// I/O device test program
+//----------------------------------------------------------------
 #include "Display.h"
-#include "formFunc.h"
+#include "Factory.h"
 
 #include "openeaagles/basic/Pair.h"
 #include "openeaagles/basic/Timers.h"
@@ -11,25 +10,23 @@
 
 #include <GL/glut.h>
 
-namespace Eaagles {
-namespace TestIo {
+#include <cstring>
+#include <cstdlib>
 
-// Frame Rate
+namespace Eaagles {
+namespace Test {
+
+// frame rate
 const int frameRate = 20;
 
-// The main station
-Display* display = 0;
-
-//=============================================================================
-// Main MFD functions
-//=============================================================================
+Display* display = nullptr;
 
 // timerFunc() -- Time critical stuff)
 static void timerFunc(int)
 {
-   double dt = 1.0/double(frameRate);
+   double dt = 1.0 / static_cast<double>(frameRate);
 
-   unsigned int millis = (unsigned int)(dt * 1000);
+   unsigned int millis = static_cast<unsigned int>(dt * 1000);
    glutTimerFunc(millis, timerFunc, 1);
 
    Basic::Timer::updateTimers(dt);
@@ -37,95 +34,79 @@ static void timerFunc(int)
    display->updateTC(dt);
 }
 
-// readMfd() -- function to the read description files
-static Display* readDescription(const char* const filename)
+// display builder
+static Display* builder(const char* const filename)
 {
-   Display* sys = 0;
-
-   // Read the description file
+   // read configuration file
    int errors = 0;
-   Basic::Object* q1 = lcParser(filename, mainFormFunc, &errors);
+   Basic::Object* obj = Basic::lcParser(filename, Factory::createObj, &errors);
    if (errors > 0) {
-      std::cerr << "Errors in reading file: " << errors << std::endl;
-      exit(1);
+      std::cerr << "File: " << filename << ", errors: " << errors << std::endl;
+      std::exit(EXIT_FAILURE);
    }
 
-   // Set 'sys' to our basic description object.
-   if (q1 != 0) {
-
-      // When we were given a Pair, get the pointer to its object.
-      Basic::Pair* pp = dynamic_cast<Basic::Pair*>(q1);
-      if (pp != 0) {
-         q1 = pp->object();
-      }
-
-      sys = dynamic_cast<Display*>(q1);
-
+   // test to see if an object was created
+   if (obj == nullptr) {
+      std::cerr << "Invalid configuration file, no objects defined!" << std::endl;
+      std::exit(EXIT_FAILURE);
    }
 
-   return sys;
+   // do we have a Basic::Pair, if so, point to object in Pair, not Pair itself
+   Basic::Pair* pair = dynamic_cast<Basic::Pair*>(obj);
+   if (pair != nullptr) {
+      obj = pair->object();
+      obj->ref();
+      pair->unref();
+   }
+
+   // try to cast to proper object, and check
+   Display* display = dynamic_cast<Display*>(obj);
+   if (display == nullptr) {
+      std::cerr << "Invalid configuration file!" << std::endl;
+      std::exit(EXIT_FAILURE);
+   }
+   return display;
 }
 
-//-----------------------------------------------------------------------------
-// main() -- Main routine
-//-----------------------------------------------------------------------------
+//
 int main(int argc, char* argv[])
 {
    glutInit(&argc, argv);
 
-   // Description (input) File -- After being processed by the C preprocessor
-   const char* fileName = "test1.edl";
-
+   // default configuration filename
+   const char* configFilename = "test1.edl";
+   // parse arguments
    for (int i = 1; i < argc; i++) {
-      if (strcmp(argv[i],"-f") == 0) {
-         fileName = argv[++i];
+      if (std::strcmp(argv[i], "-f") == 0) {
+         configFilename = argv[++i];
       }
    }
 
-   // ---
-   // Read in the description files
-   // ---
-   display = readDescription(fileName);
+   // build a display
+   display = builder(configFilename);
 
-   // Make sure we did get a valid object (we must have one!)
-   if (display == 0) {
-      std::cout << "main(): invalid description file!" << std::endl;
-      exit(EXIT_FAILURE);
-   }
-   //display->serialize(std::cout);
-
-   // ---
-   // Create a display window
-   // ---
+   // create a display window
    display->createWindow();
 
-   // ---
    // reset the system
-   // ---
    display->reset();
 
-   // ---
-   // Set timer
-   // ---
-   double dt = 1.0/double(frameRate);
-   unsigned int millis = (unsigned int)(dt * 1000);
+   // set timer
+   double dt = 1.0/static_cast<double>(frameRate);
+   unsigned int millis = static_cast<unsigned int>(dt * 1000);
    glutTimerFunc(millis, timerFunc, 1);
 
-   // ---
-   // Main loop
-   // ---
+   // main loop
    glutMainLoop();
    return 0;
 }
 
-} // End of TestIo namespace
-} // End of Eaagles namespace
+} // end of Test namespace
+} // end of Eaagles namespace
 
-//-----------------------------------------------------------------------------
-// main() -- Main routine
-//-----------------------------------------------------------------------------
+//
 int main(int argc, char* argv[])
 {
-   Eaagles::TestIo::main(argc,argv);
+   Eaagles::Test::main(argc,argv);
 }
 

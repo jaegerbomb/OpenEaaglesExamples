@@ -6,14 +6,14 @@
 #include <FL/fl_ask.H>
 
 namespace Eaagles {
-namespace mainFltk1 {
+namespace Example {
 
 // ----------------------------------------------------------------------------
 // windowCallback() - called when MainWindow wants to exit
 // ----------------------------------------------------------------------------
 static void windowCallback(Fl_Widget*, void* data) {
     // have to handle our own exiting.
-    ((MainWindow*)data)->quitApp();    
+    (static_cast<MainWindow*>(data))->quitApp();
 }
 
 // roller callbacks
@@ -24,7 +24,7 @@ static void hRollCallback(Fl_Widget* w, void* data) {
     Fl_Roller* r = (Fl_Roller*)w;
     if (r != 0) {
         // have to handle our own exiting.
-        ((MainWindow*)data)->setYRotation(r->value());    
+        (static_cast<MainWindow*>(data))->setYRotation(r->value());    
     }
 }
 
@@ -35,7 +35,7 @@ static void vRollCallback(Fl_Widget* w, void* data) {
     Fl_Roller* r = (Fl_Roller*)w;
     if (r != 0) {
         // have to handle our own exiting.
-        ((MainWindow*)data)->setXRotation(r->value());    
+        (static_cast<MainWindow*>(data))->setXRotation(r->value());    
     }
 }
 
@@ -46,7 +46,7 @@ static void zRollCallback(Fl_Widget* w, void* data) {
     Fl_Roller* r = (Fl_Roller*)w;
     if (r != 0) {
         // have to handle our own exiting.
-        ((MainWindow*)data)->setZRotation(r->value());    
+        (static_cast<MainWindow*>(data))->setZRotation(r->value());    
     }
 }
 
@@ -58,11 +58,9 @@ static void menuCallback(Fl_Widget* w, void* data) {
     Fl_Menu_* m = (Fl_Menu_*)w;
     const Fl_Menu_Item* mi = m->mvalue();
     if (mi != 0) {
-        ((MainWindow*)data)->menuCB(mi->label());    
+        (static_cast<MainWindow*>(data))->menuCB(mi->label());    
     }
 }
-
-
 
 // ----------------------------------------------------------------------------
 // constructor(s) -
@@ -197,6 +195,6 @@ void MainWindow::setZRotation(const double x)
 }
 
 
-}; // end mainFltk1 namespace
-}; // end Eaagles namespace
+} // end Example namespace
+} // end Eaagles namespace
 

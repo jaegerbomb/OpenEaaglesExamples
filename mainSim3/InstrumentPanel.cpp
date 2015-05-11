@@ -15,10 +15,8 @@
 #include "openeaagles/basic/Boolean.h"
 #include <GL/glut.h>
 
-
 namespace Eaagles {
-namespace Sim3 {
-
+namespace Example {
 
 IMPLEMENT_SUBCLASS(InstrumentPanel,"InstrumentPanel")
 EMPTY_SERIALIZER(InstrumentPanel)
@@ -33,14 +31,12 @@ BEGIN_EVENT_HANDLER(InstrumentPanel)
    ON_EVENT('+',onStepOwnshipKey)
 END_EVENT_HANDLER()
 
-
 //------------------------------------------------------------------------------
 // Constructor
 //------------------------------------------------------------------------------
 InstrumentPanel::InstrumentPanel() 
 {
    STANDARD_CONSTRUCTOR()
-
    myStation = 0;
 }
 
@@ -129,7 +125,7 @@ void InstrumentPanel::updateData(const LCreal dt)
          player->ref();
 
 #if 0
-         course = (LCreal) player->getCourse();
+         course = static_cast<LCreal>(player->getCourse());
          sBrakePos = player->getSpeedBrakePosition();
 #endif
          gForce = player->getGload();
@@ -223,5 +219,5 @@ bool InstrumentPanel::onStepOwnshipKey()
    return true;
 }
 
-} // end Sim3 namespace
+} // end Example namespace
 } // end Eaagles namespace

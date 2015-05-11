@@ -1,20 +1,22 @@
 //------------------------------------------------------------------------------
 // Puzzle board
 //------------------------------------------------------------------------------
-#ifndef __Board_H__
-#define __Board_H__
+#ifndef __Eaagles_Example_Board_H__
+#define __Eaagles_Example_Board_H__
 
 #include "openeaagles/gui/glut/GlutDisplay.h"
 
 namespace Eaagles {
    namespace Basic { class PairStream; }
    namespace BasicGL { class Graphic; }
-namespace Puzzle {
+
+namespace Example {
 
 class Puzzle;
 class State;
 
-class Board : public Glut::GlutDisplay {
+class Board : public Glut::GlutDisplay
+{
    DECLARE_SUBCLASS(Board, Glut::GlutDisplay)
 
 public:
@@ -25,11 +27,9 @@ public:
 
    const State* getFinalState() const  { return finalState; }  // Returns the final state
 
-   // BasicGL::Graphic interface
-   virtual void drawFunc(); 
+   void drawFunc() override;
 
-   // Component interface
-   virtual void updateData(const LCreal dt = 0.0);
+   void updateData(const LCreal dt = 0.0) override;
 
 protected:
    virtual bool setSlotPuzzle(Puzzle* const s);                       // Sets the Puzzle controller
@@ -64,7 +64,7 @@ private:
    unsigned int         nblocks;             // number of blocks
 };
 
-}  // End of Puzzle namespace
+}  // End of Example namespace
 }  // End of Eaagles namespace
 
 #endif

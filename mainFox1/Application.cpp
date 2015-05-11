@@ -8,9 +8,9 @@
 #include "openeaagles/basicGL/Graphic.h"
 
 namespace Eaagles {
-namespace mainFox {
+namespace Example {
 
-// display refresh rate (hz)
+// display refresh rate (Hz)
 static const FXuint DRAW_FRAME_RATE = 50;
 
 // Message Map 
@@ -24,11 +24,15 @@ FXIMPLEMENT(Application,FXApp,AppMap,ARRAYNUMBER(AppMap))
 
 Application::Application(const FXString& name, const FXString& vendor) : FXApp(name, vendor)
 {
+   station = 0;
 }
 
 Application::~Application()
 {
-   if (station!=0) { station->unref(); station = 0; }
+   if (station!=0) {
+      station->unref();
+      station = 0;
+   }
 }
 
 void Application::init(int& argc, char** argv, bool connect)
@@ -36,9 +40,9 @@ void Application::init(int& argc, char** argv, bool connect)
    FXApp::init(argc, argv, connect);
 
    // schedule a timer for display refresh
-   double dt0 = 1.0/double(DRAW_FRAME_RATE);
-   unsigned int millis = (unsigned int)(dt0 * 1000);
-   addTimeout(this,ID_TIMEOUT,millis);
+   double dt0 = 1.0 / static_cast<double>(DRAW_FRAME_RATE);
+   unsigned int millis = static_cast<unsigned int>(dt0 * 1000);
+   addTimeout(this, ID_TIMEOUT, millis);
 }
 
 // when we timeout
@@ -47,9 +51,9 @@ long Application::onTimeout(FXObject*,FXSelector,void*)
    // ---
    // reschedule the display refresh timer
    // ---
-   double dt0 = 1.0/double(DRAW_FRAME_RATE);
-   unsigned int millis = (unsigned int)(dt0 * 1000);
-   addTimeout(this,ID_TIMEOUT,millis);
+   double dt0 = 1.0/static_cast<double>(DRAW_FRAME_RATE);
+   unsigned int millis = static_cast<unsigned int>(dt0 * 1000);
+   addTimeout(this, ID_TIMEOUT, millis);
 
    // ---
    // compute delta time
@@ -61,12 +65,12 @@ long Application::onTimeout(FXObject*,FXSelector,void*)
       dt = 0;
    }
    time0 = time;
-   
+
    // ---
    // update station data (background thread)
    // and get the current status display data.
    // ---
-   station->updateData((LCreal)dt);
+   station->updateData(static_cast<LCreal>(dt));
 
    // ---
    // draw the FOX displays
@@ -77,5 +81,19 @@ long Application::onTimeout(FXObject*,FXSelector,void*)
    return 1;
 }
 
-} // end mainFox namespace
+void Application::setStation(FoxStation* x)
+{
+   if (station!=0) {
+      station->unref();
+   }
+   station = x;
+   station->ref();
+}
+
+FoxStation* Application::getStation()
+{
+   return station;
+}
+
+} // end Example namespace
 } // end Eaagles namespace

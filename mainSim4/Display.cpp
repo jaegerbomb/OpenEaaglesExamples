@@ -3,11 +3,10 @@
 #include <GL/glut.h>
 
 namespace Eaagles {
-namespace MapTest {
+namespace Example {
 
 IMPLEMENT_EMPTY_SLOTTABLE_SUBCLASS(Display,"MapTestDisplay")
 EMPTY_SERIALIZER(Display)
-
 
 //------------------------------------------------------------------------------
 // Constructor(s)
@@ -73,7 +72,7 @@ void Display::passiveMotionEvent(const int x, const int y)
 void Display::mouseMotionEvent(const int x, const int y)
 {
     if (dragging) {
-        MapPage* page = (MapPage*)(subpage());
+        MapPage* page = static_cast<MapPage*>(subpage());
         if (page != 0) {
             // get our ref lat, because we won't go passed 70 degrees lat (either way);
             double lat = page->getReferenceLatDeg();
@@ -99,9 +98,9 @@ void Display::mouseMotionEvent(const int x, const int y)
 void Display::buttonEvent(const int b)
 {
     // range up, down
-    MapPage* page = (MapPage*)(subpage());
+    MapPage* page = static_cast<MapPage*>(subpage());
     if (page != 0) {
-        unsigned int myRange = (unsigned int)page->getRange();
+        unsigned int myRange = static_cast<unsigned int>(page->getRange());
         if (b == 1000) {
             if (myRange < 320) {
                 myRange += 5;
@@ -124,12 +123,12 @@ void Display::updateData(const LCreal dt)
 {
     BaseClass::updateData(dt);
 
-    MapPage* page = (MapPage*)(subpage());
-    if (page != 0) range = (int)page->getRange();
+    MapPage* page = static_cast<MapPage*>(subpage());
+    if (page != 0) range = static_cast<int>(page->getRange());
     
     send("range", UPDATE_VALUE, range, rangeSD);
 }
 
-}  // end of MapTest namespace
+}  // end of Example namespace
 }  // end of Eaagles namespace
 

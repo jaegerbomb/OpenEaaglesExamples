@@ -1,122 +1,105 @@
 
 #include "DataRecordTest.h"
 
-#include "openeaagles/simulation/simulationFF.h"
 #include "openeaagles/simulation/Simulation.h"
 #include "openeaagles/simulation/Station.h"
 #include "openeaagles/simulation/Player.h"
-#include "openeaagles/basic/basicFF.h"
 #include "openeaagles/basic/Parser.h"
 #include "openeaagles/basic/Pair.h"
 
+// class factories
+#include "openeaagles/simulation/Factory.h"
+#include "openeaagles/basic/Factory.h"
+#include "openeaagles/recorder/Factory.h"
+
+#include <cstring>
+#include <cstdlib>
+
 namespace Eaagles {
-namespace TestRecorder {
+namespace Test {
 
-//const float UPDATE_RATE = 10.0; // Main loop update rate
-
-//=============================================================================
-// Main test functions
-//=============================================================================
-
-
-//-----------------------------------------------------------------------------
-// testFormFunc() -- our form function used by the parser
-//-----------------------------------------------------------------------------
-static Eaagles::Basic::Object* testFormFunc(const char* formname)
+// our class factory
+static Basic::Object* factory(const char* name)
 {
-   Eaagles::Basic::Object* newform = 0;
+   Basic::Object* obj = nullptr;
 
-   // This test:
-   if ( strcmp(formname, DataRecordTest::getFormName()) == 0 ) {
-      newform = new DataRecordTest();
+   //
+   if ( std::strcmp(name, DataRecordTest::getFactoryName()) == 0 ) {
+      obj = new DataRecordTest();
    }
 
-    else {
-       if (newform == 0) newform = Eaagles::Simulation::simulationFormFunc(formname);
-       if (newform == 0) newform = Eaagles::Basic::basicFormFunc(formname);
-       if (newform == 0) newform = Eaagles::Recorder::recorderFormFunc(formname);
-    }
+   else {
+      if (obj == nullptr) obj = Eaagles::Simulation::Factory::createObj(name);
+      if (obj == nullptr) obj = Eaagles::Basic::Factory::createObj(name);
+      if (obj == nullptr) obj = Eaagles::Recorder::Factory::createObj(name);
+   }
 
-   return newform;
+   return obj;
 }
 
-//-----------------------------------------------------------------------------
-// readTest() -- function to the read description files
-//-----------------------------------------------------------------------------
-static DataRecordTest* readTest(const char* const testFile)
+// DataRecordTest builder
+static DataRecordTest* builder(const char* const filename)
 {
-   if (testFile == 0) return 0;
-
- //  std::cout << "Reading file : " << testFile << std::endl;
-
-   // Read the description file
+   // read configuration file
    int errors = 0;
-   Eaagles::Basic::Object* q1 = lcParser(testFile, testFormFunc, &errors);
+   Basic::Object* obj = Basic::lcParser(filename, factory, &errors);
    if (errors > 0) {
-      std::cerr << "File: " << testFile << ", errors: " << errors << std::endl;
-  //    exit(1);
+      std::cerr << "File: " << filename << ", errors: " << errors << std::endl;
+      std::exit(EXIT_FAILURE);
    }
 
-   // Set 'sys' to our basic description object.
-   DataRecordTest* sys = 0;
-   if (q1 != 0) {
-      // When we were given a Pair, get the pointer to its object.
-      Eaagles::Basic::Pair* pp = dynamic_cast<Eaagles::Basic::Pair*>(q1);
-      if (pp != 0) {
-         q1 = pp->object();
-      }
-
-      // What we should have here is the description object and
-      // it should be of type 'Station'.
-      sys = dynamic_cast<DataRecordTest*>(q1);
+   // test to see if an object was created
+   if (obj == nullptr) {
+      std::cerr << "Invalid configuration file, no objects defined!" << std::endl;
+      std::exit(EXIT_FAILURE);
    }
 
-   return sys;
+   // do we have a Basic::Pair, if so, point to object in Pair, not Pair itself
+   Basic::Pair* pair = dynamic_cast<Basic::Pair*>(obj);
+   if (pair != nullptr) {
+      obj = pair->object();
+      obj->ref();
+      pair->unref();
+   }
+
+   // try to cast to proper object, and check
+   DataRecordTest* dataRecordTest = dynamic_cast<DataRecordTest*>(obj);
+   if (dataRecordTest == nullptr) {
+      std::cerr << "Invalid configuration file!" << std::endl;
+      std::exit(EXIT_FAILURE);
+   }
+   return dataRecordTest;
 }
 
-int exec(int argc, char* argv[])
+//
+int main(int argc, char* argv[])
 {
-   const char* testFile = "test.edl";
-
-   // Get the command line arguments
+   // default configuration filename
+   const char* configFilename = "test.edl";
+   // parse command line arguments
    for (int i = 1; i < argc; i++) {
-      if (strcmp(argv[i],"-f") == 0) {
-         testFile = argv[++i];
+      if (std::strcmp(argv[i],"-f") == 0) {
+         configFilename = argv[++i];
       }
    }
 
-   // Must have a test file name
-   if (testFile == 0) {
-      std::cerr << "usage:  test -f testFile" << std::endl;
-      return EXIT_FAILURE;
-   }
-
-   // Read in the description files
-   DataRecordTest* sys = readTest(testFile);
-
-   // Must have a valid system of type DataRecordTest
-   if (sys == 0) {
-      std::cerr << "Invalid test file" << std::endl;
-      return EXIT_FAILURE;
-   }
+   // build data recorder test
+   DataRecordTest* dataRecordTest = builder(configFilename);
 
    // Start test (we don't come back!)
- //  sys->testEvents();
-   sys->testSerialize();
- //  sys->testSelect();
-
+ //  dataRecordTest->testEvents();
+   dataRecordTest->testSerialize();
+ //  dataRecordTest->testSelect();
 
    return EXIT_SUCCESS;
 }
 
-} // namespace TestRecorder
+}
 }
 
-//-----------------------------------------------------------------------------
-// main() -- Main routine
-//-----------------------------------------------------------------------------
+//
 int main(int argc, char* argv[])
 {
-   Eaagles::TestRecorder::exec(argc, argv);
+   Eaagles::Test::main(argc, argv);
 }
 

@@ -25,6 +25,29 @@ project "testEvents"
       links {LibFtgl_d, LibFreetype_d, LibGlut_d, LibGLU, LibGL}
       links {"Ws2_32", "Winmm", "comctl32", "gdi32"}
 
+-- testGraphics : test of basic graphics
+project "testGraphics"
+   targetname "testGraphics"
+   targetdir "../../testGraphics"
+   debugdir "../../testGraphics"
+   files {
+      "../../testGraphics/**.cpp",
+      "../../testGraphics/**.h",
+      "../../testGraphics/**.epp",
+      "../../testGraphics/**.edl"
+   }
+   includedirs { OEIncPath, OE3rdPartyIncPath }
+   libdirs     { OELibPath, OE3rdPartyLibPath }
+   defines { "_CONSOLE" }
+   configuration "Release"
+      links {"oeGlut", "oeBasicGL", "oeBasic"}
+      links {LibFtgl, LibFreetype, LibGlut, LibGLU, LibGL}
+      links {"Ws2_32", "Winmm", "comctl32", "gdi32"}
+   configuration "Debug"
+      links {"oeGlut_d", "oeBasicGL_d", "oeBasic_d"}
+      links {LibFtgl_d, LibFreetype_d, LibGlut_d, LibGLU, LibGL}
+      links {"Ws2_32", "Winmm", "comctl32", "gdi32"}
+
 -- testIoHandler: I/O handler test
 project "testIoHandler"
    targetname "testIoHandler"
@@ -69,16 +92,16 @@ project "testLinearSys"
       links {"oeLinearSys_d", "oeBasic_d"}
       links {"Ws2_32", "Winmm", "comctl32"}
 
--- testNavigation
-project "testNavigation"
-   targetname "testNavigation"
-   targetdir "../../testNavigation"
-   debugdir "../../testNavigation"
+-- testMatrix
+project "testMatrix"
+   targetname "testMatrix"
+   targetdir "../../testMatrix"
+   debugdir "../../testMatrix"
    files {
-      "../../testNavigation/**.cpp",
-      "../../testNavigation/**.h",
-      "../../testNavigation/**.epp",
-      "../../testNavigation/**.edl"
+      "../../testMatrix/**.cpp",
+      "../../testMatrix/**.h",
+      "../../testMatrix/**.epp",
+      "../../testMatrix/**.edl"
    }
    includedirs { OEIncPath }
    libdirs     { OELibPath }
@@ -90,16 +113,16 @@ project "testNavigation"
       links {"oeBasic_d"}
       links {"Ws2_32", "Winmm", "comctl32"}
 
--- testMatrix
-project "testMatrix"
-   targetname "testMatrix"
-   targetdir "../../testMatrix"
-   debugdir "../../testMatrix"
+-- testNavigation
+project "testNavigation"
+   targetname "testNavigation"
+   targetdir "../../testNavigation"
+   debugdir "../../testNavigation"
    files {
-      "../../testMatrix/**.cpp",
-      "../../testMatrix/**.h",
-      "../../testMatrix/**.epp",
-      "../../testMatrix/**.edl"
+      "../../testNavigation/**.cpp",
+      "../../testNavigation/**.h",
+      "../../testNavigation/**.epp",
+      "../../testNavigation/**.edl"
    }
    includedirs { OEIncPath }
    libdirs     { OELibPath }
@@ -122,14 +145,17 @@ project "testNetHandler"
       "../../testNetHandler/**.epp",
       "../../testNetHandler/**.edl"
    }
-   includedirs { OEIncPath }
-   libdirs     { OELibPath }
+   includedirs { OEIncPath, OE3rdPartyIncPath }
+   libdirs     { OELibPath, OE3rdPartyLibPath }
+   -- zeromq nethandlers
+   defines { "ZMQ_STATIC" }
+   links { "libxZeroMQHandlers" }
    defines { "_CONSOLE" }
    configuration "Release"
-      links {"oeBasic"}
+      links {"oeBasic", "libzmq" }
       links {"Ws2_32", "Winmm", "comctl32"}
    configuration "Debug"
-      links {"oeBasic_d"}
+      links {"oeBasic_d", "libzmq_d" }
       links {"Ws2_32", "Winmm", "comctl32"}
 
 -- testRadar
@@ -147,7 +173,7 @@ project "testRadar"
    libdirs     { OELibPath, OE3rdPartyLibPath }
    defines { "_CONSOLE" }
    configuration "Release"
-      links {"oeVehicles", "JSBSim"}
+      links {"oeDynamics", "JSBSim"}
       links {"oeOtw", LibCigi}
       links {"oeDis", "oeSensors", "oeIoDevice"}
       links {"oeSimulation", "oeDafif", "oeTerrain"}
@@ -155,7 +181,7 @@ project "testRadar"
       links {LibFtgl, LibFreetype, LibGlut, LibGLU, LibGL}
       links {"Ws2_32", "Winmm", "comctl32", "gdi32"}
    configuration "Debug"
-      links {"oeVehicles_d", "JSBSim_d"}
+      links {"oeDynamics_d", "JSBSim_d"}
       links {"oeOtw_d", LibCigi_d}
       links {"oeDis_d", "oeSensors_d", "oeIoDevice_d"}
       links {"oeSimulation_d", "oeDafif_d", "oeTerrain_d"}
@@ -179,7 +205,7 @@ project "testRecordData"
    links       { "libxRecorder", "libxPanel" }
    defines { "_CONSOLE" }
    configuration "Release"
-      links {"oeVehicles", "JSBSim" }
+      links {"oeDynamics", "JSBSim" }
       links {"oeOtw", LibCigi }
       links {"oeDis", "oeRecorder", "oeSensors", "oeIoDevice" }
       links {"oeSimulation", "oeDafif", "oeTerrain" }
@@ -188,7 +214,7 @@ project "testRecordData"
       links {"libprotobuf" }
       links {"Ws2_32", "Winmm", "comctl32", "gdi32"}
    configuration "Debug"
-      links {"oeVehicles_d", "JSBSim_d" }
+      links {"oeDynamics_d", "JSBSim_d" }
       links {"oeOtw_d",  LibCigi_d }
       links {"oeDis_d", "oeRecorder_d", "oeSensors_d", "oeIoDevice_d" }
       links {"oeSimulation_d", "oeDafif_d", "oeTerrain_d" }

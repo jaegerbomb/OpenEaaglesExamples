@@ -1,11 +1,14 @@
-
+//------------------------------------------------------------------------------
+// Class:  Puzzle
+//------------------------------------------------------------------------------
 #include "Puzzle.h"
 #include "State.h"
 
 #include "openeaagles/basic/List.h"
 
 namespace Eaagles {
-namespace Puzzle2 {
+
+namespace Example {
 
 IMPLEMENT_SUBCLASS(Puzzle,"Puzzle")
 
@@ -138,7 +141,7 @@ void Puzzle::printPath(const State* tstate) const
       while (s->getGeneration() > 0) {
          std::cout << std::endl;
          s->serialize(std::cout);
-         s = (const State*) s->container();
+         s = static_cast<const State*>( s->container() );
       }
       std::cout << std::endl;
       s->serialize(std::cout);
@@ -192,7 +195,7 @@ State* Puzzle::getOpen()
 {
    State* p = 0;
    if (openStates != 0) {
-      p = (State*) openStates->get();
+      p = static_cast<State*>( openStates->get() );
    }
    return p;
 }
@@ -216,7 +219,7 @@ void Puzzle::putOpen(State* const s)
       Basic::List::Item* item = openStates->getFirstItem();
       Basic::List::Item* refItem = 0;
       while (item != 0 && refItem == 0) {
-         const State* p = (const State*) item->getValue();
+         const State* p = static_cast<const State*>( item->getValue() );
          if (f < p->f()) {
             refItem = item;
          }
@@ -339,7 +342,7 @@ std::ostream& Puzzle::serialize(std::ostream& sout, const int i, const bool slot
 {
    int j = 0;
    if ( !slotsOnly ) {
-      sout << "( " << getFormName() << std::endl;
+      sout << "( " << getFactoryName() << std::endl;
       j = 4;
    }
 
@@ -371,5 +374,5 @@ std::ostream& Puzzle::serialize(std::ostream& sout, const int i, const bool slot
    return sout;
 }
 
-}  // End of Puzzle2 namespace
+}  // End of Example namespace
 }  // End of Eaagles namespace

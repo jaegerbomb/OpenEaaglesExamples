@@ -1,47 +1,42 @@
 //------------------------------------------------------------------------------
-// Class:  Exponential
-// Base class:  Object-> Random -> Exp
-// Description:  Generates Random Numbers
+// Class: Exponential
+// Description: Generates Random Numbers
 //------------------------------------------------------------------------------
 
-#ifndef _EXP_INCLUDE
-#define _EXP_INCLUDE
+#ifndef __Eaagles_Tutorial_Exp_H__
+#define __Eaagles_Tutorial_Exp_H__
 
 #include "Random.h"
 
 namespace Eaagles {
-  namespace Basic {
-    class Number;
-  }
-}
 
-namespace Eaagles {
-namespace Example04 {
+namespace Basic { class Number; }
+
+namespace Tutorial {
 
 class Exp : public Random
 {
-  DECLARE_SUBCLASS(Exp,Random)
+   DECLARE_SUBCLASS(Exp, Random)
 
 public:
 
-  Exp(void);
+   Exp();
 
-  // data access functions
-  virtual void setMean(const float);
+   // data access functions
+   virtual void setMean(const double);
 
-  // slot table functions
-  virtual bool setSlotMean(const Basic::Number* const);
+   // slot table functions
+   virtual bool setSlotMean(const Basic::Number* const);
 
-  // Random class interface
-  virtual int getNum(void) const;
+   int getNum(void) const override;
 
 private:
 
-  float mean;
+   double mean;
 
 };
 
-} // namespace Example04
+} // namespace Tutorial
 } // namespace Eaagles
 
 #endif

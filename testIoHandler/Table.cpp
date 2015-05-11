@@ -1,3 +1,6 @@
+//------------------------------------------------------------------------------
+// Class: Table
+//------------------------------------------------------------------------------
 #include "Table.h"
 
 #include "openeaagles/basic/Number.h"
@@ -13,7 +16,7 @@
 #endif
 
 namespace Eaagles {
-namespace TestIo {
+namespace Test {
 
 static const unsigned int DEFAULT_ROW     = 1;
 static const unsigned int DEFAULT_SPACING = 1;
@@ -22,8 +25,10 @@ static const unsigned int DEFAULT_SPACING = 1;
 // class TableRow -- One row of in the table (used by Table only)
 //          (The implementation is at the bottom of the file after the Table class)
 //==============================================================================
-class TableRow : public BasicGL::Field {
+class TableRow : public BasicGL::Field
+{
    DECLARE_SUBCLASS(TableRow,BasicGL::Field)
+
 public:
    TableRow();
    
@@ -167,17 +172,17 @@ void Table::position()
    
       int ln = line();
       int cp = column();
-      
+
       // Position our subcomponents, which are all TableRow objects (see build())
       Basic::List::Item* item = subcomponents->getFirstItem();
       while (item != 0) {
-         Basic::Pair* pair = (Basic::Pair*)(item->getValue());
-         TableRow* row = (TableRow*) pair->object();
-         
+         Basic::Pair* pair = static_cast<Basic::Pair*>(item->getValue());
+         TableRow* row = static_cast<TableRow*>(pair->object());
+
          row->line(ln);
          row->column(cp);
          ln += spacing;
-         
+
          item = item->getNext();
       }
       subcomponents->unref();
@@ -191,25 +196,25 @@ void Table::position()
 void Table::build()
 {
    Basic::PairStream* newList = 0;
-   
+
    if (rows > 0 && columns != 0) {
 
       newList = new Basic::PairStream();
-      
+
       // For each row: create a TableRow containing all the items in 'columns'
       for (unsigned int i = 1; i <= rows; i++) {
-      
+
          // new row
          TableRow* row = new TableRow(); 
          row->container(this);
-         
+
          const Basic::List::Item* item = columns->getFirstItem();
          while (item != 0) {
-            const Basic::Pair* pair = (const Basic::Pair*)(item->getValue());
+            const Basic::Pair* pair = static_cast<const Basic::Pair*>(item->getValue());
             const Basic::Object* obj = pair->object();
             if (obj->isClassType(typeid(BasicGL::Graphic))) {
                Basic::Pair* pp = pair->clone();
-               BasicGL::Graphic* gobj = (BasicGL::Graphic*) pp->object();
+               BasicGL::Graphic* gobj = static_cast<BasicGL::Graphic*>(pp->object());
                gobj->container(row);
                row->put(pp);
                pp->unref();
@@ -226,7 +231,7 @@ void Table::build()
             newList->put(pp);
             pp->unref();
          }
-         
+
          row->unref();
       }
 
@@ -249,7 +254,7 @@ bool Table::setSlotRows(Basic::Number* const msg)
    if (msg != 0) {
       int v = msg->getInt();
       if (v >= 0) {
-         rows = (unsigned int) v;
+         rows = static_cast<unsigned int>(v);
          ok = true;
       }
    }
@@ -262,7 +267,7 @@ bool Table::setSlotSpacing(Basic::Number* const msg)
    if (msg != 0) {
       int v = msg->getInt();
       if (v >= 0) {
-         spacing = (unsigned int) v;
+         spacing = static_cast<unsigned int>(v);
          ok = true;
       }
    }
@@ -277,7 +282,7 @@ bool Table::setSlotColumns(Basic::PairStream* const msg)
       Basic::PairStream* newColumns = new Basic::PairStream();
       Basic::List::Item* item = msg->getFirstItem();
       while (item != 0) {
-          Basic::Pair* pair = (Basic::Pair*) item->getValue();
+          Basic::Pair* pair = static_cast<Basic::Pair*>(item->getValue());
           BasicGL::Field* g = dynamic_cast<BasicGL::Field*>(pair->object());
           if (g != 0) {
               // We have a Field object, so add it to the new columns list
@@ -307,10 +312,10 @@ std::ostream& Table::serialize(std::ostream& sout, const int i, const bool slots
     int j = 0;
     if ( !slotsOnly ) {
         //indent(sout,i);
-        sout << "( " << getFormName() << std::endl;
+        sout << "( " << getFactoryName() << std::endl;
         j = 4;
     }
-    
+
    indent(sout,i+j);
    sout << "rows: " << rows << std::endl;
 
@@ -399,12 +404,12 @@ void TableRow::position()
       
       Basic::List::Item* item = subcomponents->getFirstItem();
       while (item != 0) {
-         Basic::Pair* pair = (Basic::Pair*)(item->getValue());
-         BasicGL::Field* ti = (BasicGL::Field*) pair->object();
+         Basic::Pair* pair = static_cast<Basic::Pair*>(item->getValue());
+         BasicGL::Field* ti = static_cast<BasicGL::Field*>(pair->object());
         
          ti->line(ln);
          ti->column(cp);
-         cp += (int) ti->width();
+         cp += static_cast<int>(ti->width());
          
          item = item->getNext();
       }
@@ -413,5 +418,5 @@ void TableRow::position()
    }
 }
 
-} // End of TestIo namespace
+} // End of Test namespace
 } // End of Eaagles namespace

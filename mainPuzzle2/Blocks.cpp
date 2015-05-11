@@ -1,13 +1,14 @@
-
+//------------------------------------------------------------------------------
+// Class:  Block1, Block2, ... Block15, Block
+//------------------------------------------------------------------------------
 #include "Blocks.h"
 #include "Puzzle.h"
 
 #include "openeaagles/basic/Integer.h"
 #include "openeaagles/basic/List.h"
 
-
 namespace Eaagles {
-namespace Puzzle2 {
+namespace Example {
 
 //==============================================================================
 // Class: Block
@@ -226,7 +227,7 @@ bool Block::setSlotRefId(const Basic::Integer* const msg)
    if (msg != 0) {
       int i = msg->getInt();
       if (i >= 0) {
-         unsigned int id = (unsigned int) i;
+         unsigned int id = static_cast<unsigned int>(i);
          ok = setReferenceID(id);
       }
    }
@@ -248,7 +249,7 @@ std::ostream& Block::serialize(std::ostream& sout, const int i, const bool slots
 {
    int j = 0;
    if ( !slotsOnly ) {
-      sout << "( " << getFormName() << std::endl;
+      sout << "( " << getFactoryName() << std::endl;
       j = 4;
    }
 
@@ -671,5 +672,5 @@ unsigned int Block15::getSizeX() const      { return 1; }
 unsigned int Block15::getSizeY() const      { return 1; }
 
 
-}  // End of Puzzle2 namespace
+}  // End of Example namespace
 }  // End of Eaagles namespace
