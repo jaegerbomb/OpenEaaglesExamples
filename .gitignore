@@ -33,8 +33,7 @@ build-mainSim4-qt-Desktop_Qt*
 *.[oa]
 
 # windows executables
-*.exe*
-
+*.exe
 # windows libraries
 *.lib
 # keep premake executable

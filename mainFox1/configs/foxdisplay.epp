@@ -41,7 +41,7 @@
     }
 
     normalFont: 
-      ( FtglPolygonFont
+      ( FTGLPolygonFonts
           fontPosition: [ -10 9.4 ]
           path: FONT_PATH
           file: "arialn.ttf"

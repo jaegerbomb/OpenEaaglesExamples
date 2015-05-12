@@ -91,7 +91,7 @@
         )
         
         arialfont: 
-        ( FtglPolygonFont
+        ( FTGLPolygonFonts
             // starting position of our font, notice it the upper left corner of our display, (see the orthos, up top)
             fontPosition: [ -10.5 10.5 ]
             // this is a unit value, telling us our width and height are proportional to one another

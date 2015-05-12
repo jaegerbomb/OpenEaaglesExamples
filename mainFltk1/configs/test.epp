@@ -29,7 +29,7 @@
         fonts: {
             // normal font for most display stuff
             normal:
-            ( FtglPolygonFont
+            ( FTGLPolygonFonts
                 fontPosition: [ -10 9.4 ]
                 path: FONT_PATH
                 file: "arialn.ttf"
@@ -215,7 +215,7 @@
         fonts: {
             // normal font for most display stuff
             normal:
-            ( FtglPolygonFont
+            ( FTGLPolygonFonts
                 fontPosition: [ -10 9.4 ]
                 path: FONT_PATH
                 file: "arialn.ttf"
